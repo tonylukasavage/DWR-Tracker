@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Text;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -39,6 +41,34 @@ namespace DWR_Tracker
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // load DW font
+            PrivateFontCollection private_fonts = new PrivateFontCollection();
+            string resource = "DWR_Tracker.Dragon Warrior (NES).ttf";
+            // receive resource stream
+            Stream fontStream = this.GetType().Assembly.GetManifestResourceStream(resource);
+
+            // create an unsafe memory block for the font data
+            System.IntPtr data = Marshal.AllocCoTaskMem((int)fontStream.Length);
+
+            // create a buffer to read in to
+            byte[] fontdata = new byte[fontStream.Length];
+
+            // read the font data from the resource
+            fontStream.Read(fontdata, 0, (int)fontStream.Length);
+
+            // copy the bytes to the unsafe memory block
+            Marshal.Copy(fontdata, 0, data, (int)fontStream.Length);
+
+            // pass the font to the font collection
+            private_fonts.AddMemoryFont(data, (int)fontStream.Length);
+
+            // close the resource stream
+            fontStream.Close();
+
+            // free up the unsafe memory
+            Marshal.FreeCoTaskMem(data);
+
+
             // get the process
             process = Process.GetProcessesByName("fceux")[0];
             processHandle = OpenProcess(PROCESS_VM_READ, false, process.Id);
@@ -53,9 +83,9 @@ namespace DWR_Tracker
 
             // write the current HP
             int hp = GetBytes(0xC5, 1);
-            //byte[] gameData = new byte[1];
-            //ReadProcessMemory((int)processHandle, (int)(nesPointerValue + 0xC5), gameData, gameData.Length, ref bytesRead);
             Console.Out.WriteLine("HP: " + hp.ToString());
+
+            label1.Font = new Font(private_fonts.Families[0], 48);
 
             // 1/2 second timer
             System.Timers.Timer timer = new System.Timers.Timer(500);
