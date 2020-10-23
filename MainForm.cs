@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Drawing.Text;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -85,6 +86,9 @@ namespace DWR_Tracker
 
                 int armor = (equipByte >> 2) & 0x7;
                 Console.WriteLine("armor: " + DWGlobals.Armor[armor]);
+                Assembly myAssembly = Assembly.GetExecutingAssembly();
+                Stream myStream = myAssembly.GetManifestResourceStream(DWGlobals.ArmorImages[armor]);
+                ArmorPictureBox.Image = Image.FromStream(myStream);
 
                 int sword = (equipByte >> 5) & 0x7;
                 Console.WriteLine("sword: " + DWGlobals.Swords[sword]);

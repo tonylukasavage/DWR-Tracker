@@ -31,6 +31,9 @@
             this.SpellFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.StatTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.EquipmentFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.ArmorPictureBox = new System.Windows.Forms.PictureBox();
+            this.EquipmentFlowPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ArmorPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // SpellFlowPanel
@@ -60,10 +63,19 @@
             // 
             // EquipmentFlowPanel
             // 
+            this.EquipmentFlowPanel.Controls.Add(this.ArmorPictureBox);
             this.EquipmentFlowPanel.Location = new System.Drawing.Point(238, 298);
             this.EquipmentFlowPanel.Name = "EquipmentFlowPanel";
             this.EquipmentFlowPanel.Size = new System.Drawing.Size(257, 202);
             this.EquipmentFlowPanel.TabIndex = 3;
+            // 
+            // ArmorPictureBox
+            // 
+            this.ArmorPictureBox.Location = new System.Drawing.Point(3, 3);
+            this.ArmorPictureBox.Name = "ArmorPictureBox";
+            this.ArmorPictureBox.Size = new System.Drawing.Size(97, 99);
+            this.ArmorPictureBox.TabIndex = 0;
+            this.ArmorPictureBox.TabStop = false;
             // 
             // MainForm
             // 
@@ -77,6 +89,8 @@
             this.Name = "MainForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.EquipmentFlowPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ArmorPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -85,6 +99,7 @@
         private System.Windows.Forms.FlowLayoutPanel SpellFlowPanel;
         private System.Windows.Forms.TableLayoutPanel StatTableLayout;
         private System.Windows.Forms.FlowLayoutPanel EquipmentFlowPanel;
+        private System.Windows.Forms.PictureBox ArmorPictureBox;
     }
 }
 

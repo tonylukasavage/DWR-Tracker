@@ -48,6 +48,14 @@ namespace DWR_Tracker.Classes
             "Silver Shield"
         };
 
+        public static string[] ShieldImages = new string[4]
+        {
+            "None",
+            "Small Shield",
+            "Large Shield",
+            "Silver Shield"
+        };
+
         public static string[] Armor = new string[8]
         {
             "None",
@@ -58,6 +66,18 @@ namespace DWR_Tracker.Classes
             "Full Plate",
             "Magic Armor",
             "Erdrick's Armor"
+        };
+
+        public static string[] ArmorImages = new string[8]
+        {
+            "DWR_Tracker.Images.Armor.armor-no.png",
+            "DWR_Tracker.Images.Armor.clothes.png",
+            "DWR_Tracker.Images.Armor.leather.png",
+            "DWR_Tracker.Images.Armor.chain.png",
+            "DWR_Tracker.Images.Armor.half.png",
+            "DWR_Tracker.Images.Armor.full.png",
+            "DWR_Tracker.Images.Armor.magic.png",
+            "DWR_Tracker.Images.Armor.erdricks.png"
         };
 
         public static string[] Swords = new string[8]

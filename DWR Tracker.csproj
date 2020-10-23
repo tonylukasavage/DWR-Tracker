@@ -101,14 +101,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\Armor\armor-no.png" />
-    <Content Include="Images\Armor\chain.png" />
-    <Content Include="Images\Armor\clothes.png" />
-    <Content Include="Images\Armor\erdricks.png" />
-    <Content Include="Images\Armor\full.png" />
-    <Content Include="Images\Armor\half.png" />
-    <Content Include="Images\Armor\leather.png" />
-    <Content Include="Images\Armor\magic.png" />
+    <EmbeddedResource Include="Images\Armor\armor-no.png" />
+    <EmbeddedResource Include="Images\Armor\chain.png" />
+    <EmbeddedResource Include="Images\Armor\clothes.png" />
+    <EmbeddedResource Include="Images\Armor\erdricks.png" />
+    <EmbeddedResource Include="Images\Armor\full.png" />
+    <EmbeddedResource Include="Images\Armor\half.png" />
+    <EmbeddedResource Include="Images\Armor\leather.png" />
+    <EmbeddedResource Include="Images\Armor\magic.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
