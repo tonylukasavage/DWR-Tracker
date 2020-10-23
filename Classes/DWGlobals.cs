@@ -40,5 +40,57 @@ namespace DWR_Tracker.Classes
             new DWStat("def", 0xCD)
         };
 
+        public static string[] Shields = new string[4]
+        {
+            "None",
+            "Small Shield",
+            "Large Shield",
+            "Silver Shield"
+        };
+
+        public static string[] Armor = new string[8]
+        {
+            "None",
+            "Clothes",
+            "Leather Armor",
+            "Chain Mail",
+            "Half Plate",
+            "Full Plate",
+            "Magic Armor",
+            "Erdrick's Armor"
+        };
+
+        public static string[] Swords = new string[8]
+        {
+            "None",
+            "Bamboo Pole",
+            "Club",
+            "Copper Sword",
+            "Hand Axe",
+            "Broad Sword",
+            "Flame Sword",
+            "Erdrick's Sword"
+        };
+
+        public static string[] Items = new string[16]
+        {
+            "Nothing",
+            "Torch",
+            "Fairy Water",
+            "Wings",
+            "Dragon's Scale",
+            "Fairy Flute",
+            "Fighter's Ring",
+            "Erdrick's Token",
+            "Gwaelin's Love",
+            "Cursed Belt",
+            "Silver Harp",
+            "Death Necklace",
+            "Stones of Sunlight",
+            "Staff of Rain",
+            "Rainbow Drop",
+            "Herb"
+        };
+
     }
 }

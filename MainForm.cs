@@ -76,6 +76,34 @@ namespace DWR_Tracker
                 {
                     stat.UpdateLabel();
                 }
+
+                // EQUIPMENT
+                int equipByte = dwReader.GetInt(0xBE, 1);
+
+                int shield = equipByte & 0x3;
+                Console.WriteLine("shield: " + DWGlobals.Shields[shield]);
+
+                int armor = (equipByte >> 2) & 0x7;
+                Console.WriteLine("armor: " + DWGlobals.Armor[armor]);
+
+                int sword = (equipByte >> 5) & 0x7;
+                Console.WriteLine("sword: " + DWGlobals.Swords[sword]);
+
+                // ITEMS
+                int itemByte = dwReader.GetInt(0xC1, 4);
+                for (int i = 0; i < 8; i++)
+                {
+                    int item = (itemByte >> (i * 4) & 0xF);
+                    Console.WriteLine("item " + (i+1) + ": " + DWGlobals.Items[item]);
+                }
+
+                // MAGIC KEYS
+                int keys = dwReader.GetInt(0xBF, 1);
+                Console.WriteLine("keys: " + keys);
+
+                // DRAGONLORD
+                int dl = dwReader.GetInt(0xE4, 1) & 0x4;
+                Console.WriteLine("DL: " + dl);
             }
         }
 
