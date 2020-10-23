@@ -22,7 +22,6 @@ namespace DWR_Tracker
     public partial class MainForm : Form
     {
         private DWGameReader dwReader;
-        private delegate void SafeCallDelegate(string text);
 
         public MainForm()
         {
@@ -40,12 +39,22 @@ namespace DWR_Tracker
             {
                 DWSpell spell = DWGlobals.Spells[i];
                 SpellLabel label = new SpellLabel(spell);
-                spell.label = label;
+                spell.Label = label;
                 SpellFlowPanel.Controls.Add(label);
                 label.Top = i * 30;
                 label.Left = 10;
                 label.Text = spell.Name.ToUpper();
                 label.Width = SpellFlowPanel.Width;
+            }
+
+            // populate stat table
+            for (int i = 0; i < DWGlobals.Stats.Length; i++)
+            {
+                DWStat stat = DWGlobals.Stats[i];
+                StatLabel label = new StatLabel { Text = stat.Value.ToString(), TextAlign = ContentAlignment.MiddleRight };
+                stat.Label = label;
+                StatTableLayout.Controls.Add(new StatLabel { Text = stat.Name.ToUpper() }, 0, i);
+                StatTableLayout.Controls.Add(label, 1, i);
             }
 
             // game state update timer
@@ -54,30 +63,18 @@ namespace DWR_Tracker
             timer.Start();
         }
 
-        private int ctr = 0;
-
-        //private void UpdateText(string text)
-        //{
-        //    if (label1.InvokeRequired)
-        //    {
-        //        var d = new SafeCallDelegate(UpdateText);
-        //        label1.Invoke(d, new object[] { text });
-        //    }
-        //    else
-        //    {
-        //        label1.Text = text;
-        //    }
-        //}
-
         private void CheckGameState(object source, ElapsedEventArgs e)
         {
-            // UpdateText(ctr++.ToString());
             if (DWGlobals.AutoTrackingEnabled)
             {
-                // int hp = dwReader.GetInt(0xC5);
                 foreach (DWSpell spell in DWGlobals.Spells)
                 {
                     spell.UpdateLabel();
+                }
+
+                foreach (DWStat stat in DWGlobals.Stats)
+                {
+                    stat.UpdateLabel();
                 }
             }
         }

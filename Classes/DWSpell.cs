@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
+using DWR_Tracker.Controls;
 
 namespace DWR_Tracker.Classes
 {
@@ -14,7 +15,7 @@ namespace DWR_Tracker.Classes
         public int Offset;
         public int Bit;
         public bool HasSpell;
-        public Label label;
+        public SpellLabel Label;
 
         public DWSpell(string name, int offset, int bit, bool hasSpell = false)
         {
@@ -26,7 +27,7 @@ namespace DWR_Tracker.Classes
 
         public void UpdateLabel()
         {
-            if (label == default(Label)) { return; }
+            if (Label == default(SpellLabel)) { return; }
 
             DWGameReader dwReader = DWGlobals.DWGameReader;
             UpdateLabel((dwReader.GetInt(Offset) & Bit) > 0);
@@ -36,7 +37,7 @@ namespace DWR_Tracker.Classes
         {
             if (HasSpell != hasSpell || force)
             {
-                label.ForeColor = hasSpell ? Color.FromArgb(255, 255, 255) : Color.FromArgb(60, 60, 60);
+                Label.ForeColor = hasSpell ? Color.FromArgb(255, 255, 255) : Color.FromArgb(60, 60, 60);
             }
             HasSpell = hasSpell;
         }

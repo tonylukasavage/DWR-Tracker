@@ -50,11 +50,18 @@
     <Compile Include="Classes\DWGlobals.cs" />
     <Compile Include="Classes\DWFont.cs" />
     <Compile Include="Classes\DWSpell.cs" />
+    <Compile Include="Classes\DWStat.cs" />
     <Compile Include="Controls\SpellLabel.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\SpellLabel.Designer.cs">
       <DependentUpon>SpellLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StatLabel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\StatLabel.Designer.cs">
+      <DependentUpon>StatLabel.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
