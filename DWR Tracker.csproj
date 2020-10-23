@@ -110,5 +110,21 @@
     <EmbeddedResource Include="Images\Armor\leather.png" />
     <EmbeddedResource Include="Images\Armor\magic.png" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Swords\axe.png" />
+    <EmbeddedResource Include="Images\Swords\bamboo.png" />
+    <EmbeddedResource Include="Images\Swords\broad.png" />
+    <EmbeddedResource Include="Images\Swords\club.png" />
+    <EmbeddedResource Include="Images\Swords\copper.png" />
+    <EmbeddedResource Include="Images\Swords\erdricks.png" />
+    <EmbeddedResource Include="Images\Swords\flame.png" />
+    <EmbeddedResource Include="Images\Swords\weapon-no.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Shields\large.png" />
+    <EmbeddedResource Include="Images\Shields\shield-no.png" />
+    <EmbeddedResource Include="Images\Shields\silver.png" />
+    <EmbeddedResource Include="Images\Shields\small.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

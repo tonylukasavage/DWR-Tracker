@@ -50,10 +50,10 @@ namespace DWR_Tracker.Classes
 
         public static string[] ShieldImages = new string[4]
         {
-            "None",
-            "Small Shield",
-            "Large Shield",
-            "Silver Shield"
+            "DWR_Tracker.Images.Shields.shield-no.png",
+            "DWR_Tracker.Images.Shields.small.png",
+            "DWR_Tracker.Images.Shields.large.png",
+            "DWR_Tracker.Images.Shields.silver.png"
         };
 
         public static string[] Armor = new string[8]
@@ -90,6 +90,18 @@ namespace DWR_Tracker.Classes
             "Broad Sword",
             "Flame Sword",
             "Erdrick's Sword"
+        };
+
+        public static string[] SwordImages = new string[8]
+        {
+            "DWR_Tracker.Images.Swords.weapon-no.png",
+            "DWR_Tracker.Images.Swords.bamboo.png",
+            "DWR_Tracker.Images.Swords.club.png",
+            "DWR_Tracker.Images.Swords.copper.png",
+            "DWR_Tracker.Images.Swords.axe.png",
+            "DWR_Tracker.Images.Swords.broad.png",
+            "DWR_Tracker.Images.Swords.flame.png",
+            "DWR_Tracker.Images.Swords.erdricks.png"
         };
 
         public static string[] Items = new string[16]
