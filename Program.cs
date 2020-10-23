@@ -8,15 +8,12 @@ namespace DWR_Tracker
 {
     static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(true);
-            Application.Run(new Form1());
+            Application.Run(new MainForm());
         }
     }
 }
