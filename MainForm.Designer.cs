@@ -30,6 +30,7 @@
         {
             this.SpellFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.StatTableLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // SpellFlowPanel
@@ -57,12 +58,20 @@
             this.StatTableLayout.Size = new System.Drawing.Size(134, 224);
             this.StatTableLayout.TabIndex = 2;
             // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(221, 293);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(278, 211);
+            this.panel1.TabIndex = 3;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(484, 426);
+            this.ClientSize = new System.Drawing.Size(566, 565);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.StatTableLayout);
             this.Controls.Add(this.SpellFlowPanel);
             this.Name = "MainForm";
@@ -75,6 +84,7 @@
         #endregion
         private System.Windows.Forms.FlowLayoutPanel SpellFlowPanel;
         private System.Windows.Forms.TableLayoutPanel StatTableLayout;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

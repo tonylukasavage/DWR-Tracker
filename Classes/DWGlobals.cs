@@ -31,13 +31,13 @@ namespace DWR_Tracker.Classes
 
         public static DWStat[] Stats = new DWStat[7]
         {
-            new DWStat("lvl", 1, 0xC7),
-            new DWStat("str", 1, 0xC8),
-            new DWStat("agi", 1, 0xC9),
-            new DWStat("hp", 1, 0xCA),
-            new DWStat("mp", 1, 0xCB),
-            new DWStat("atk", 1, 0xCC),
-            new DWStat("def", 1, 0xCD)
+            new DWStat("lvl", 0xC7),
+            new DWStat("str", 0xC8),
+            new DWStat("agi", 0xC9),
+            new DWStat("hp", 0xCA),
+            new DWStat("mp", 0xCB),
+            new DWStat("atk", 0xCC),
+            new DWStat("def", 0xCD)
         };
 
     }

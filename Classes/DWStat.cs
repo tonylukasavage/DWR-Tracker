@@ -15,10 +15,10 @@ namespace DWR_Tracker.Classes
         public StatLabel Label;
         private delegate void SafeCallDelegate(string text);
 
-        public DWStat(string name, int value, int offset)
+        public DWStat(string name, int offset)
         {
             Name = name;
-            Value = value;
+            Value = 0;
             Offset = offset;
         }
 
