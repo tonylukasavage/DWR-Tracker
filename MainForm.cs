@@ -58,6 +58,21 @@ namespace DWR_Tracker
                 StatTableLayout.Controls.Add(label, 1, i);
             }
 
+            // add equipment pictures 
+            DWEquipment[] equipment = new DWEquipment[3] 
+            {  
+                DWGlobals.Shield,
+                DWGlobals.Armor,
+                DWGlobals.Sword
+            };
+            foreach (DWEquipment equip in equipment)
+            {
+                PictureBox pictureBox = new PictureBox();
+                equip.PictureBox = pictureBox;
+                EquipmentFlowPanel.Controls.Add(pictureBox);
+                equip.UpdatePictureBox();
+            }
+
             // game state update timer
             System.Timers.Timer timer = new System.Timers.Timer(1000);
             timer.Elapsed += CheckGameState;
@@ -78,20 +93,24 @@ namespace DWR_Tracker
                     stat.UpdateLabel();
                 }
 
+                DWGlobals.Shield.UpdatePictureBox();
+                DWGlobals.Armor.UpdatePictureBox();
+                DWGlobals.Sword.UpdatePictureBox();
+
                 // EQUIPMENT
-                int equipByte = dwReader.GetInt(0xBE, 1);
+                //int equipByte = dwReader.GetInt(0xBE, 1);
 
-                int shield = equipByte & 0x3;
-                Console.WriteLine("shield: " + DWGlobals.Shields[shield]);
+                //int shield = equipByte & 0x3;
+                //Console.WriteLine("shield: " + DWGlobals.Shields[shield]);
 
-                int armor = (equipByte >> 2) & 0x7;
-                Console.WriteLine("armor: " + DWGlobals.Armor[armor]);
-                Assembly myAssembly = Assembly.GetExecutingAssembly();
-                Stream myStream = myAssembly.GetManifestResourceStream(DWGlobals.ArmorImages[armor]);
-                ArmorPictureBox.Image = Image.FromStream(myStream);
+                //int armor = (equipByte >> 2) & 0x7;
+                //Console.WriteLine("armor: " + DWGlobals.Armor[armor]);
+                //Assembly myAssembly = Assembly.GetExecutingAssembly();
+                //Stream myStream = myAssembly.GetManifestResourceStream(DWGlobals.ArmorImages[armor]);
+                //ArmorPictureBox.Image = Image.FromStream(myStream);
 
-                int sword = (equipByte >> 5) & 0x7;
-                Console.WriteLine("sword: " + DWGlobals.Swords[sword]);
+                //int sword = (equipByte >> 5) & 0x7;
+                //Console.WriteLine("sword: " + DWGlobals.Swords[sword]);
 
                 // ITEMS
                 int itemByte = dwReader.GetInt(0xC1, 4);

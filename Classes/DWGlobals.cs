@@ -40,6 +40,10 @@ namespace DWR_Tracker.Classes
             new DWStat("def", 0xCD)
         };
 
+        public static DWEquipment Shield = new DWEquipment("Shield");
+        public static DWEquipment Armor = new DWEquipment("Armor");
+        public static DWEquipment Sword = new DWEquipment("Sword");
+
         public static string[] Shields = new string[4]
         {
             "None",
@@ -56,7 +60,7 @@ namespace DWR_Tracker.Classes
             "DWR_Tracker.Images.Shields.silver.png"
         };
 
-        public static string[] Armor = new string[8]
+        public static string[] Armors = new string[8]
         {
             "None",
             "Clothes",
@@ -70,14 +74,14 @@ namespace DWR_Tracker.Classes
 
         public static string[] ArmorImages = new string[8]
         {
-            "DWR_Tracker.Images.Armor.armor-no.png",
-            "DWR_Tracker.Images.Armor.clothes.png",
-            "DWR_Tracker.Images.Armor.leather.png",
-            "DWR_Tracker.Images.Armor.chain.png",
-            "DWR_Tracker.Images.Armor.half.png",
-            "DWR_Tracker.Images.Armor.full.png",
-            "DWR_Tracker.Images.Armor.magic.png",
-            "DWR_Tracker.Images.Armor.erdricks.png"
+            "DWR_Tracker.Images.Armors.armor-no.png",
+            "DWR_Tracker.Images.Armors.clothes.png",
+            "DWR_Tracker.Images.Armors.leather.png",
+            "DWR_Tracker.Images.Armors.chain.png",
+            "DWR_Tracker.Images.Armors.half.png",
+            "DWR_Tracker.Images.Armors.full.png",
+            "DWR_Tracker.Images.Armors.magic.png",
+            "DWR_Tracker.Images.Armors.erdricks.png"
         };
 
         public static string[] Swords = new string[8]

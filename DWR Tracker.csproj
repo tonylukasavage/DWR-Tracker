@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>metal_slime_w2B_icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\DWEquipment.cs" />
     <Compile Include="Classes\DWGameReader.cs" />
     <Compile Include="Classes\DWGlobals.cs" />
     <Compile Include="Classes\DWFont.cs" />
@@ -101,14 +105,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Images\Armor\armor-no.png" />
-    <EmbeddedResource Include="Images\Armor\chain.png" />
-    <EmbeddedResource Include="Images\Armor\clothes.png" />
-    <EmbeddedResource Include="Images\Armor\erdricks.png" />
-    <EmbeddedResource Include="Images\Armor\full.png" />
-    <EmbeddedResource Include="Images\Armor\half.png" />
-    <EmbeddedResource Include="Images\Armor\leather.png" />
-    <EmbeddedResource Include="Images\Armor\magic.png" />
+    <EmbeddedResource Include="Images\Armors\armor-no.png" />
+    <EmbeddedResource Include="Images\Armors\chain.png" />
+    <EmbeddedResource Include="Images\Armors\clothes.png" />
+    <EmbeddedResource Include="Images\Armors\erdricks.png" />
+    <EmbeddedResource Include="Images\Armors\full.png" />
+    <EmbeddedResource Include="Images\Armors\half.png" />
+    <EmbeddedResource Include="Images\Armors\leather.png" />
+    <EmbeddedResource Include="Images\Armors\magic.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Images\Swords\axe.png" />
@@ -125,6 +129,12 @@
     <EmbeddedResource Include="Images\Shields\shield-no.png" />
     <EmbeddedResource Include="Images\Shields\silver.png" />
     <EmbeddedResource Include="Images\Shields\small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\metal slime.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="metal_slime_w2B_icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

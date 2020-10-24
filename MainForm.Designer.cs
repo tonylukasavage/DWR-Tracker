@@ -28,19 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.SpellFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.StatTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.EquipmentFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.ArmorPictureBox = new System.Windows.Forms.PictureBox();
-            this.EquipmentFlowPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ArmorPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // SpellFlowPanel
             // 
-            this.SpellFlowPanel.Location = new System.Drawing.Point(0, 12);
+            this.SpellFlowPanel.Location = new System.Drawing.Point(12, 12);
             this.SpellFlowPanel.Name = "SpellFlowPanel";
-            this.SpellFlowPanel.Size = new System.Drawing.Size(183, 378);
+            this.SpellFlowPanel.Size = new System.Drawing.Size(171, 378);
             this.SpellFlowPanel.TabIndex = 1;
             // 
             // StatTableLayout
@@ -63,19 +61,10 @@
             // 
             // EquipmentFlowPanel
             // 
-            this.EquipmentFlowPanel.Controls.Add(this.ArmorPictureBox);
-            this.EquipmentFlowPanel.Location = new System.Drawing.Point(238, 298);
+            this.EquipmentFlowPanel.Location = new System.Drawing.Point(359, 12);
             this.EquipmentFlowPanel.Name = "EquipmentFlowPanel";
-            this.EquipmentFlowPanel.Size = new System.Drawing.Size(257, 202);
+            this.EquipmentFlowPanel.Size = new System.Drawing.Size(195, 224);
             this.EquipmentFlowPanel.TabIndex = 3;
-            // 
-            // ArmorPictureBox
-            // 
-            this.ArmorPictureBox.Location = new System.Drawing.Point(3, 3);
-            this.ArmorPictureBox.Name = "ArmorPictureBox";
-            this.ArmorPictureBox.Size = new System.Drawing.Size(97, 99);
-            this.ArmorPictureBox.TabIndex = 0;
-            this.ArmorPictureBox.TabStop = false;
             // 
             // MainForm
             // 
@@ -86,11 +75,10 @@
             this.Controls.Add(this.EquipmentFlowPanel);
             this.Controls.Add(this.StatTableLayout);
             this.Controls.Add(this.SpellFlowPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "Dragon Warrior Randomizer Auto-Tracker";
             this.Load += new System.EventHandler(this.MainForm_Load);
-            this.EquipmentFlowPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ArmorPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -99,7 +87,6 @@
         private System.Windows.Forms.FlowLayoutPanel SpellFlowPanel;
         private System.Windows.Forms.TableLayoutPanel StatTableLayout;
         private System.Windows.Forms.FlowLayoutPanel EquipmentFlowPanel;
-        private System.Windows.Forms.PictureBox ArmorPictureBox;
     }
 }
 
