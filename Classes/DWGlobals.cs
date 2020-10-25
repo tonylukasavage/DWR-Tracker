@@ -14,6 +14,15 @@ namespace DWR_Tracker.Classes
         public static bool AutoTrackingEnabled = true;
         public static DWFont DWFont = new DWFont();
         public static DWGameReader DWGameReader = new DWGameReader();
+        public static string DWImagePath = "DWR_Tracker.Images.";
+
+        public static enum DWItemTypes
+        {
+            Battle = 1,
+            Inventory = 2,
+            Multiple = 3,
+            Quest = 4
+        }
 
         public static DWSpell[] Spells = new DWSpell[10]
         {
@@ -43,6 +52,41 @@ namespace DWR_Tracker.Classes
         public static DWEquipment Shield = new DWEquipment("Shield");
         public static DWEquipment Armor = new DWEquipment("Armor");
         public static DWEquipment Sword = new DWEquipment("Sword");
+        public static DWEquipment FightersRing = new DWEquipment("Fighter's Ring");
+        public static DWEquipment DragonsScale = new DWEquipment("Dragon's Scale");
+        public static DWEquipment DeathNecklace = new DWEquipment("Death Necklace");
+        public static DWEquipment MagicKey = new DWEquipment("Magic Key");
+        public static DWEquipment FairyFlute = new DWEquipment("Fairy Flute");
+
+        public static string[] FightersRingImages = new string[2]
+        {
+            "DWR_Tracker.Images.Items.fighters_ring-grey.png",
+            "DWR_Tracker.Images.Items.fighters_ring.png"
+        };
+
+        public static string[] DragonsScaleImages = new string[2]
+        {
+            "DWR_Tracker.Images.Items.dragon_scale-grey.png",
+            "DWR_Tracker.Images.Items.dragon_scale.png"
+        };
+
+        public static string[] DeathNecklaceImages = new string[2]
+        {
+            "DWR_Tracker.Images.Items.reckless_necklace_th-grey.png",
+            "DWR_Tracker.Images.Items.reckless_necklace_th.png"
+        };
+
+        public static string[] MagicKeyImages = new string[2]
+        {
+            "DWR_Tracker.Images.Items.key-grey.png",
+            "DWR_Tracker.Images.Items.key.png"
+        };
+
+        public static string[] FairyFluteImages = new string[2]
+        {
+            "DWR_Tracker.Images.Items.flute-grey.png",
+            "DWR_Tracker.Images.Items.flute.png"
+        };
 
         public static string[] Shields = new string[4]
         {

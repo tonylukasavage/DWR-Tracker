@@ -55,17 +55,23 @@
     <Compile Include="Classes\DWFont.cs" />
     <Compile Include="Classes\DWSpell.cs" />
     <Compile Include="Classes\DWStat.cs" />
-    <Compile Include="Controls\SpellLabel.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="Controls\DWSpellLabel.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\SpellLabel.Designer.cs">
-      <DependentUpon>SpellLabel.cs</DependentUpon>
+    <Compile Include="Controls\DWSpellLabel.Designer.cs">
+      <DependentUpon>DWSpellLabel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\StatLabel.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="Controls\DWStatLabel.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\StatLabel.Designer.cs">
-      <DependentUpon>StatLabel.cs</DependentUpon>
+    <Compile Include="Controls\DWStatLabel.Designer.cs">
+      <DependentUpon>DWStatLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DWTogglePictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\DWTogglePictureBox.Designer.cs">
+      <DependentUpon>DWTogglePictureBox.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -75,8 +81,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Controls\SpellLabel.resx">
-      <DependentUpon>SpellLabel.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\DWSpellLabel.resx">
+      <DependentUpon>DWSpellLabel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -134,6 +140,28 @@
     <EmbeddedResource Include="Images\metal slime.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Images\Items\dragon_scale-grey.png" />
+    <EmbeddedResource Include="Images\Items\dragon_scale.png" />
+    <EmbeddedResource Include="Images\Items\fighters_ring-grey.png" />
+    <EmbeddedResource Include="Images\Items\fighters_ring.png" />
+    <EmbeddedResource Include="Images\Items\flute-grey.png" />
+    <EmbeddedResource Include="Images\Items\flute.png" />
+    <EmbeddedResource Include="Images\Items\gwaelin-grey.png" />
+    <EmbeddedResource Include="Images\Items\gwaelin.png" />
+    <EmbeddedResource Include="Images\Items\harp-grey.png" />
+    <EmbeddedResource Include="Images\Items\harp.png" />
+    <EmbeddedResource Include="Images\Items\key-grey.png" />
+    <EmbeddedResource Include="Images\Items\key.png" />
+    <EmbeddedResource Include="Images\Items\rainbowdrop-grey.png" />
+    <EmbeddedResource Include="Images\Items\rainbowdrop.png" />
+    <EmbeddedResource Include="Images\Items\reckless_necklace_th-grey.png" />
+    <EmbeddedResource Include="Images\Items\reckless_necklace_th.png" />
+    <EmbeddedResource Include="Images\Items\staff_of_rain-grey.png" />
+    <EmbeddedResource Include="Images\Items\staff_of_rain.png" />
+    <EmbeddedResource Include="Images\Items\stones_of_sunlight-grey.png" />
+    <EmbeddedResource Include="Images\Items\stones_of_sunlight.png" />
+    <EmbeddedResource Include="Images\Items\token-grey.png" />
+    <EmbeddedResource Include="Images\Items\token.png" />
     <Content Include="metal_slime_w2B_icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

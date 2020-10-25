@@ -11,11 +11,11 @@ using System.Windows.Forms;
 
 namespace DWR_Tracker.Controls
 {
-    public partial class SpellLabel : Label
+    public partial class DWSpellLabel : Label
     {
         private DWSpell Spell;
 
-        public SpellLabel(DWSpell spell)
+        public DWSpellLabel(DWSpell spell)
         {
             InitializeComponent();
             Spell = spell;

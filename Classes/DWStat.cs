@@ -12,7 +12,7 @@ namespace DWR_Tracker.Classes
         public string Name;
         public int Value;
         public int Offset;
-        public StatLabel Label;
+        public DWStatLabel Label;
         private delegate void SafeCallDelegate(string text);
 
         public DWStat(string name, int offset)
@@ -24,7 +24,7 @@ namespace DWR_Tracker.Classes
 
         public void UpdateLabel(bool force = false)
         {
-            if (Label == default(StatLabel)) { return; }
+            if (Label == default(DWStatLabel)) { return; }
 
             DWGameReader dwReader = DWGlobals.DWGameReader;
             int value = dwReader.GetInt(Offset, 1);

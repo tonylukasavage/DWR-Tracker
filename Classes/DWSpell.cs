@@ -15,7 +15,7 @@ namespace DWR_Tracker.Classes
         public int Offset;
         public int Bit;
         public bool HasSpell;
-        public SpellLabel Label;
+        public DWSpellLabel Label;
 
         public DWSpell(string name, int offset, int bit, bool hasSpell = false)
         {
@@ -27,7 +27,7 @@ namespace DWR_Tracker.Classes
 
         public void UpdateLabel()
         {
-            if (Label == default(SpellLabel)) { return; }
+            if (Label == default(DWSpellLabel)) { return; }
 
             DWGameReader dwReader = DWGlobals.DWGameReader;
             UpdateLabel((dwReader.GetInt(Offset) & Bit) > 0);

@@ -62,8 +62,9 @@
             // EquipmentFlowPanel
             // 
             this.EquipmentFlowPanel.Location = new System.Drawing.Point(359, 12);
+            this.EquipmentFlowPanel.Margin = new System.Windows.Forms.Padding(0);
             this.EquipmentFlowPanel.Name = "EquipmentFlowPanel";
-            this.EquipmentFlowPanel.Size = new System.Drawing.Size(195, 224);
+            this.EquipmentFlowPanel.Size = new System.Drawing.Size(321, 378);
             this.EquipmentFlowPanel.TabIndex = 3;
             // 
             // MainForm
@@ -71,7 +72,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(566, 565);
+            this.ClientSize = new System.Drawing.Size(697, 565);
             this.Controls.Add(this.EquipmentFlowPanel);
             this.Controls.Add(this.StatTableLayout);
             this.Controls.Add(this.SpellFlowPanel);

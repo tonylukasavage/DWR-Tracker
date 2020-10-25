@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace DWR_Tracker.Controls
 {
-    public partial class StatLabel : Label
+    public partial class DWStatLabel : Label
     {
-        public StatLabel()
+        public DWStatLabel()
         {
             InitializeComponent();
             Font = new Font(DWGlobals.DWFont.GetFamily(), 12);

@@ -1,6 +1,6 @@
 ﻿namespace DWR_Tracker.Controls
 {
-    partial class SpellLabel
+    partial class DWSpellLabel
     {
         /// <summary>
         /// Required designer variable.
