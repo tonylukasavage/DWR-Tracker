@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DWR_Tracker.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,18 +13,11 @@ namespace DWR_Tracker.Controls
 {
     public partial class DWTogglePictureBox : PictureBox
     {
-        public string DWName;
-        public string[] ImagePaths;
-        public int DWValue;
         public ToolTip ToolTip;
 
-        public DWTogglePictureBox(string name, string type, string[] imagePaths)
+        public DWTogglePictureBox()
         {
             InitializeComponent();
-            ImagePaths = imagePaths;
-            DWName = "none";
-            DWType = type;
-            DWValue = 0;
             ToolTip = new ToolTip();
         }
 

@@ -16,6 +16,7 @@ namespace DWR_Tracker.Classes
         public int Bit;
         public bool HasSpell;
         public DWSpellLabel Label;
+        private delegate void SafeCallDelegate(Color color);
 
         public DWSpell(string name, int offset, int bit, bool hasSpell = false)
         {
@@ -25,21 +26,34 @@ namespace DWR_Tracker.Classes
             HasSpell = hasSpell;
         }
 
-        public void UpdateLabel()
+        public void UpdateLabel(bool force = false)
         {
             if (Label == default(DWSpellLabel)) { return; }
 
             DWGameReader dwReader = DWGlobals.DWGameReader;
-            UpdateLabel((dwReader.GetInt(Offset) & Bit) > 0);
+            UpdateLabel((dwReader.GetInt(Offset) & Bit) > 0, force);
         }
 
         public void UpdateLabel(bool hasSpell, bool force = false)
         {
             if (HasSpell != hasSpell || force)
             {
-                Label.ForeColor = hasSpell ? Color.FromArgb(255, 255, 255) : Color.FromArgb(60, 60, 60);
+                UpdateLabelColor(hasSpell ? Color.FromArgb(255, 255, 255) : Color.FromArgb(60, 60, 60));
             }
             HasSpell = hasSpell;
+        }
+
+        private void UpdateLabelColor(Color color)
+        {
+            if (Label.InvokeRequired)
+            {
+                var d = new SafeCallDelegate(UpdateLabelColor);
+                Label.Invoke(d, new object[] { color });
+            }
+            else
+            {
+                Label.ForeColor = color;
+            }
         }
     }
 }

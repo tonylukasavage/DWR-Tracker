@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>metal_slime_w2B_icon.ico</ApplicationIcon>
+    <ApplicationIcon>Images\metal_slime.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -49,12 +49,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\DWEquipment.cs" />
+    <Compile Include="Classes\DWItem.cs" />
     <Compile Include="Classes\DWGameReader.cs" />
     <Compile Include="Classes\DWGlobals.cs" />
     <Compile Include="Classes\DWFont.cs" />
     <Compile Include="Classes\DWSpell.cs" />
     <Compile Include="Classes\DWStat.cs" />
+    <Compile Include="Classes\Items\DWArmor.cs" />
+    <Compile Include="Classes\Items\DWDeathNecklace.cs" />
+    <Compile Include="Classes\Items\DWDragonsScale.cs" />
+    <Compile Include="Classes\Items\DWFightersRing.cs" />
+    <Compile Include="Classes\Items\DWShield.cs" />
+    <Compile Include="Classes\Items\DWSword.cs" />
     <Compile Include="Controls\DWSpellLabel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -83,6 +89,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Controls\DWSpellLabel.resx">
       <DependentUpon>DWSpellLabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DWTogglePictureBox.resx">
+      <DependentUpon>DWTogglePictureBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -137,7 +146,7 @@
     <EmbeddedResource Include="Images\Shields\small.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Images\metal slime.png" />
+    <EmbeddedResource Include="Images\Enemies\metal slime.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Images\Items\dragon_scale-grey.png" />
@@ -162,7 +171,7 @@
     <EmbeddedResource Include="Images\Items\stones_of_sunlight.png" />
     <EmbeddedResource Include="Images\Items\token-grey.png" />
     <EmbeddedResource Include="Images\Items\token.png" />
-    <Content Include="metal_slime_w2B_icon.ico" />
+    <EmbeddedResource Include="Images\metal_slime.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -19,10 +19,11 @@ using DWR_Tracker.Controls;
 using Microsoft.Win32.SafeHandles;
 
 namespace DWR_Tracker
-{
+{ 
     public partial class MainForm : Form
     {
         private DWGameReader dwReader;
+        private delegate void SafeCallDelegate(Image image);
 
         public MainForm()
         {
@@ -59,21 +60,28 @@ namespace DWR_Tracker
             }
 
             // add equipment pictures 
-            DWEquipment[] equipment = new DWEquipment[6] 
-            {  
-                DWGlobals.Shield,
-                DWGlobals.Armor,
-                DWGlobals.Sword,
-                DWGlobals.FightersRing,
-                DWGlobals.DragonsScale,
-                DWGlobals.DeathNecklace
-            };
-            foreach (DWEquipment equip in equipment)
+            foreach (DWItem item in DWGlobals.BattleItems)
             {
-                equip.PictureBox = new PictureBox();
-                equip.ToolTip = new ToolTip();
-                EquipmentFlowPanel.Controls.Add(equip.PictureBox);
-                equip.UpdatePictureBox(true);
+                DWTogglePictureBox pictureBox = new DWTogglePictureBox();
+                item.PictureBox = pictureBox;
+                pictureBox.Click += (o, k) =>
+                {
+                    if (!DWGlobals.AutoTrackingEnabled)
+                    {
+                        int value = item.Value;
+                        int max = item.ItemInfo.Length;
+                        if (value + 1 == max)
+                        {
+                            item.UpdatePictureBox(0, true);
+                        }
+                        else
+                        {
+                            item.UpdatePictureBox(value + 1, true);
+                        }
+                    }
+                };
+                EquipmentFlowPanel.Controls.Add(pictureBox);
+                item.UpdatePictureBox(true);
             }
 
             // add item picture
@@ -98,27 +106,40 @@ namespace DWR_Tracker
                     stat.UpdateLabel();
                 }
 
-                DWGlobals.Shield.UpdatePictureBox();
-                DWGlobals.Armor.UpdatePictureBox();
-                DWGlobals.Sword.UpdatePictureBox();
-
-                // ITEMS
-                int itemByte = dwReader.GetInt(0xC1, 4);
-                for (int i = 0; i < 8; i++)
+                foreach (DWItem item in DWGlobals.BattleItems)
                 {
-                    int item = (itemByte >> (i * 4) & 0xF);
-                    Console.WriteLine("item " + (i+1) + ": " + DWGlobals.Items[item]);
+                    item.UpdatePictureBox();
                 }
 
-                // MAGIC KEYS
-                int keys = dwReader.GetInt(0xBF, 1);
-                Console.WriteLine("keys: " + keys);
+                //// ITEMS
+                //int itemByte = dwReader.GetInt(0xC1, 4);
+                //for (int i = 0; i < 8; i++)
+                //{
+                //    int item = (itemByte >> (i * 4) & 0xF);
+                //    Console.WriteLine("item " + (i+1) + ": " + DWGlobals.Items[item]);
+                //}
 
-                // DRAGONLORD
-                int dl = dwReader.GetInt(0xE4, 1) & 0x4;
-                Console.WriteLine("DL: " + dl);
+                //// MAGIC KEYS
+                //int keys = dwReader.GetInt(0xBF, 1);
+                //Console.WriteLine("keys: " + keys);
+
+                //// DRAGONLORD
+                //int dl = dwReader.GetInt(0xE4, 1) & 0x4;
+                //Console.WriteLine("DL: " + dl);
             }
         }
 
+    }
+
+    public class ItemPictureBox
+    {
+        public DWItem Item;
+        public DWTogglePictureBox PictureBox;
+
+        public ItemPictureBox(DWItem item, DWTogglePictureBox pictureBox)
+        {
+            Item = item;
+            PictureBox = pictureBox;
+        }
     }
 }
