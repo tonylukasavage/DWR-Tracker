@@ -34,6 +34,7 @@
             this.BattleItemFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.RequiredItemFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.OptionalItemFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.dwPanel1 = new DWR_Tracker.Controls.DWPanel();
             this.SuspendLayout();
             // 
             // SpellFlowPanel
@@ -66,31 +67,41 @@
             this.BattleItemFlowPanel.Location = new System.Drawing.Point(359, 12);
             this.BattleItemFlowPanel.Margin = new System.Windows.Forms.Padding(0);
             this.BattleItemFlowPanel.Name = "BattleItemFlowPanel";
-            this.BattleItemFlowPanel.Size = new System.Drawing.Size(321, 133);
+            this.BattleItemFlowPanel.Size = new System.Drawing.Size(372, 72);
             this.BattleItemFlowPanel.TabIndex = 3;
             // 
             // RequiredItemFlowPanel
             // 
-            this.RequiredItemFlowPanel.Location = new System.Drawing.Point(359, 145);
+            this.RequiredItemFlowPanel.Location = new System.Drawing.Point(359, 84);
             this.RequiredItemFlowPanel.Margin = new System.Windows.Forms.Padding(0);
             this.RequiredItemFlowPanel.Name = "RequiredItemFlowPanel";
-            this.RequiredItemFlowPanel.Size = new System.Drawing.Size(321, 133);
+            this.RequiredItemFlowPanel.Size = new System.Drawing.Size(370, 71);
             this.RequiredItemFlowPanel.TabIndex = 4;
             // 
             // OptionalItemFlowPanel
             // 
-            this.OptionalItemFlowPanel.Location = new System.Drawing.Point(132, 300);
+            this.OptionalItemFlowPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.OptionalItemFlowPanel.Location = new System.Drawing.Point(359, 155);
             this.OptionalItemFlowPanel.Margin = new System.Windows.Forms.Padding(0);
             this.OptionalItemFlowPanel.Name = "OptionalItemFlowPanel";
-            this.OptionalItemFlowPanel.Size = new System.Drawing.Size(321, 133);
+            this.OptionalItemFlowPanel.Size = new System.Drawing.Size(370, 133);
             this.OptionalItemFlowPanel.TabIndex = 5;
+            // 
+            // dwPanel1
+            // 
+            this.dwPanel1.Location = new System.Drawing.Point(107, 358);
+            this.dwPanel1.Name = "dwPanel1";
+            this.dwPanel1.Size = new System.Drawing.Size(257, 111);
+            this.dwPanel1.TabIndex = 6;
+            this.dwPanel1.Text = "dwPanel1";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(697, 565);
+            this.ClientSize = new System.Drawing.Size(738, 565);
+            this.Controls.Add(this.dwPanel1);
             this.Controls.Add(this.OptionalItemFlowPanel);
             this.Controls.Add(this.RequiredItemFlowPanel);
             this.Controls.Add(this.BattleItemFlowPanel);
@@ -110,6 +121,7 @@
         private System.Windows.Forms.FlowLayoutPanel BattleItemFlowPanel;
         private System.Windows.Forms.FlowLayoutPanel RequiredItemFlowPanel;
         private System.Windows.Forms.FlowLayoutPanel OptionalItemFlowPanel;
+        private Controls.DWPanel dwPanel1;
     }
 }
 

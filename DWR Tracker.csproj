@@ -73,6 +73,12 @@
     <Compile Include="Classes\Items\Quest\DWSilverHarp.cs" />
     <Compile Include="Classes\Items\Quest\DWStaffOfRain.cs" />
     <Compile Include="Classes\Items\Quest\DWStonesOfSunlight.cs" />
+    <Compile Include="Controls\DWPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\DWPanel.Designer.cs">
+      <DependentUpon>DWPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\DWSpellLabel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -99,6 +105,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\DWPanel.resx">
+      <DependentUpon>DWPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\DWSpellLabel.resx">
       <DependentUpon>DWSpellLabel.cs</DependentUpon>
     </EmbeddedResource>
