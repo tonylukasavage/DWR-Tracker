@@ -27,6 +27,26 @@ namespace DWR_Tracker.Classes
             new DWDeathNecklace()
         };
 
+        public static DWItem[] QuestItems = new DWItem[5]
+        {
+            new DWSilverHarp(),
+            new DWRainbowDrop(),
+            new DWStaffOfRain(),
+            new DWStonesOfSunlight(),
+            new DWErdricksToken()
+        };
+
+        public static DWItem[] OptionalItems = new DWItem[]
+        {
+            new DWTorch(),
+            new DWFairyWater(),
+            new DWWings(),
+            new DWFairyFlute(),
+            new DWGwaelinsLove(),
+            new DWCursedBelt(),
+            new DWHerb()
+        };
+
         public static DWSpell[] Spells = new DWSpell[10]
         {
             new DWSpell("heal", 0xCE, 0x1),
@@ -64,25 +84,25 @@ namespace DWR_Tracker.Classes
             "DWR_Tracker.Images.Items.flute.png"
         };
 
-        //public static string[] Items = new string[16]
-        //{
-        //    "Nothing",
-        //    "Torch",
-        //    "Fairy Water",
-        //    "Wings",
-        //    "Dragon's Scale",
-        //    "Fairy Flute",
-        //    "Fighter's Ring",
-        //    "Erdrick's Token",
-        //    "Gwaelin's Love",
-        //    "Cursed Belt",
-        //    "Silver Harp",
-        //    "Death Necklace",
-        //    "Stones of Sunlight",
-        //    "Staff of Rain",
-        //    "Rainbow Drop",
-        //    "Herb"
-        //};
+        public static string[] InventoryItems = new string[16]
+        {
+            "Nothing",
+            "Torch",
+            "Fairy Water",
+            "Wings",
+            "Dragon's Scale",
+            "Fairy Flute",
+            "Fighter's Ring",
+            "Erdrick's Token",
+            "Gwaelin's Love",
+            "Cursed Belt",
+            "Silver Harp",
+            "Death Necklace",
+            "Stones of Sunlight",
+            "Staff of Rain",
+            "Rainbow Drop",
+            "Herb"
+        };
 
     }
 }

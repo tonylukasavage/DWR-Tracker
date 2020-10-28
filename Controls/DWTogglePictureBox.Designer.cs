@@ -30,6 +30,10 @@
         {
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
+            // 
+            // DWTogglePictureBox
+            // 
+            this.Click += new System.EventHandler(this.DWTogglePictureBox_Click);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 

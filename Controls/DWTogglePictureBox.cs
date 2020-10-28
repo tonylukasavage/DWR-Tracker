@@ -14,16 +14,35 @@ namespace DWR_Tracker.Controls
     public partial class DWTogglePictureBox : PictureBox
     {
         public ToolTip ToolTip;
+        public DWItem Item;
 
-        public DWTogglePictureBox()
+        public DWTogglePictureBox(DWItem item)
         {
             InitializeComponent();
+            Item = item;
             ToolTip = new ToolTip();
         }
 
         protected override void OnPaint(PaintEventArgs pe)
         {
             base.OnPaint(pe);
+        }
+
+        private void DWTogglePictureBox_Click(object sender, EventArgs e)
+        {
+            if (!DWGlobals.AutoTrackingEnabled)
+            {
+                int value = Item.Value;
+                int max = Item.ItemInfo.Length;
+                if (value + 1 == max)
+                {
+                    Item.UpdatePictureBox(0, true);
+                }
+                else
+                {
+                    Item.UpdatePictureBox(value + 1, true);
+                }
+            }
         }
     }
 }

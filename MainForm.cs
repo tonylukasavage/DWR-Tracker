@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Security;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -59,32 +60,24 @@ namespace DWR_Tracker
                 StatTableLayout.Controls.Add(label, 1, i);
             }
 
-            // add equipment pictures 
-            foreach (DWItem item in DWGlobals.BattleItems)
+            // add item pictures 
+            (DWItem[] Items, FlowLayoutPanel Panel)[] groups = new (DWItem[], FlowLayoutPanel)[3]
             {
-                DWTogglePictureBox pictureBox = new DWTogglePictureBox();
-                item.PictureBox = pictureBox;
-                pictureBox.Click += (o, k) =>
+                (DWGlobals.BattleItems, BattleItemFlowPanel),
+                (DWGlobals.QuestItems, RequiredItemFlowPanel),
+                (DWGlobals.OptionalItems, OptionalItemFlowPanel)
+            };
+            foreach ((DWItem[] Items, FlowLayoutPanel Panel) group in groups)
+            {
+                foreach (DWItem item in group.Items)
                 {
-                    if (!DWGlobals.AutoTrackingEnabled)
-                    {
-                        int value = item.Value;
-                        int max = item.ItemInfo.Length;
-                        if (value + 1 == max)
-                        {
-                            item.UpdatePictureBox(0, true);
-                        }
-                        else
-                        {
-                            item.UpdatePictureBox(value + 1, true);
-                        }
-                    }
-                };
-                EquipmentFlowPanel.Controls.Add(pictureBox);
-                item.UpdatePictureBox(true);
+                    DWTogglePictureBox pictureBox = new DWTogglePictureBox(item);
+                    item.PictureBox = pictureBox;
+                    pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
+                    group.Panel.Controls.Add(pictureBox);
+                    item.UpdatePictureBox(true);
+                }
             }
-
-            // add item picture
 
             // game state update timer
             System.Timers.Timer timer = new System.Timers.Timer(1000);
@@ -111,13 +104,51 @@ namespace DWR_Tracker
                     item.UpdatePictureBox();
                 }
 
-                //// ITEMS
-                //int itemByte = dwReader.GetInt(0xC1, 4);
-                //for (int i = 0; i < 8; i++)
-                //{
-                //    int item = (itemByte >> (i * 4) & 0xF);
-                //    Console.WriteLine("item " + (i+1) + ": " + DWGlobals.Items[item]);
-                //}
+                Dictionary<string, int> items = new Dictionary<string, int>();
+                int itemByte = dwReader.GetInt(0xC1, 4);
+                for (int i = 0; i < 8; i++)
+                {
+                    int itemValue = (itemByte >> (i * 4) & 0xF);
+                    string itemName = DWGlobals.InventoryItems[itemValue];
+                    if (itemName == "Nothing")
+                    {
+                        continue;
+                    }
+                    else if (items.ContainsKey(itemName))
+                    {
+                        items[itemName]++;
+                    }
+                    else
+                    {
+                        items.Add(itemName, 1);
+                    }
+                    
+                    // Console.WriteLine("item " + (i + 1) + ": " + DWGlobals.Items[item]);
+                }
+
+                foreach (DWItem item in DWGlobals.QuestItems)
+                {
+                    if (items.ContainsKey(item.Name))
+                    {
+                        item.UpdatePictureBox(1, items[item.Name]);
+                    }
+                    else
+                    {
+                        item.UpdatePictureBox(0, 0);
+                    }
+                }
+
+                foreach (DWItem item in DWGlobals.OptionalItems)
+                {
+                    if (items.ContainsKey(item.Name))
+                    {
+                        item.UpdatePictureBox(1, items[item.Name]);
+                    }
+                    else
+                    {
+                        item.UpdatePictureBox(0, 0);
+                    }
+                }
 
                 //// MAGIC KEYS
                 //int keys = dwReader.GetInt(0xBF, 1);

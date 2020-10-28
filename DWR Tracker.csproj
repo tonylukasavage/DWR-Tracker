@@ -55,12 +55,24 @@
     <Compile Include="Classes\DWFont.cs" />
     <Compile Include="Classes\DWSpell.cs" />
     <Compile Include="Classes\DWStat.cs" />
-    <Compile Include="Classes\Items\DWArmor.cs" />
-    <Compile Include="Classes\Items\DWDeathNecklace.cs" />
-    <Compile Include="Classes\Items\DWDragonsScale.cs" />
-    <Compile Include="Classes\Items\DWFightersRing.cs" />
-    <Compile Include="Classes\Items\DWShield.cs" />
-    <Compile Include="Classes\Items\DWSword.cs" />
+    <Compile Include="Classes\Items\Battle\DWArmor.cs" />
+    <Compile Include="Classes\Items\Battle\DWDeathNecklace.cs" />
+    <Compile Include="Classes\Items\Battle\DWDragonsScale.cs" />
+    <Compile Include="Classes\Items\Battle\DWFightersRing.cs" />
+    <Compile Include="Classes\Items\Battle\DWShield.cs" />
+    <Compile Include="Classes\Items\Battle\DWSword.cs" />
+    <Compile Include="Classes\Items\Optional\DWCursedBelt.cs" />
+    <Compile Include="Classes\Items\Optional\DWFairyFlute.cs" />
+    <Compile Include="Classes\Items\Optional\DWFairyWater.cs" />
+    <Compile Include="Classes\Items\Optional\DWGwaelinsLove.cs" />
+    <Compile Include="Classes\Items\Optional\DWHerb.cs" />
+    <Compile Include="Classes\Items\Optional\DWTorch.cs" />
+    <Compile Include="Classes\Items\Optional\DWWings.cs" />
+    <Compile Include="Classes\Items\Quest\DWErdricksToken.cs" />
+    <Compile Include="Classes\Items\Quest\DWRainbowDrop.cs" />
+    <Compile Include="Classes\Items\Quest\DWSilverHarp.cs" />
+    <Compile Include="Classes\Items\Quest\DWStaffOfRain.cs" />
+    <Compile Include="Classes\Items\Quest\DWStonesOfSunlight.cs" />
     <Compile Include="Controls\DWSpellLabel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -172,6 +184,30 @@
     <EmbeddedResource Include="Images\Items\token-grey.png" />
     <EmbeddedResource Include="Images\Items\token.png" />
     <EmbeddedResource Include="Images\metal_slime.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Items\torch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Items\torch-grey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Items\fairy_water.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Items\fairy_water-grey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Items\wings-grey.png" />
+    <EmbeddedResource Include="Images\Items\wings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Items\herb-grey.png" />
+    <EmbeddedResource Include="Images\Items\herb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Items\cursed_belt-grey.png" />
+    <EmbeddedResource Include="Images\Items\cursed_belt.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

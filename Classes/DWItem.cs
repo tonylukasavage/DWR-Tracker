@@ -45,6 +45,13 @@ namespace DWR_Tracker.Classes
             Value = value;
         }
 
+        public void UpdatePictureBox(int value, int count, bool force = false)
+        {
+            bool countChanged = Count != count;
+            Count = count;
+            UpdatePictureBox(value, force || countChanged);
+        }
+
         private void UpdatePictureBoxProperties()
         {
             if (PictureBox.InvokeRequired)
@@ -57,7 +64,7 @@ namespace DWR_Tracker.Classes
                 PictureBox.ToolTip.SetToolTip(PictureBox, Name);
                 Assembly myAssembly = Assembly.GetExecutingAssembly();
                 Stream myStream = myAssembly.GetManifestResourceStream(ImagePath);
-                PictureBox.Image = Image.FromStream(myStream);
+                PictureBox.Image = (Image)(new Bitmap(Image.FromStream(myStream), new Size(55, 55)));
             }
         }
     }
