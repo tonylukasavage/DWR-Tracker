@@ -62,6 +62,7 @@
     <Compile Include="Classes\Items\Battle\DWFightersRing.cs" />
     <Compile Include="Classes\Items\Battle\DWShield.cs" />
     <Compile Include="Classes\Items\Battle\DWSword.cs" />
+    <Compile Include="Classes\Items\DWMagicKey.cs" />
     <Compile Include="Classes\Items\Optional\DWCursedBelt.cs" />
     <Compile Include="Classes\Items\Optional\DWFairyFlute.cs" />
     <Compile Include="Classes\Items\Optional\DWFairyWater.cs" />

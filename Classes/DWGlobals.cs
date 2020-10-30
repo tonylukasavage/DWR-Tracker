@@ -37,15 +37,16 @@ namespace DWR_Tracker.Classes
             new DWBallOfLight()
         };
 
-        public static DWItem[] OptionalItems = new DWItem[]
+        public static DWItem[] OptionalItems = new DWItem[3]
         {
-            new DWTorch(),
-            new DWFairyWater(),
-            new DWWings(),
+            //new DWTorch(),
+            //new DWFairyWater(),
+            //new DWWings(),
+            new DWMagicKey(),
             new DWFairyFlute(),
-            new DWGwaelinsLove(),
-            new DWCursedBelt(),
-            new DWHerb()
+            new DWGwaelinsLove()
+            // new DWCursedBelt(),
+            // new DWHerb()
         };
 
         public static DWSpell[] Spells = new DWSpell[10]
@@ -71,18 +72,6 @@ namespace DWR_Tracker.Classes
             new DWStat("mp", 0xCB),
             new DWStat("atk", 0xCC),
             new DWStat("def", 0xCD)
-        };
-
-        public static string[] MagicKeyImages = new string[2]
-        {
-            "DWR_Tracker.Images.Items.key-grey.png",
-            "DWR_Tracker.Images.Items.key.png"
-        };
-
-        public static string[] FairyFluteImages = new string[2]
-        {
-            "DWR_Tracker.Images.Items.flute-grey.png",
-            "DWR_Tracker.Images.Items.flute.png"
         };
 
         public static string[] InventoryItems = new string[16]

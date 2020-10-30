@@ -20,6 +20,7 @@ namespace DWR_Tracker.Classes
         public bool IsRequiredItem;
         public bool allowsMultiple;
         public bool forceOwnRead = false;
+        public bool showCount = false;
         public int Count;
         public (string ImagePath, string Name)[] ItemInfo;
         public DWTogglePictureBox PictureBox;

@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
 using DWR_Tracker.Classes;
+using DWR_Tracker.Classes.Items;
 using DWR_Tracker.Controls;
 using Microsoft.Win32.SafeHandles;
 
@@ -29,8 +30,6 @@ namespace DWR_Tracker
         public MainForm()
         {
             InitializeComponent();
-            TimeLabel.Font = new Font(DWGlobals.DWFont.GetFamily(), 14);
-            TimeLabel.Text = "00:00:00";
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -78,7 +77,15 @@ namespace DWR_Tracker
                     item.PictureBox = pictureBox;
                     pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
                     group.Panel.Controls.Add(pictureBox);
-                    item.UpdatePictureBox(true);
+
+                    if (item.showCount)
+                    {
+                        item.UpdatePictureBox(0, 0, true);
+                    }
+                    else
+                    {
+                        item.UpdatePictureBox(true);
+                    }
                 }
             }
 
@@ -159,12 +166,27 @@ namespace DWR_Tracker
                     }
                 }
 
+                DWMagicKey magicKey = (DWMagicKey)DWGlobals.OptionalItems[0];
+                int keys = magicKey.ReadValue();
+                if (keys != magicKey.Count)
+                {
+                    magicKey.UpdatePictureBox(keys > 0 ? 1 : 0, keys, false);
+                }
+
                 //// MAGIC KEYS
-                //int keys = dwReader.GetInt(0xBF, 1);
-                //Console.WriteLine("keys: " + keys);
+                //int keys = DWGlobals.MagicKeys.ReadValue();
+                //if (keys != DWGlobals.MagicKeys.Count)
+                //{
+                //    DWGlobals.MagicKeys.UpdatePictureBox(keys > 0 ? 1 : 0, keys);
+                //}
+                // Console.WriteLine("keys: " + keys);
             }
         }
 
+        private void BattlePanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 
     public class ItemPictureBox
