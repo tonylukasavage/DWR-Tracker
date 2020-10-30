@@ -29,6 +29,8 @@ namespace DWR_Tracker
         public MainForm()
         {
             InitializeComponent();
+            TimeLabel.Font = new Font(DWGlobals.DWFont.GetFamily(), 14);
+            TimeLabel.Text = "00:00:00";
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -43,11 +45,12 @@ namespace DWR_Tracker
                 DWSpell spell = DWGlobals.Spells[i];
                 DWSpellLabel label = new DWSpellLabel(spell);
                 spell.Label = label;
-                SpellFlowPanel.Controls.Add(label);
-                label.Top = i * 30;
-                label.Left = 10;
+                label.AutoSize = true;
+                SpellPanel.Controls.Add(label);
+                label.Top = i * 26 + 26;
+                label.Left = 15;
                 label.Text = spell.Name.ToUpper();
-                label.Width = SpellFlowPanel.Width;
+                label.Width = SpellPanel.Width;
             }
 
             // populate stat table
@@ -121,16 +124,22 @@ namespace DWR_Tracker
                     else
                     {
                         items.Add(itemName, 1);
-                    }
-                    
-                    // Console.WriteLine("item " + (i + 1) + ": " + DWGlobals.Items[item]);
+                    }                    
                 }
 
                 foreach (DWItem item in DWGlobals.QuestItems)
                 {
+ 
                     if (items.ContainsKey(item.Name))
                     {
-                        item.UpdatePictureBox(1, items[item.Name]);
+                        if (item.forceOwnRead)
+                        {
+                            item.UpdatePictureBox(item.ReadValue(), 1);
+                        }
+                        else
+                        {
+                            item.UpdatePictureBox(1, items[item.Name]);
+                        }
                     }
                     else
                     {
@@ -153,10 +162,6 @@ namespace DWR_Tracker
                 //// MAGIC KEYS
                 //int keys = dwReader.GetInt(0xBF, 1);
                 //Console.WriteLine("keys: " + keys);
-
-                //// DRAGONLORD
-                //int dl = dwReader.GetInt(0xE4, 1) & 0x4;
-                //Console.WriteLine("DL: " + dl);
             }
         }
 

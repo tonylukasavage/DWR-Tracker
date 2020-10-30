@@ -38,6 +38,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -68,7 +69,10 @@
     <Compile Include="Classes\Items\Optional\DWHerb.cs" />
     <Compile Include="Classes\Items\Optional\DWTorch.cs" />
     <Compile Include="Classes\Items\Optional\DWWings.cs" />
+    <Compile Include="Classes\Items\Quest\DWBallOfLight.cs" />
+    <Compile Include="Classes\Items\Quest\DWBridge.cs" />
     <Compile Include="Classes\Items\Quest\DWErdricksToken.cs" />
+    <Compile Include="Classes\Items\Quest\DWHarpOrStaff.cs" />
     <Compile Include="Classes\Items\Quest\DWRainbowDrop.cs" />
     <Compile Include="Classes\Items\Quest\DWSilverHarp.cs" />
     <Compile Include="Classes\Items\Quest\DWStaffOfRain.cs" />
@@ -217,6 +221,14 @@
   <ItemGroup>
     <EmbeddedResource Include="Images\Items\cursed_belt-grey.png" />
     <EmbeddedResource Include="Images\Items\cursed_belt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Items\bridge-grey.png" />
+    <EmbeddedResource Include="Images\Items\bridge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Items\ball-grey.png" />
+    <EmbeddedResource Include="Images\Items\ball.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

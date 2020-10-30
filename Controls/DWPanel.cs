@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DWR_Tracker.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,23 +9,48 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.Design;
 
 namespace DWR_Tracker.Controls
 {
-    public partial class DWPanel : Control
+    public partial class DWPanel : Panel
     {
+        private string title = "Title";
+
+        [Category("DW Properties")]
+        [Description("Title of the DWPanel")]
+        public string Title
+        {
+            get
+            {
+                return title;
+            }
+            set
+            {
+                title = value;
+                TitleLabel.Text = title;
+                Invalidate();
+            }
+        }
+
         public DWPanel()
         {
             InitializeComponent();
+            Controls.Add(TitleLabel);
+            TitleLabel.Font = new Font(DWGlobals.DWFont.GetFamily(), 12);
+            
         }
 
         protected override void OnPaint(PaintEventArgs pe)
         {
             base.OnPaint(pe);
 
-            GraphicsPath path = RoundedRect(new Rectangle(4, 4, MainPanel.Width - 8, MainPanel.Height - 8), 8);
+            MinimumSize = Size.Add(TitleLabel.Size, new Size(40, 40));
+            GraphicsPath path = RoundedRect(new Rectangle(6, 6, Width - 12, Height - 12), 8);
             Pen pen = new Pen(Color.FromArgb(255, 255, 255), 4);
             pe.Graphics.DrawPath(pen, path);
+
+            TitleLabel.Left = Size.Width / 2 - TitleLabel.Size.Width / 2;
         }
 
         public GraphicsPath RoundedRect(Rectangle bounds, int radius)

@@ -19,6 +19,7 @@ namespace DWR_Tracker.Classes
         public bool IsBattleGear;
         public bool IsRequiredItem;
         public bool allowsMultiple;
+        public bool forceOwnRead = false;
         public int Count;
         public (string ImagePath, string Name)[] ItemInfo;
         public DWTogglePictureBox PictureBox;
@@ -64,7 +65,7 @@ namespace DWR_Tracker.Classes
                 PictureBox.ToolTip.SetToolTip(PictureBox, Name);
                 Assembly myAssembly = Assembly.GetExecutingAssembly();
                 Stream myStream = myAssembly.GetManifestResourceStream(ImagePath);
-                PictureBox.Image = (Image)(new Bitmap(Image.FromStream(myStream), new Size(55, 55)));
+                PictureBox.Image = (Image)(new Bitmap(Image.FromStream(myStream), new Size(50, 50)));
             }
         }
     }

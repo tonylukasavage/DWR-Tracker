@@ -27,13 +27,14 @@ namespace DWR_Tracker.Classes
             new DWDeathNecklace()
         };
 
-        public static DWItem[] QuestItems = new DWItem[5]
+        public static DWItem[] QuestItems = new DWItem[6]
         {
-            new DWSilverHarp(),
-            new DWRainbowDrop(),
-            new DWStaffOfRain(),
+            new DWHarpOrStaff(),
             new DWStonesOfSunlight(),
-            new DWErdricksToken()
+            new DWErdricksToken(),
+            new DWRainbowDrop(),
+            new DWBridge(),
+            new DWBallOfLight()
         };
 
         public static DWItem[] OptionalItems = new DWItem[]

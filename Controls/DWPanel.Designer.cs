@@ -28,21 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.MainPanel = new System.Windows.Forms.Panel();
+            this.TitleLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // MainPanel
+            // TitleLabel
             // 
-            this.MainPanel.Location = new System.Drawing.Point(0, 0);
-            this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(200, 100);
-            this.MainPanel.TabIndex = 0;
+            this.TitleLabel.AutoSize = true;
+            this.TitleLabel.BackColor = System.Drawing.Color.Black;
+            this.TitleLabel.ForeColor = System.Drawing.Color.White;
+            this.TitleLabel.Location = new System.Drawing.Point(0, 0);
+            this.TitleLabel.Name = "TitleLabel";
+            this.TitleLabel.Size = new System.Drawing.Size(100, 23);
+            this.TitleLabel.TabIndex = 0;
+            this.TitleLabel.Text = "label1";
+            // 
+            // DWPanel
+            // 
+            this.BackColor = System.Drawing.Color.Black;
+            this.Size = new System.Drawing.Size(398, 184);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel MainPanel;
+        private System.Windows.Forms.Label TitleLabel;
     }
 }
