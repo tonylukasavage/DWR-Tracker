@@ -114,6 +114,8 @@ namespace DWR_Tracker
                     item.UpdatePictureBox();
                 }
 
+                // Get an dictionary of all items (excluding sword, armor, shield, and keys)
+                // with the item name as the key, its count as the value
                 Dictionary<string, int> items = new Dictionary<string, int>();
                 int itemByte = dwReader.GetInt(0xC1, 4);
                 for (int i = 0; i < 8; i++)
@@ -134,6 +136,7 @@ namespace DWR_Tracker
                     }                    
                 }
 
+                // All items necessary to complete the game (excluding keys)
                 foreach (DWItem item in DWGlobals.QuestItems)
                 {
  
@@ -154,8 +157,11 @@ namespace DWR_Tracker
                     }
                 }
 
+                // process all optional quest items (excluding key)
                 foreach (DWItem item in DWGlobals.OptionalItems)
                 {
+                    if (item is DWMagicKey) { continue; }
+
                     if (items.ContainsKey(item.Name))
                     {
                         item.UpdatePictureBox(1, items[item.Name]);
@@ -166,6 +172,7 @@ namespace DWR_Tracker
                     }
                 }
 
+                // Special handling for key count
                 DWMagicKey magicKey = (DWMagicKey)DWGlobals.OptionalItems[0];
                 int keys = magicKey.ReadValue();
                 if (keys != magicKey.Count)

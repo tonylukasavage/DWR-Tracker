@@ -45,6 +45,8 @@
             // CountLabel
             // 
             this.CountLabel.AutoSize = true;
+            this.CountLabel.BackColor = System.Drawing.Color.Transparent;
+            this.CountLabel.ForeColor = System.Drawing.Color.White;
             this.CountLabel.Location = new System.Drawing.Point(0, 0);
             this.CountLabel.Name = "CountLabel";
             this.CountLabel.Size = new System.Drawing.Size(100, 23);

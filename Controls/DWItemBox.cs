@@ -26,14 +26,12 @@ namespace DWR_Tracker.Controls
 
             if (item.ShowCount)
             {
-                CountLabel = new Label();
                 CountLabel.Text = "";
-                CountLabel.Font = new Font(DWGlobals.DWFont.GetFamily(), 8);
+                CountLabel.Font = new Font(DWGlobals.DWFont.GetFamily(), 12);
                 CountLabel.AutoSize = true;
-                CountLabel.Left = Left;
-                CountLabel.Top = Top;
+                CountLabel.Left = 26;
+                CountLabel.Top = 35;
                 Controls.Add(CountLabel);
-                CountLabel.BringToFront();
             }
         }
 
