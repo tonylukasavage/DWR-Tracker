@@ -65,19 +65,19 @@
             // BattleItemFlowPanel
             // 
             this.BattleItemFlowPanel.BackColor = System.Drawing.Color.Transparent;
-            this.BattleItemFlowPanel.Location = new System.Drawing.Point(19, 14);
+            this.BattleItemFlowPanel.Location = new System.Drawing.Point(13, 15);
             this.BattleItemFlowPanel.Margin = new System.Windows.Forms.Padding(0);
             this.BattleItemFlowPanel.Name = "BattleItemFlowPanel";
-            this.BattleItemFlowPanel.Size = new System.Drawing.Size(347, 60);
+            this.BattleItemFlowPanel.Size = new System.Drawing.Size(356, 60);
             this.BattleItemFlowPanel.TabIndex = 3;
             // 
             // RequiredItemFlowPanel
             // 
             this.RequiredItemFlowPanel.BackColor = System.Drawing.Color.Transparent;
-            this.RequiredItemFlowPanel.Location = new System.Drawing.Point(19, 16);
+            this.RequiredItemFlowPanel.Location = new System.Drawing.Point(16, 16);
             this.RequiredItemFlowPanel.Margin = new System.Windows.Forms.Padding(0);
             this.RequiredItemFlowPanel.Name = "RequiredItemFlowPanel";
-            this.RequiredItemFlowPanel.Size = new System.Drawing.Size(347, 61);
+            this.RequiredItemFlowPanel.Size = new System.Drawing.Size(359, 61);
             this.RequiredItemFlowPanel.TabIndex = 4;
             // 
             // OptionalItemFlowPanel

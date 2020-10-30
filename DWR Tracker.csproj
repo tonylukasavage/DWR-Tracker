@@ -78,6 +78,12 @@
     <Compile Include="Classes\Items\Quest\DWSilverHarp.cs" />
     <Compile Include="Classes\Items\Quest\DWStaffOfRain.cs" />
     <Compile Include="Classes\Items\Quest\DWStonesOfSunlight.cs" />
+    <Compile Include="Controls\DWItemBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\DWItemBox.Designer.cs">
+      <DependentUpon>DWItemBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\DWPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -96,12 +102,6 @@
     <Compile Include="Controls\DWStatLabel.Designer.cs">
       <DependentUpon>DWStatLabel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\DWTogglePictureBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\DWTogglePictureBox.Designer.cs">
-      <DependentUpon>DWTogglePictureBox.cs</DependentUpon>
-    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,14 +110,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\DWItemBox.resx">
+      <DependentUpon>DWItemBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\DWPanel.resx">
       <DependentUpon>DWPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\DWSpellLabel.resx">
       <DependentUpon>DWSpellLabel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\DWTogglePictureBox.resx">
-      <DependentUpon>DWTogglePictureBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

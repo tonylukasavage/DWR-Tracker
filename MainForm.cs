@@ -73,10 +73,10 @@ namespace DWR_Tracker
             {
                 foreach (DWItem item in group.Items)
                 {
-                    DWTogglePictureBox pictureBox = new DWTogglePictureBox(item);
-                    item.PictureBox = pictureBox;
-                    pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
-                    group.Panel.Controls.Add(pictureBox);
+                    DWItemBox itemBox = new DWItemBox(item);
+                    item.ItemBox = itemBox;
+                    itemBox.PictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
+                    group.Panel.Controls.Add(itemBox);
 
                     if (item.ShowCount)
                     {
@@ -179,12 +179,12 @@ namespace DWR_Tracker
     public class ItemPictureBox
     {
         public DWItem Item;
-        public DWTogglePictureBox PictureBox;
+        public DWItemBox ItemBox;
 
-        public ItemPictureBox(DWItem item, DWTogglePictureBox pictureBox)
+        public ItemPictureBox(DWItem item, DWItemBox itemBox)
         {
             Item = item;
-            PictureBox = pictureBox;
+            ItemBox = itemBox;
         }
     }
 }

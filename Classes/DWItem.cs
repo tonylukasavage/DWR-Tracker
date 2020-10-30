@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace DWR_Tracker.Classes
 {
@@ -23,14 +24,14 @@ namespace DWR_Tracker.Classes
         public bool ShowCount = false;
         public int Count;
         public (string ImagePath, string Name)[] ItemInfo;
-        public DWTogglePictureBox PictureBox;
+        public DWItemBox ItemBox;
         private delegate void SafeCallDelegate();
 
         public abstract int ReadValue();
 
         public void UpdatePictureBox(bool force = false)
         {
-            if (PictureBox == default(DWTogglePictureBox)) { return; }
+            if (ItemBox == default(DWItemBox)) { return; }
 
             DWGameReader dwReader = DWGlobals.DWGameReader;
             UpdatePictureBox(ReadValue(), force);
@@ -56,23 +57,24 @@ namespace DWR_Tracker.Classes
 
         private void UpdatePictureBoxProperties()
         {
-            if (PictureBox.InvokeRequired)
+            PictureBox pictureBox = ItemBox.PictureBox;
+            if (pictureBox.InvokeRequired)
             {
                 var d = new SafeCallDelegate(UpdatePictureBoxProperties);
-                PictureBox.Invoke(d, new object[] { });
+                pictureBox.Invoke(d, new object[] { });
             }
             else
             {
-                PictureBox.ToolTip.SetToolTip(PictureBox, Name);
+                ItemBox.ToolTip.SetToolTip(pictureBox, Name);
                 Assembly myAssembly = Assembly.GetExecutingAssembly();
                 Stream myStream = myAssembly.GetManifestResourceStream(ImagePath);
-                PictureBox.Image = (Image)(new Bitmap(Image.FromStream(myStream), new Size(50, 50)));
+                pictureBox.Image = (Image)(new Bitmap(Image.FromStream(myStream), new Size(50, 50)));
 
                 if (ShowCount)
                 {
-                    PictureBox.CountLabel.Text = Count.ToString();
-                    PictureBox.CountLabel.Visible = Count > 0;
-                    PictureBox.CountLabel.BringToFront();
+                    ItemBox.CountLabel.Text = Count.ToString();
+                    ItemBox.CountLabel.Visible = Count > 0;
+                    ItemBox.CountLabel.BringToFront();
                 }
             }
         }
