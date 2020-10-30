@@ -78,7 +78,7 @@ namespace DWR_Tracker
                     pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
                     group.Panel.Controls.Add(pictureBox);
 
-                    if (item.showCount)
+                    if (item.ShowCount)
                     {
                         item.UpdatePictureBox(0, 0, true);
                     }
@@ -172,20 +172,7 @@ namespace DWR_Tracker
                 {
                     magicKey.UpdatePictureBox(keys > 0 ? 1 : 0, keys, false);
                 }
-
-                //// MAGIC KEYS
-                //int keys = DWGlobals.MagicKeys.ReadValue();
-                //if (keys != DWGlobals.MagicKeys.Count)
-                //{
-                //    DWGlobals.MagicKeys.UpdatePictureBox(keys > 0 ? 1 : 0, keys);
-                //}
-                // Console.WriteLine("keys: " + keys);
             }
-        }
-
-        private void BattlePanel_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 

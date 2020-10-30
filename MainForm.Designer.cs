@@ -133,7 +133,6 @@
             this.BattlePanel.Size = new System.Drawing.Size(375, 83);
             this.BattlePanel.TabIndex = 9;
             this.BattlePanel.Title = "BATTLE";
-            this.BattlePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.BattlePanel_Paint);
             // 
             // QuestPanel
             // 

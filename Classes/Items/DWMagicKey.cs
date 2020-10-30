@@ -18,7 +18,7 @@ namespace DWR_Tracker.Classes.Items
             IsBattleGear = false;
             IsRequiredItem = false;
             allowsMultiple = true;
-            showCount = true;
+            ShowCount = true;
             Count = 0;
 
             ItemInfo = new (string ImagePath, string Name)[2]

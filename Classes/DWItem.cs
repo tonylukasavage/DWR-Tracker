@@ -20,7 +20,7 @@ namespace DWR_Tracker.Classes
         public bool IsRequiredItem;
         public bool allowsMultiple;
         public bool forceOwnRead = false;
-        public bool showCount = false;
+        public bool ShowCount = false;
         public int Count;
         public (string ImagePath, string Name)[] ItemInfo;
         public DWTogglePictureBox PictureBox;
@@ -59,7 +59,7 @@ namespace DWR_Tracker.Classes
             if (PictureBox.InvokeRequired)
             {
                 var d = new SafeCallDelegate(UpdatePictureBoxProperties);
-                PictureBox.Invoke(d, new object[] {});
+                PictureBox.Invoke(d, new object[] { });
             }
             else
             {
@@ -67,6 +67,13 @@ namespace DWR_Tracker.Classes
                 Assembly myAssembly = Assembly.GetExecutingAssembly();
                 Stream myStream = myAssembly.GetManifestResourceStream(ImagePath);
                 PictureBox.Image = (Image)(new Bitmap(Image.FromStream(myStream), new Size(50, 50)));
+
+                if (ShowCount)
+                {
+                    PictureBox.CountLabel.Text = Count.ToString();
+                    PictureBox.CountLabel.Visible = Count > 0;
+                    PictureBox.CountLabel.BringToFront();
+                }
             }
         }
     }

@@ -13,7 +13,7 @@ namespace DWR_Tracker.Classes.Items
         {
             string basePath = DWGlobals.DWImagePath + "Items.";
 
-            Name = "Nothing";
+            Name = "Fighter's Ring";
             ImagePath = "";
             IsBattleGear = true;
             IsRequiredItem = false;
@@ -22,7 +22,7 @@ namespace DWR_Tracker.Classes.Items
 
             ItemInfo = new (string ImagePath, string Name)[2]
             {
-                ("fighters_ring-grey.png", "Nothing"),
+                ("fighters_ring-grey.png", "Fighter's Ring"),
                 ("fighters_ring.png", "Fighter's Ring")
             }.Select(s => (basePath + s.ImagePath, s.Name)).ToArray();
         }

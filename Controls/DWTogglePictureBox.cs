@@ -15,12 +15,24 @@ namespace DWR_Tracker.Controls
     {
         public ToolTip ToolTip;
         public DWItem Item;
+        public Label CountLabel;
 
         public DWTogglePictureBox(DWItem item)
         {
             InitializeComponent();
             Item = item;
             ToolTip = new ToolTip();
+            
+            if (item.ShowCount)
+            {
+                CountLabel = new Label();
+                CountLabel.Text = "";
+                CountLabel.Font = new Font(DWGlobals.DWFont.GetFamily(), 8);
+                CountLabel.AutoSize = true;
+                //CountLabel.Left = Left;
+                //CountLabel.Top = Top;
+                Controls.Add(CountLabel);
+            }
         }
 
         protected override void OnPaint(PaintEventArgs pe)

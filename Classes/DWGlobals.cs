@@ -39,14 +39,18 @@ namespace DWR_Tracker.Classes
 
         public static DWItem[] OptionalItems = new DWItem[3]
         {
-            //new DWTorch(),
-            //new DWFairyWater(),
-            //new DWWings(),
             new DWMagicKey(),
             new DWFairyFlute(),
             new DWGwaelinsLove()
-            // new DWCursedBelt(),
-            // new DWHerb()
+        };
+
+        public static DWItem[] ExtraItems = new DWItem[5]
+        {
+            new DWTorch(),
+            new DWFairyWater(),
+            new DWWings(),
+            new DWCursedBelt(),
+            new DWHerb()
         };
 
         public static DWSpell[] Spells = new DWSpell[10]
