@@ -29,9 +29,7 @@ namespace DWR_Tracker.Classes
         public void UpdateLabel(bool force = false)
         {
             if (Label == default(DWSpellLabel)) { return; }
-
-            DWGameReader dwReader = DWGlobals.DWGameReader;
-            UpdateLabel((dwReader.GetInt(Offset) & Bit) > 0, force);
+            UpdateLabel((DWGlobals.ProcessReader.ReadByte(Offset) & Bit) > 0, force);
         }
 
         public void UpdateLabel(bool hasSpell, bool force = false)

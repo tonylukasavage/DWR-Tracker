@@ -32,8 +32,6 @@ namespace DWR_Tracker.Classes
         public void UpdatePictureBox(bool force = false)
         {
             if (ItemBox == default(DWItemBox)) { return; }
-
-            DWGameReader dwReader = DWGlobals.DWGameReader;
             UpdatePictureBox(ReadValue(), force);
         }
 

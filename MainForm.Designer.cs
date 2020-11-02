@@ -38,10 +38,14 @@
             this.OptionalItemPanel = new DWR_Tracker.Controls.DWPanel();
             this.BattlePanel = new DWR_Tracker.Controls.DWPanel();
             this.QuestPanel = new DWR_Tracker.Controls.DWPanel();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.EmulatorStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.StatPanel.SuspendLayout();
             this.OptionalItemPanel.SuspendLayout();
             this.BattlePanel.SuspendLayout();
             this.QuestPanel.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // StatTableLayout
@@ -92,7 +96,7 @@
             // SpellPanel
             // 
             this.SpellPanel.BackColor = System.Drawing.Color.Black;
-            this.SpellPanel.Location = new System.Drawing.Point(212, 12);
+            this.SpellPanel.Location = new System.Drawing.Point(212, 34);
             this.SpellPanel.MinimumSize = new System.Drawing.Size(110, 58);
             this.SpellPanel.Name = "SpellPanel";
             this.SpellPanel.Size = new System.Drawing.Size(178, 295);
@@ -104,7 +108,7 @@
             // 
             this.StatPanel.BackColor = System.Drawing.Color.Black;
             this.StatPanel.Controls.Add(this.StatTableLayout);
-            this.StatPanel.Location = new System.Drawing.Point(12, 12);
+            this.StatPanel.Location = new System.Drawing.Point(12, 34);
             this.StatPanel.MinimumSize = new System.Drawing.Size(97, 58);
             this.StatPanel.Name = "StatPanel";
             this.StatPanel.Size = new System.Drawing.Size(194, 210);
@@ -116,7 +120,7 @@
             // 
             this.OptionalItemPanel.BackColor = System.Drawing.Color.Black;
             this.OptionalItemPanel.Controls.Add(this.OptionalItemFlowPanel);
-            this.OptionalItemPanel.Location = new System.Drawing.Point(12, 222);
+            this.OptionalItemPanel.Location = new System.Drawing.Point(12, 244);
             this.OptionalItemPanel.MinimumSize = new System.Drawing.Size(40, 58);
             this.OptionalItemPanel.Name = "OptionalItemPanel";
             this.OptionalItemPanel.Size = new System.Drawing.Size(194, 85);
@@ -127,7 +131,7 @@
             // 
             this.BattlePanel.BackColor = System.Drawing.Color.Black;
             this.BattlePanel.Controls.Add(this.BattleItemFlowPanel);
-            this.BattlePanel.Location = new System.Drawing.Point(12, 394);
+            this.BattlePanel.Location = new System.Drawing.Point(12, 416);
             this.BattlePanel.MinimumSize = new System.Drawing.Size(107, 58);
             this.BattlePanel.Name = "BattlePanel";
             this.BattlePanel.Size = new System.Drawing.Size(375, 83);
@@ -138,25 +142,52 @@
             // 
             this.QuestPanel.BackColor = System.Drawing.Color.Black;
             this.QuestPanel.Controls.Add(this.RequiredItemFlowPanel);
-            this.QuestPanel.Location = new System.Drawing.Point(12, 309);
+            this.QuestPanel.Location = new System.Drawing.Point(12, 331);
             this.QuestPanel.MinimumSize = new System.Drawing.Size(102, 58);
             this.QuestPanel.Name = "QuestPanel";
             this.QuestPanel.Size = new System.Drawing.Size(375, 83);
             this.QuestPanel.TabIndex = 10;
             this.QuestPanel.Title = "QUEST";
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(399, 24);
+            this.menuStrip1.TabIndex = 11;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.EmulatorStatusLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 512);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(399, 22);
+            this.statusStrip1.TabIndex = 12;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // EmulatorStatusLabel
+            // 
+            this.EmulatorStatusLabel.Name = "EmulatorStatusLabel";
+            this.EmulatorStatusLabel.Size = new System.Drawing.Size(50, 17);
+            this.EmulatorStatusLabel.Text = "FCCEUX";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(399, 484);
+            this.ClientSize = new System.Drawing.Size(399, 534);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.QuestPanel);
             this.Controls.Add(this.BattlePanel);
             this.Controls.Add(this.SpellPanel);
             this.Controls.Add(this.OptionalItemPanel);
             this.Controls.Add(this.StatPanel);
+            this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Dragon Warrior Randomizer Auto-Tracker";
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -168,7 +199,10 @@
             this.BattlePanel.PerformLayout();
             this.QuestPanel.ResumeLayout(false);
             this.QuestPanel.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -182,6 +216,9 @@
         private Controls.DWPanel OptionalItemPanel;
         private Controls.DWPanel BattlePanel;
         private Controls.DWPanel QuestPanel;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel EmulatorStatusLabel;
     }
 }
 

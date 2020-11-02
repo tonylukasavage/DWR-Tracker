@@ -30,7 +30,7 @@ namespace DWR_Tracker.Classes.Items
 
         public override int ReadValue()
         {
-            return (DWGlobals.DWGameReader.GetInt(0xE4, 1) & 0x4) > 0 ? 1 : 0;
+            return (DWGlobals.ProcessReader.ReadByte(0xE4) & 0x4) > 0 ? 1 : 0;
         }
     }
 }

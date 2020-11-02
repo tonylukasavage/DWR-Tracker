@@ -26,9 +26,7 @@ namespace DWR_Tracker.Classes
         {
             if (Label == default(DWStatLabel)) { return; }
 
-            DWGameReader dwReader = DWGlobals.DWGameReader;
-            int value = dwReader.GetInt(Offset, 1);
-
+            int value = DWGlobals.ProcessReader.ReadByte(Offset);
             if (value != Value || force)
             {
                 UpdateText(value.ToString());

@@ -24,20 +24,21 @@ namespace DWR_Tracker
 { 
     public partial class MainForm : Form
     {
-        private DWGameReader dwReader;
+        public MainMenu MainMenu;
         private delegate void SafeCallDelegate(Image image);
 
         public MainForm()
         {
             InitializeComponent();
+
+            MenuItem miFile = new MenuItem("File");
+
+            MainMenu = new MainMenu(new MenuItem[1] { miFile });
+            Menu = MainMenu;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // initialize reading DW from fceux
-            dwReader = DWGlobals.DWGameReader;
-            dwReader.Init();
-
             // create spell labels
             for (int i = 0; i < DWGlobals.Spells.Length; i++)
             {
@@ -117,7 +118,7 @@ namespace DWR_Tracker
                 // Get an dictionary of all items (excluding sword, armor, shield, and keys)
                 // with the item name as the key, its count as the value
                 Dictionary<string, int> items = new Dictionary<string, int>();
-                int itemByte = dwReader.GetInt(0xC1, 4);
+                int itemByte = DWGlobals.ProcessReader.ReadInt32(0xC1);
                 for (int i = 0; i < 8; i++)
                 {
                     int itemValue = (itemByte >> (i * 4) & 0xF);

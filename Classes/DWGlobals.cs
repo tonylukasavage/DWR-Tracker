@@ -14,8 +14,10 @@ namespace DWR_Tracker.Classes
     {
         public static bool AutoTrackingEnabled = true;
         public static DWFont DWFont = new DWFont();
-        public static DWGameReader DWGameReader = new DWGameReader();
+        // public static DWGameReader DWGameReader = new DWGameReader();
         public static string DWImagePath = "DWR_Tracker.Images.";
+
+        public static DWProcessReader ProcessReader;
 
         public static DWItem[] BattleItems = new DWItem[6]
         {
