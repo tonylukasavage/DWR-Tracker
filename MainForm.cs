@@ -19,26 +19,31 @@ using DWR_Tracker.Classes;
 using DWR_Tracker.Classes.Items;
 using DWR_Tracker.Controls;
 using Microsoft.Win32.SafeHandles;
+using Newtonsoft.Json;
 
 namespace DWR_Tracker
 { 
     public partial class MainForm : Form
     {
-        public MainMenu MainMenu;
         private delegate void SafeCallDelegate(Image image);
 
         public MainForm()
         {
             InitializeComponent();
 
-            MenuItem miFile = new MenuItem("File");
-
-            MainMenu = new MainMenu(new MenuItem[1] { miFile });
-            Menu = MainMenu;
+            // try to find a suitable emulator automatically
+            if (!EmulatorConnectionWorker.IsBusy)
+            {
+                EmulatorConnectionWorker.RunWorkerAsync();
+            }
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            // update UI based on config
+            MainMenuStrip.Visible = DWGlobals.ShowMenu;
+            StatusStrip.Visible = DWGlobals.ShowStatus;
+
             // create spell labels
             for (int i = 0; i < DWGlobals.Spells.Length; i++)
             {
@@ -78,15 +83,7 @@ namespace DWR_Tracker
                     item.ItemBox = itemBox;
                     itemBox.PictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
                     group.Panel.Controls.Add(itemBox);
-
-                    if (item.ShowCount)
-                    {
-                        item.UpdatePictureBox(0, 0, true);
-                    }
-                    else
-                    {
-                        item.UpdatePictureBox(true);
-                    }
+                    item.UpdatePictureBox(0, 0, true);
                 }
             }
 
@@ -98,7 +95,7 @@ namespace DWR_Tracker
 
         private void CheckGameState(object source, ElapsedEventArgs e)
         {
-            if (DWGlobals.AutoTrackingEnabled)
+            if (DWGlobals.AutoTrackingEnabled && DWGlobals.ProcessReader != default(DWProcessReader))
             {
                 foreach (DWSpell spell in DWGlobals.Spells)
                 {
@@ -140,8 +137,20 @@ namespace DWR_Tracker
                 // All items necessary to complete the game (excluding keys)
                 foreach (DWItem item in DWGlobals.QuestItems)
                 {
- 
-                    if (items.ContainsKey(item.Name))
+                    if (item is DWHarpOrStaff)
+                    {
+                        int value = 0;
+                        if (items.ContainsKey("Staff of Rain"))
+                        {
+                            value = 2;
+                        }
+                        else if (items.ContainsKey("Silver Harp"))
+                        {
+                            value = 1;
+                        }
+                        item.UpdatePictureBox(value, 1);
+                    }
+                    else if (items.ContainsKey(item.Name))
                     {
                         if (item.forceOwnRead)
                         {
@@ -180,6 +189,71 @@ namespace DWR_Tracker
                 {
                     magicKey.UpdatePictureBox(keys > 0 ? 1 : 0, keys, false);
                 }
+            }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void EmulatorConnectionWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            // load all configured emulators from emulators.json
+            StreamReader r = new StreamReader("emulators.json");
+            string json = r.ReadToEnd();
+            dynamic array = JsonConvert.DeserializeObject(json);
+            foreach (var item in array)
+            {
+                string name = item.name;
+                foreach (var vItem in item.versions)
+                {
+                    // assign json items
+                    string version = vItem.version;
+                    string dll = vItem.dll;
+                    int arch = vItem.arch;
+                    string[] offsets = vItem.offsets.ToObject<string[]>();
+
+                    // find emulator process
+                    Process[] processes = Process.GetProcessesByName(name);
+                    if (processes.Length < 1) { continue; }
+
+                    foreach (Process p in processes)
+                    {
+                        Console.Out.WriteLine(p.MainWindowTitle);
+                        DWProcessReader reader = new DWProcessReader(p);
+                        IntPtr baseOffset = reader.SetBaseOffset(dll, offsets);
+                        if (baseOffset == (IntPtr)(-1))
+                        {
+                            Console.WriteLine("ERROR: Couldn't find NES pointer for " + p.ProcessName);
+                            continue;
+                        }
+
+                        // TODO: Base offset doesn't take us to this part of memory
+                        // find "DRAGON WARRIOR" at offset +0xFFE0
+                        //string identifier = reader.ReadString(0xFFE0, 14);
+                        //if (identifier != "DRAGON WARRIOR")
+                        //{
+                        //    continue;
+                        //}
+
+                        // found our emulator
+                        DWGlobals.ProcessReader = reader;
+                        break;
+                    }
+
+                    if (DWGlobals.ProcessReader != default(DWProcessReader)) { break; }
+                }
+            } 
+        }
+
+        private void EmulatorConnectionWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            // set emulator name in status bar
+            DWProcessReader reader = DWGlobals.ProcessReader;
+            if (reader != default(DWProcessReader))
+            {
+                EmulatorStatusLabel.Text = reader.Process.MainWindowTitle;
             }
         }
     }

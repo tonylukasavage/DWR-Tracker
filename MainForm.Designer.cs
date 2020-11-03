@@ -38,14 +38,24 @@
             this.OptionalItemPanel = new DWR_Tracker.Controls.DWPanel();
             this.BattlePanel = new DWR_Tracker.Controls.DWPanel();
             this.QuestPanel = new DWR_Tracker.Controls.DWPanel();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.MainMenuStrip = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.StatusStrip = new System.Windows.Forms.StatusStrip();
             this.EmulatorStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.EmulatorConnectionWorker = new System.ComponentModel.BackgroundWorker();
+            this.showMenuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StatPanel.SuspendLayout();
             this.OptionalItemPanel.SuspendLayout();
             this.BattlePanel.SuspendLayout();
             this.QuestPanel.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
+            this.MainMenuStrip.SuspendLayout();
+            this.StatusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // StatTableLayout
@@ -149,29 +159,100 @@
             this.QuestPanel.TabIndex = 10;
             this.QuestPanel.Title = "QUEST";
             // 
-            // menuStrip1
+            // MainMenuStrip
             // 
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(399, 24);
-            this.menuStrip1.TabIndex = 11;
-            this.menuStrip1.Text = "menuStrip1";
+            this.MainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.viewToolStripMenuItem,
+            this.optionsToolStripMenuItem});
+            this.MainMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.MainMenuStrip.Name = "MainMenuStrip";
+            this.MainMenuStrip.Size = new System.Drawing.Size(399, 24);
+            this.MainMenuStrip.TabIndex = 11;
+            this.MainMenuStrip.Text = "menuStrip1";
             // 
-            // statusStrip1
+            // fileToolStripMenuItem
             // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.connectToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // connectToolStripMenuItem
+            // 
+            this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
+            this.connectToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.connectToolStripMenuItem.Text = "Connect...";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(125, 6);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // viewToolStripMenuItem
+            // 
+            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showMenuToolStripMenuItem,
+            this.showStatusToolStripMenuItem});
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.viewToolStripMenuItem.Text = "View";
+            // 
+            // optionsToolStripMenuItem
+            // 
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.optionsToolStripMenuItem.Text = "Options";
+            // 
+            // StatusStrip
+            // 
+            this.StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.EmulatorStatusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 512);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(399, 22);
-            this.statusStrip1.TabIndex = 12;
-            this.statusStrip1.Text = "statusStrip1";
+            this.StatusStrip.Location = new System.Drawing.Point(0, 512);
+            this.StatusStrip.Name = "StatusStrip";
+            this.StatusStrip.Size = new System.Drawing.Size(399, 22);
+            this.StatusStrip.TabIndex = 12;
+            this.StatusStrip.Text = "statusStrip1";
             // 
             // EmulatorStatusLabel
             // 
+            this.EmulatorStatusLabel.BackColor = System.Drawing.Color.Transparent;
             this.EmulatorStatusLabel.Name = "EmulatorStatusLabel";
             this.EmulatorStatusLabel.Size = new System.Drawing.Size(50, 17);
             this.EmulatorStatusLabel.Text = "FCCEUX";
+            // 
+            // EmulatorConnectionWorker
+            // 
+            this.EmulatorConnectionWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.EmulatorConnectionWorker_DoWork);
+            this.EmulatorConnectionWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.EmulatorConnectionWorker_RunWorkerCompleted);
+            // 
+            // showMenuToolStripMenuItem
+            // 
+            this.showMenuToolStripMenuItem.Checked = true;
+            this.showMenuToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showMenuToolStripMenuItem.Name = "showMenuToolStripMenuItem";
+            this.showMenuToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
+            this.showMenuToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.showMenuToolStripMenuItem.Text = "Show Menu";
+            // 
+            // showStatusToolStripMenuItem
+            // 
+            this.showStatusToolStripMenuItem.Checked = true;
+            this.showStatusToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showStatusToolStripMenuItem.Name = "showStatusToolStripMenuItem";
+            this.showStatusToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.showStatusToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.showStatusToolStripMenuItem.Text = "Show Status";
             // 
             // MainForm
             // 
@@ -179,15 +260,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(399, 534);
-            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.StatusStrip);
             this.Controls.Add(this.QuestPanel);
             this.Controls.Add(this.BattlePanel);
             this.Controls.Add(this.SpellPanel);
             this.Controls.Add(this.OptionalItemPanel);
             this.Controls.Add(this.StatPanel);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.MainMenuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.MainMenuStrip;
             this.Name = "MainForm";
             this.Text = "Dragon Warrior Randomizer Auto-Tracker";
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -199,8 +280,10 @@
             this.BattlePanel.PerformLayout();
             this.QuestPanel.ResumeLayout(false);
             this.QuestPanel.PerformLayout();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
+            this.MainMenuStrip.ResumeLayout(false);
+            this.MainMenuStrip.PerformLayout();
+            this.StatusStrip.ResumeLayout(false);
+            this.StatusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -216,9 +299,18 @@
         private Controls.DWPanel OptionalItemPanel;
         private Controls.DWPanel BattlePanel;
         private Controls.DWPanel QuestPanel;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.MenuStrip MainMenuStrip;
+        private System.Windows.Forms.StatusStrip StatusStrip;
         private System.Windows.Forms.ToolStripStatusLabel EmulatorStatusLabel;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem connectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
+        private System.ComponentModel.BackgroundWorker EmulatorConnectionWorker;
+        private System.Windows.Forms.ToolStripMenuItem showMenuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showStatusToolStripMenuItem;
     }
 }
 
