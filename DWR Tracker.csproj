@@ -244,5 +244,8 @@
     <EmbeddedResource Include="Images\Items\ball-grey.png" />
     <EmbeddedResource Include="Images\Items\ball.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\Maps\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

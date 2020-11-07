@@ -37,6 +37,10 @@ namespace DWR_Tracker.Classes
                 // TODO: make this less brittle
                 value = DWGlobals.LevelNexts[DWGlobals.Stats[0].Value];
             }
+            else if (Name == "gld" || Name == "exp")
+            {
+                value = DWGlobals.ProcessReader.ReadInt16(Offset);
+            }
             else
             {
                 value = DWGlobals.ProcessReader.ReadByte(Offset);
