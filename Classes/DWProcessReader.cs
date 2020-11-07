@@ -12,6 +12,9 @@ namespace DWR_Tracker.Classes
     class DWProcessReader
     {
         [DllImport("kernel32.dll")]
+        public static extern uint GetLastError();
+
+        [DllImport("kernel32.dll")]
         public static extern IntPtr OpenProcess(int dwDesiredAccess,
             bool bInheritHandle, int dwProcessId);
 
@@ -132,8 +135,11 @@ namespace DWR_Tracker.Classes
         {
             int bytesRead = 0;
             byte[] bytes = new byte[size];
-            ReadProcessMemory(ProcessHandle, IntPtr.Add(BaseOffset, offset), bytes,
-                bytes.Length, ref bytesRead);
+            if (!ReadProcessMemory(ProcessHandle, IntPtr.Add(BaseOffset, offset), bytes,
+                bytes.Length, ref bytesRead))
+            {
+                Console.WriteLine(GetLastError());
+            }
             return bytes;
         }
 

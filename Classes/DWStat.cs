@@ -26,7 +26,22 @@ namespace DWR_Tracker.Classes
         {
             if (Label == default(DWStatLabel)) { return; }
 
-            int value = DWGlobals.ProcessReader.ReadByte(Offset);
+            int value;
+            if (Name == "nxt")
+            {
+                int currentLevel = DWGlobals.Stats[0].Value;
+
+                // At the end of the game your level gets set to 255
+                if (currentLevel == 255) { return; }
+
+                // TODO: make this less brittle
+                value = DWGlobals.LevelNexts[DWGlobals.Stats[0].Value];
+            }
+            else
+            {
+                value = DWGlobals.ProcessReader.ReadByte(Offset);
+            }
+
             if (value != Value || force)
             {
                 UpdateText(value.ToString());

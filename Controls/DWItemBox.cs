@@ -42,7 +42,7 @@ namespace DWR_Tracker.Controls
 
         private void PictureBox_Click(object sender, EventArgs e)
         {
-            if (!DWGlobals.AutoTrackingEnabled)
+            if (!DWGlobals.DWConfiguration.AutoTrackingEnabled)
             {
                 int value = Item.Value;
                 int max = Item.ItemInfo.Length;

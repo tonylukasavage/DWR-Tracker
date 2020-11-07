@@ -40,7 +40,7 @@ namespace DWR_Tracker.Controls
 
         private void SpellLabel_Click(object sender, EventArgs e)
         {
-            if (!DWGlobals.AutoTrackingEnabled)
+            if (!DWGlobals.DWConfiguration.AutoTrackingEnabled)
             {
                 Spell.UpdateLabel(!Spell.HasSpell);
             }

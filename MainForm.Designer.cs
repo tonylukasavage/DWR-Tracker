@@ -29,34 +29,217 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.StatTableLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.BattleItemFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.RequiredItemFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.OptionalItemFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.SpellPanel = new DWR_Tracker.Controls.DWPanel();
-            this.StatPanel = new DWR_Tracker.Controls.DWPanel();
-            this.OptionalItemPanel = new DWR_Tracker.Controls.DWPanel();
-            this.BattlePanel = new DWR_Tracker.Controls.DWPanel();
-            this.QuestPanel = new DWR_Tracker.Controls.DWPanel();
-            this.MainMenuStrip = new System.Windows.Forms.MenuStrip();
+            this.DWMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.streamerModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.StatusStrip = new System.Windows.Forms.StatusStrip();
+            this.autoTrackingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DWStatusStrip = new System.Windows.Forms.StatusStrip();
             this.EmulatorStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.EmulatorConnectionWorker = new System.ComponentModel.BackgroundWorker();
-            this.showMenuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.showStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.StatPanel.SuspendLayout();
-            this.OptionalItemPanel.SuspendLayout();
+            this.DWContentPanel = new System.Windows.Forms.Panel();
+            this.BattlePanel = new DWR_Tracker.Controls.DWPanel();
+            this.BattleItemFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.OptionalItemPanel = new DWR_Tracker.Controls.DWPanel();
+            this.OptionalItemFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.QuestPanel = new DWR_Tracker.Controls.DWPanel();
+            this.RequiredItemFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.StatPanel = new DWR_Tracker.Controls.DWPanel();
+            this.StatTableLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.SpellPanel = new DWR_Tracker.Controls.DWPanel();
+            this.DWMenuStrip.SuspendLayout();
+            this.DWStatusStrip.SuspendLayout();
+            this.DWContentPanel.SuspendLayout();
             this.BattlePanel.SuspendLayout();
+            this.OptionalItemPanel.SuspendLayout();
             this.QuestPanel.SuspendLayout();
-            this.MainMenuStrip.SuspendLayout();
-            this.StatusStrip.SuspendLayout();
+            this.StatPanel.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // DWMenuStrip
+            // 
+            this.DWMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.viewToolStripMenuItem,
+            this.optionsToolStripMenuItem});
+            this.DWMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.DWMenuStrip.Name = "DWMenuStrip";
+            this.DWMenuStrip.Size = new System.Drawing.Size(399, 24);
+            this.DWMenuStrip.TabIndex = 11;
+            this.DWMenuStrip.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.connectToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // connectToolStripMenuItem
+            // 
+            this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
+            this.connectToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.connectToolStripMenuItem.Text = "Connect...";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(131, 6);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // viewToolStripMenuItem
+            // 
+            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.streamerModeToolStripMenuItem});
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.viewToolStripMenuItem.Text = "View";
+            // 
+            // streamerModeToolStripMenuItem
+            // 
+            this.streamerModeToolStripMenuItem.Name = "streamerModeToolStripMenuItem";
+            this.streamerModeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Space)));
+            this.streamerModeToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.streamerModeToolStripMenuItem.Text = "Streamer Mode";
+            this.streamerModeToolStripMenuItem.Click += new System.EventHandler(this.streamerModeToolStripMenuItem_Click);
+            // 
+            // optionsToolStripMenuItem
+            // 
+            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.autoTrackingToolStripMenuItem});
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.optionsToolStripMenuItem.Text = "Options";
+            // 
+            // autoTrackingToolStripMenuItem
+            // 
+            this.autoTrackingToolStripMenuItem.Checked = true;
+            this.autoTrackingToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.autoTrackingToolStripMenuItem.Name = "autoTrackingToolStripMenuItem";
+            this.autoTrackingToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.autoTrackingToolStripMenuItem.Text = "Auto Tracking";
+            this.autoTrackingToolStripMenuItem.Click += new System.EventHandler(this.autoTrackingToolStripMenuItem_Click);
+            // 
+            // DWStatusStrip
+            // 
+            this.DWStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.EmulatorStatusLabel});
+            this.DWStatusStrip.Location = new System.Drawing.Point(0, 497);
+            this.DWStatusStrip.Name = "DWStatusStrip";
+            this.DWStatusStrip.Size = new System.Drawing.Size(399, 22);
+            this.DWStatusStrip.SizingGrip = false;
+            this.DWStatusStrip.TabIndex = 12;
+            this.DWStatusStrip.Text = "statusStrip1";
+            // 
+            // EmulatorStatusLabel
+            // 
+            this.EmulatorStatusLabel.BackColor = System.Drawing.Color.Transparent;
+            this.EmulatorStatusLabel.Name = "EmulatorStatusLabel";
+            this.EmulatorStatusLabel.Size = new System.Drawing.Size(86, 17);
+            this.EmulatorStatusLabel.Text = "Not connected";
+            // 
+            // EmulatorConnectionWorker
+            // 
+            this.EmulatorConnectionWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.EmulatorConnectionWorker_DoWork);
+            this.EmulatorConnectionWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.EmulatorConnectionWorker_RunWorkerCompleted);
+            // 
+            // DWContentPanel
+            // 
+            this.DWContentPanel.Controls.Add(this.BattlePanel);
+            this.DWContentPanel.Controls.Add(this.OptionalItemPanel);
+            this.DWContentPanel.Controls.Add(this.QuestPanel);
+            this.DWContentPanel.Controls.Add(this.StatPanel);
+            this.DWContentPanel.Controls.Add(this.SpellPanel);
+            this.DWContentPanel.Location = new System.Drawing.Point(0, 27);
+            this.DWContentPanel.Name = "DWContentPanel";
+            this.DWContentPanel.Size = new System.Drawing.Size(386, 464);
+            this.DWContentPanel.TabIndex = 13;
+            // 
+            // BattlePanel
+            // 
+            this.BattlePanel.BackColor = System.Drawing.Color.Black;
+            this.BattlePanel.Controls.Add(this.BattleItemFlowPanel);
+            this.BattlePanel.Location = new System.Drawing.Point(0, 384);
+            this.BattlePanel.MinimumSize = new System.Drawing.Size(107, 58);
+            this.BattlePanel.Name = "BattlePanel";
+            this.BattlePanel.Size = new System.Drawing.Size(387, 83);
+            this.BattlePanel.TabIndex = 9;
+            this.BattlePanel.Title = "BATTLE";
+            // 
+            // BattleItemFlowPanel
+            // 
+            this.BattleItemFlowPanel.BackColor = System.Drawing.Color.Transparent;
+            this.BattleItemFlowPanel.Location = new System.Drawing.Point(13, 15);
+            this.BattleItemFlowPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.BattleItemFlowPanel.Name = "BattleItemFlowPanel";
+            this.BattleItemFlowPanel.Size = new System.Drawing.Size(356, 60);
+            this.BattleItemFlowPanel.TabIndex = 3;
+            // 
+            // OptionalItemPanel
+            // 
+            this.OptionalItemPanel.BackColor = System.Drawing.Color.Black;
+            this.OptionalItemPanel.Controls.Add(this.OptionalItemFlowPanel);
+            this.OptionalItemPanel.Location = new System.Drawing.Point(203, 298);
+            this.OptionalItemPanel.MinimumSize = new System.Drawing.Size(40, 58);
+            this.OptionalItemPanel.Name = "OptionalItemPanel";
+            this.OptionalItemPanel.Size = new System.Drawing.Size(184, 85);
+            this.OptionalItemPanel.TabIndex = 8;
+            this.OptionalItemPanel.Title = "";
+            // 
+            // OptionalItemFlowPanel
+            // 
+            this.OptionalItemFlowPanel.BackColor = System.Drawing.Color.Transparent;
+            this.OptionalItemFlowPanel.Location = new System.Drawing.Point(7, 15);
+            this.OptionalItemFlowPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.OptionalItemFlowPanel.Name = "OptionalItemFlowPanel";
+            this.OptionalItemFlowPanel.Size = new System.Drawing.Size(186, 55);
+            this.OptionalItemFlowPanel.TabIndex = 5;
+            // 
+            // QuestPanel
+            // 
+            this.QuestPanel.BackColor = System.Drawing.Color.Black;
+            this.QuestPanel.Controls.Add(this.RequiredItemFlowPanel);
+            this.QuestPanel.Location = new System.Drawing.Point(3, 299);
+            this.QuestPanel.MinimumSize = new System.Drawing.Size(102, 58);
+            this.QuestPanel.Name = "QuestPanel";
+            this.QuestPanel.Size = new System.Drawing.Size(194, 83);
+            this.QuestPanel.TabIndex = 10;
+            this.QuestPanel.Title = "QUEST";
+            // 
+            // RequiredItemFlowPanel
+            // 
+            this.RequiredItemFlowPanel.BackColor = System.Drawing.Color.Transparent;
+            this.RequiredItemFlowPanel.Location = new System.Drawing.Point(16, 16);
+            this.RequiredItemFlowPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.RequiredItemFlowPanel.Name = "RequiredItemFlowPanel";
+            this.RequiredItemFlowPanel.Size = new System.Drawing.Size(359, 61);
+            this.RequiredItemFlowPanel.TabIndex = 4;
+            // 
+            // StatPanel
+            // 
+            this.StatPanel.BackColor = System.Drawing.Color.Black;
+            this.StatPanel.Controls.Add(this.StatTableLayout);
+            this.StatPanel.Location = new System.Drawing.Point(3, 3);
+            this.StatPanel.MinimumSize = new System.Drawing.Size(97, 58);
+            this.StatPanel.Name = "StatPanel";
+            this.StatPanel.Size = new System.Drawing.Size(194, 295);
+            this.StatPanel.TabIndex = 7;
+            this.StatPanel.Text = "dwPanel1";
+            this.StatPanel.Title = "STATS";
             // 
             // StatTableLayout
             // 
@@ -73,217 +256,48 @@
             this.StatTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.43299F));
             this.StatTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.43299F));
             this.StatTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.40206F));
-            this.StatTableLayout.Size = new System.Drawing.Size(163, 172);
+            this.StatTableLayout.Size = new System.Drawing.Size(163, 260);
             this.StatTableLayout.TabIndex = 2;
-            // 
-            // BattleItemFlowPanel
-            // 
-            this.BattleItemFlowPanel.BackColor = System.Drawing.Color.Transparent;
-            this.BattleItemFlowPanel.Location = new System.Drawing.Point(13, 15);
-            this.BattleItemFlowPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.BattleItemFlowPanel.Name = "BattleItemFlowPanel";
-            this.BattleItemFlowPanel.Size = new System.Drawing.Size(356, 60);
-            this.BattleItemFlowPanel.TabIndex = 3;
-            // 
-            // RequiredItemFlowPanel
-            // 
-            this.RequiredItemFlowPanel.BackColor = System.Drawing.Color.Transparent;
-            this.RequiredItemFlowPanel.Location = new System.Drawing.Point(16, 16);
-            this.RequiredItemFlowPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.RequiredItemFlowPanel.Name = "RequiredItemFlowPanel";
-            this.RequiredItemFlowPanel.Size = new System.Drawing.Size(359, 61);
-            this.RequiredItemFlowPanel.TabIndex = 4;
-            // 
-            // OptionalItemFlowPanel
-            // 
-            this.OptionalItemFlowPanel.BackColor = System.Drawing.Color.Transparent;
-            this.OptionalItemFlowPanel.Location = new System.Drawing.Point(13, 15);
-            this.OptionalItemFlowPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.OptionalItemFlowPanel.Name = "OptionalItemFlowPanel";
-            this.OptionalItemFlowPanel.Size = new System.Drawing.Size(181, 55);
-            this.OptionalItemFlowPanel.TabIndex = 5;
             // 
             // SpellPanel
             // 
             this.SpellPanel.BackColor = System.Drawing.Color.Black;
-            this.SpellPanel.Location = new System.Drawing.Point(212, 34);
+            this.SpellPanel.Location = new System.Drawing.Point(203, 3);
             this.SpellPanel.MinimumSize = new System.Drawing.Size(110, 58);
             this.SpellPanel.Name = "SpellPanel";
-            this.SpellPanel.Size = new System.Drawing.Size(178, 295);
+            this.SpellPanel.Size = new System.Drawing.Size(184, 295);
             this.SpellPanel.TabIndex = 6;
             this.SpellPanel.Text = "dwPanel1";
             this.SpellPanel.Title = "SPELLS";
-            // 
-            // StatPanel
-            // 
-            this.StatPanel.BackColor = System.Drawing.Color.Black;
-            this.StatPanel.Controls.Add(this.StatTableLayout);
-            this.StatPanel.Location = new System.Drawing.Point(12, 34);
-            this.StatPanel.MinimumSize = new System.Drawing.Size(97, 58);
-            this.StatPanel.Name = "StatPanel";
-            this.StatPanel.Size = new System.Drawing.Size(194, 210);
-            this.StatPanel.TabIndex = 7;
-            this.StatPanel.Text = "dwPanel1";
-            this.StatPanel.Title = "STATS";
-            // 
-            // OptionalItemPanel
-            // 
-            this.OptionalItemPanel.BackColor = System.Drawing.Color.Black;
-            this.OptionalItemPanel.Controls.Add(this.OptionalItemFlowPanel);
-            this.OptionalItemPanel.Location = new System.Drawing.Point(12, 244);
-            this.OptionalItemPanel.MinimumSize = new System.Drawing.Size(40, 58);
-            this.OptionalItemPanel.Name = "OptionalItemPanel";
-            this.OptionalItemPanel.Size = new System.Drawing.Size(194, 85);
-            this.OptionalItemPanel.TabIndex = 8;
-            this.OptionalItemPanel.Title = "";
-            // 
-            // BattlePanel
-            // 
-            this.BattlePanel.BackColor = System.Drawing.Color.Black;
-            this.BattlePanel.Controls.Add(this.BattleItemFlowPanel);
-            this.BattlePanel.Location = new System.Drawing.Point(12, 416);
-            this.BattlePanel.MinimumSize = new System.Drawing.Size(107, 58);
-            this.BattlePanel.Name = "BattlePanel";
-            this.BattlePanel.Size = new System.Drawing.Size(375, 83);
-            this.BattlePanel.TabIndex = 9;
-            this.BattlePanel.Title = "BATTLE";
-            // 
-            // QuestPanel
-            // 
-            this.QuestPanel.BackColor = System.Drawing.Color.Black;
-            this.QuestPanel.Controls.Add(this.RequiredItemFlowPanel);
-            this.QuestPanel.Location = new System.Drawing.Point(12, 331);
-            this.QuestPanel.MinimumSize = new System.Drawing.Size(102, 58);
-            this.QuestPanel.Name = "QuestPanel";
-            this.QuestPanel.Size = new System.Drawing.Size(375, 83);
-            this.QuestPanel.TabIndex = 10;
-            this.QuestPanel.Title = "QUEST";
-            // 
-            // MainMenuStrip
-            // 
-            this.MainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.viewToolStripMenuItem,
-            this.optionsToolStripMenuItem});
-            this.MainMenuStrip.Location = new System.Drawing.Point(0, 0);
-            this.MainMenuStrip.Name = "MainMenuStrip";
-            this.MainMenuStrip.Size = new System.Drawing.Size(399, 24);
-            this.MainMenuStrip.TabIndex = 11;
-            this.MainMenuStrip.Text = "menuStrip1";
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.connectToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.exitToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // connectToolStripMenuItem
-            // 
-            this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
-            this.connectToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
-            this.connectToolStripMenuItem.Text = "Connect...";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(125, 6);
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // viewToolStripMenuItem
-            // 
-            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.showMenuToolStripMenuItem,
-            this.showStatusToolStripMenuItem});
-            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.viewToolStripMenuItem.Text = "View";
-            // 
-            // optionsToolStripMenuItem
-            // 
-            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.optionsToolStripMenuItem.Text = "Options";
-            // 
-            // StatusStrip
-            // 
-            this.StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.EmulatorStatusLabel});
-            this.StatusStrip.Location = new System.Drawing.Point(0, 512);
-            this.StatusStrip.Name = "StatusStrip";
-            this.StatusStrip.Size = new System.Drawing.Size(399, 22);
-            this.StatusStrip.TabIndex = 12;
-            this.StatusStrip.Text = "statusStrip1";
-            // 
-            // EmulatorStatusLabel
-            // 
-            this.EmulatorStatusLabel.BackColor = System.Drawing.Color.Transparent;
-            this.EmulatorStatusLabel.Name = "EmulatorStatusLabel";
-            this.EmulatorStatusLabel.Size = new System.Drawing.Size(50, 17);
-            this.EmulatorStatusLabel.Text = "FCCEUX";
-            // 
-            // EmulatorConnectionWorker
-            // 
-            this.EmulatorConnectionWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.EmulatorConnectionWorker_DoWork);
-            this.EmulatorConnectionWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.EmulatorConnectionWorker_RunWorkerCompleted);
-            // 
-            // showMenuToolStripMenuItem
-            // 
-            this.showMenuToolStripMenuItem.Checked = true;
-            this.showMenuToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.showMenuToolStripMenuItem.Name = "showMenuToolStripMenuItem";
-            this.showMenuToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
-            this.showMenuToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.showMenuToolStripMenuItem.Text = "Show Menu";
-            // 
-            // showStatusToolStripMenuItem
-            // 
-            this.showStatusToolStripMenuItem.Checked = true;
-            this.showStatusToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.showStatusToolStripMenuItem.Name = "showStatusToolStripMenuItem";
-            this.showStatusToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.showStatusToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.showStatusToolStripMenuItem.Text = "Show Status";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(399, 534);
-            this.Controls.Add(this.StatusStrip);
-            this.Controls.Add(this.QuestPanel);
-            this.Controls.Add(this.BattlePanel);
-            this.Controls.Add(this.SpellPanel);
-            this.Controls.Add(this.OptionalItemPanel);
-            this.Controls.Add(this.StatPanel);
-            this.Controls.Add(this.MainMenuStrip);
+            this.ClientSize = new System.Drawing.Size(399, 519);
+            this.Controls.Add(this.DWContentPanel);
+            this.Controls.Add(this.DWStatusStrip);
+            this.Controls.Add(this.DWMenuStrip);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.MainMenuStrip;
+            this.MainMenuStrip = this.DWMenuStrip;
             this.Name = "MainForm";
             this.Text = "Dragon Warrior Randomizer Auto-Tracker";
             this.Load += new System.EventHandler(this.MainForm_Load);
-            this.StatPanel.ResumeLayout(false);
-            this.StatPanel.PerformLayout();
-            this.OptionalItemPanel.ResumeLayout(false);
-            this.OptionalItemPanel.PerformLayout();
+            this.DWMenuStrip.ResumeLayout(false);
+            this.DWMenuStrip.PerformLayout();
+            this.DWStatusStrip.ResumeLayout(false);
+            this.DWStatusStrip.PerformLayout();
+            this.DWContentPanel.ResumeLayout(false);
             this.BattlePanel.ResumeLayout(false);
             this.BattlePanel.PerformLayout();
+            this.OptionalItemPanel.ResumeLayout(false);
+            this.OptionalItemPanel.PerformLayout();
             this.QuestPanel.ResumeLayout(false);
             this.QuestPanel.PerformLayout();
-            this.MainMenuStrip.ResumeLayout(false);
-            this.MainMenuStrip.PerformLayout();
-            this.StatusStrip.ResumeLayout(false);
-            this.StatusStrip.PerformLayout();
+            this.StatPanel.ResumeLayout(false);
+            this.StatPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -299,8 +313,8 @@
         private Controls.DWPanel OptionalItemPanel;
         private Controls.DWPanel BattlePanel;
         private Controls.DWPanel QuestPanel;
-        private System.Windows.Forms.MenuStrip MainMenuStrip;
-        private System.Windows.Forms.StatusStrip StatusStrip;
+        private System.Windows.Forms.MenuStrip DWMenuStrip;
+        private System.Windows.Forms.StatusStrip DWStatusStrip;
         private System.Windows.Forms.ToolStripStatusLabel EmulatorStatusLabel;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem connectToolStripMenuItem;
@@ -309,8 +323,9 @@
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.ComponentModel.BackgroundWorker EmulatorConnectionWorker;
-        private System.Windows.Forms.ToolStripMenuItem showMenuToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem showStatusToolStripMenuItem;
+        private System.Windows.Forms.Panel DWContentPanel;
+        private System.Windows.Forms.ToolStripMenuItem streamerModeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem autoTrackingToolStripMenuItem;
     }
 }
 

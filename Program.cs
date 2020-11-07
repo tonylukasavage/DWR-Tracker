@@ -19,15 +19,6 @@ namespace DWR_Tracker
         [STAThread]
         static void Main()
         {
-            // Read configuration
-            var appSettings = ConfigurationManager.AppSettings;
-            DWGlobals.AutoTrackingEnabled =
-                bool.Parse(appSettings["AutoTrackingEnabled"] ?? "False");
-            DWGlobals.ShowMenu =
-                bool.Parse(appSettings["ShowMenu"] ?? "False");
-            DWGlobals.ShowStatus =
-                bool.Parse(appSettings["ShowStatus"] ?? "False");
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(true);
             Application.Run(new MainForm());

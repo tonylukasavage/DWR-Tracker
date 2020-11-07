@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
@@ -25,6 +26,10 @@ namespace DWR_Tracker
 { 
     public partial class MainForm : Form
     {
+        private DWConfiguration Config = DWGlobals.DWConfiguration;
+        private DWItem[] QuestItemsStart = DWGlobals.QuestItems.Take(3).ToArray();
+        private DWItem[] QuestItemsEnd = DWGlobals.QuestItems.Skip(3).Take(3).ToArray();
+
         private delegate void SafeCallDelegate(Image image);
 
         public MainForm()
@@ -38,11 +43,29 @@ namespace DWR_Tracker
             }
         }
 
+        private void MainFormLayoutUpdate()
+        {
+            DWMenuStrip.Visible = DWStatusStrip.Visible = !Config.StreamerMode;
+            DWContentPanel.Top = 4 + (DWMenuStrip.Visible ? DWMenuStrip.Height : 0);
+
+            if (Config.StreamerMode)
+            {
+                this.Height = 512;
+                this.FormBorderStyle = FormBorderStyle.None;
+            }
+            else
+            {
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                this.Height = 558;
+            }
+        }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             // update UI based on config
-            MainMenuStrip.Visible = DWGlobals.ShowMenu;
-            StatusStrip.Visible = DWGlobals.ShowStatus;
+            streamerModeToolStripMenuItem.Checked = Config.StreamerMode;
+            autoTrackingToolStripMenuItem.Checked = Config.AutoTrackingEnabled;
+            MainFormLayoutUpdate();
 
             // create spell labels
             for (int i = 0; i < DWGlobals.Spells.Length; i++)
@@ -95,7 +118,8 @@ namespace DWR_Tracker
 
         private void CheckGameState(object source, ElapsedEventArgs e)
         {
-            if (DWGlobals.AutoTrackingEnabled && DWGlobals.ProcessReader != default(DWProcessReader))
+            if (Config.AutoTrackingEnabled && 
+                DWGlobals.ProcessReader != default(DWProcessReader))
             {
                 foreach (DWSpell spell in DWGlobals.Spells)
                 {
@@ -149,6 +173,10 @@ namespace DWR_Tracker
                             value = 1;
                         }
                         item.UpdatePictureBox(value, 1);
+                    }
+                    else if (item is DWBridge || item is DWBallOfLight)
+                    {
+                        item.UpdatePictureBox(item.ReadValue(), 1);
                     }
                     else if (items.ContainsKey(item.Name))
                     {
@@ -255,6 +283,19 @@ namespace DWR_Tracker
             {
                 EmulatorStatusLabel.Text = reader.Process.MainWindowTitle;
             }
+        }
+
+        private void streamerModeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem mi = (ToolStripMenuItem)sender;
+            Config.StreamerMode = mi.Checked = !mi.Checked;
+            MainFormLayoutUpdate();
+        }
+
+        private void autoTrackingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem mi = (ToolStripMenuItem)sender;
+            Config.AutoTrackingEnabled = mi.Checked = !mi.Checked;
         }
     }
 

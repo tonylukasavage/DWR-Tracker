@@ -12,10 +12,7 @@ namespace DWR_Tracker.Classes
 {
     static class DWGlobals
     {
-        public static bool AutoTrackingEnabled = true;
-        public static bool ShowMenu = true;
-        public static bool ShowStatus = false;
-
+        public static DWConfiguration DWConfiguration = new DWConfiguration();
         public static DWFont DWFont = new DWFont();
         public static string DWImagePath = "DWR_Tracker.Images.";
         public static DWProcessReader ProcessReader;
@@ -56,6 +53,14 @@ namespace DWR_Tracker.Classes
             new DWHerb()
         };
 
+        // This only covers fast leveling
+        public static int[] LevelNexts = new int[30]
+        {
+            0, 5, 17, 35, 82, 165,337, 600, 975, 1500, 2175, 3000, 4125, 5625, 7500,
+            9750, 12000, 14250, 16500, 19500, 22500, 25500, 28500, 31500, 34500,
+            37500, 40500, 43500, 46500, 49151
+        };
+
         public static DWSpell[] Spells = new DWSpell[10]
         {
             new DWSpell("heal", 0xCE, 0x1),
@@ -70,7 +75,7 @@ namespace DWR_Tracker.Classes
             new DWSpell("hurtmore", 0xCF, 0x2)
         };
 
-        public static DWStat[] Stats = new DWStat[7]
+        public static DWStat[] Stats = new DWStat[10]
         {
             new DWStat("lvl", 0xC7),
             new DWStat("str", 0xC8),
@@ -78,7 +83,13 @@ namespace DWR_Tracker.Classes
             new DWStat("hp", 0xCA),
             new DWStat("mp", 0xCB),
             new DWStat("atk", 0xCC),
-            new DWStat("def", 0xCD)
+            new DWStat("def", 0xCD),
+            new DWStat("gld", 0xBC),
+            new DWStat("exp", 0xBA),
+
+            // TODO: grab this from RAM once I figure out how to find the pointer 
+            // path to it
+            new DWStat("nxt", 0)
         };
 
         public static string[] InventoryItems = new string[16]
