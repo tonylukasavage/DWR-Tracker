@@ -29,8 +29,9 @@ namespace DWR_Tracker
         private DWConfiguration Config = DWGlobals.DWConfiguration;
         private DWItem[] QuestItemsStart = DWGlobals.QuestItems.Take(3).ToArray();
         private DWItem[] QuestItemsEnd = DWGlobals.QuestItems.Skip(3).Take(3).ToArray();
+        private bool hasRainbowDrop = false;
 
-        private delegate void SafeCallDelegate(Image image);
+        private delegate void SafeCallDelegate(DWItemBox itemBox, bool showEndGame);
 
         public MainForm()
         {
@@ -156,6 +157,17 @@ namespace DWR_Tracker
                     {
                         items.Add(itemName, 1);
                     }                    
+                }
+
+                // update quest item UI based on rainbow drop
+                bool checkRainbowDrop = items.ContainsKey("Rainbow Drop");
+                if (hasRainbowDrop != checkRainbowDrop)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        UpdateQuestItemBox(DWGlobals.QuestItems[i].ItemBox, !checkRainbowDrop);
+                    }
+                    hasRainbowDrop = checkRainbowDrop;
                 }
 
                 // All items necessary to complete the game (excluding keys)
@@ -296,6 +308,19 @@ namespace DWR_Tracker
         {
             ToolStripMenuItem mi = (ToolStripMenuItem)sender;
             Config.AutoTrackingEnabled = mi.Checked = !mi.Checked;
+        }
+
+        private void UpdateQuestItemBox(DWItemBox itemBox, bool visible)
+        {
+             if (itemBox.InvokeRequired)
+            {
+                var d = new SafeCallDelegate(UpdateQuestItemBox);
+                itemBox.Invoke(d, new object[] { itemBox, visible });
+            }
+            else
+            {
+                itemBox.Visible = visible;
+            }
         }
     }
 
