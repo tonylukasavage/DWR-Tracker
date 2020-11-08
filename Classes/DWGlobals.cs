@@ -88,7 +88,7 @@ namespace DWR_Tracker.Classes
             new DWStat("exp", 0xBA),
 
             // TODO: grab this from RAM once I figure out how to find the pointer 
-            // path to it
+            // path to it. I know the table starts at 0xB35B, but need the pointer.
             new DWStat("nxt", 0)
         };
 

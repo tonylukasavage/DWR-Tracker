@@ -2,8 +2,6 @@
 
 ## TODO
 
-* gold
-* XP and next
 * cave maps
 * DL calculator
 

@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\DWConfiguration.cs" />
+    <Compile Include="Classes\DWEnemy.cs" />
     <Compile Include="Classes\Items\DWItem.cs" />
     <Compile Include="Classes\DWGlobals.cs" />
     <Compile Include="Classes\DWFont.cs" />
@@ -118,6 +119,63 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Images\Enemies\armored_knight.png" />
+    <EmbeddedResource Include="Images\Enemies\axe_knight.png" />
+    <EmbeddedResource Include="Images\Enemies\blue_dragon.png" />
+    <EmbeddedResource Include="Images\Enemies\blue_slime.png" />
+    <EmbeddedResource Include="Images\Enemies\demon_knight.png" />
+    <EmbeddedResource Include="Images\Enemies\dragonlord_1.png" />
+    <EmbeddedResource Include="Images\Enemies\dragonlord_2.png" />
+    <EmbeddedResource Include="Images\Enemies\drakee.png" />
+    <EmbeddedResource Include="Images\Enemies\drakeema.png" />
+    <EmbeddedResource Include="Images\Enemies\droll.png" />
+    <EmbeddedResource Include="Images\Enemies\drollmagi.png" />
+    <EmbeddedResource Include="Images\Enemies\druin.png" />
+    <EmbeddedResource Include="Images\Enemies\druinlord.png" />
+    <EmbeddedResource Include="Images\Enemies\ghost.png" />
+    <EmbeddedResource Include="Images\Enemies\goldman.png" />
+    <EmbeddedResource Include="Images\Enemies\golem.png" />
+    <EmbeddedResource Include="Images\Enemies\green_dragon.png" />
+    <EmbeddedResource Include="Images\Enemies\knight.png" />
+    <EmbeddedResource Include="Images\Enemies\magician.png" />
+    <EmbeddedResource Include="Images\Enemies\magidrakee.png" />
+    <EmbeddedResource Include="Images\Enemies\magiwyvern.png" />
+    <EmbeddedResource Include="Images\Enemies\metal_scorpion.png" />
+    <EmbeddedResource Include="Images\Enemies\metal_slime.png" />
+    <EmbeddedResource Include="Images\Enemies\poltergeist.png" />
+    <EmbeddedResource Include="Images\Enemies\red_dragon.png" />
+    <EmbeddedResource Include="Images\Enemies\red_slime.png" />
+    <EmbeddedResource Include="Images\Enemies\rogue_scorpion.png" />
+    <EmbeddedResource Include="Images\Enemies\scorpion.png" />
+    <EmbeddedResource Include="Images\Enemies\skeleton.png" />
+    <EmbeddedResource Include="Images\Enemies\specter.png" />
+    <EmbeddedResource Include="Images\Enemies\starwyvern.png" />
+    <EmbeddedResource Include="Images\Enemies\stoneman.png" />
+    <EmbeddedResource Include="Images\Enemies\warlock.png" />
+    <EmbeddedResource Include="Images\Enemies\werewolf.png" />
+    <EmbeddedResource Include="Images\Enemies\wizard.png" />
+    <EmbeddedResource Include="Images\Enemies\wolf.png" />
+    <EmbeddedResource Include="Images\Enemies\wolflord.png" />
+    <EmbeddedResource Include="Images\Enemies\wraith.png" />
+    <EmbeddedResource Include="Images\Enemies\wraith_knight.png" />
+    <EmbeddedResource Include="Images\Enemies\wyvern.png" />
+    <EmbeddedResource Include="Images\Maps\charlock_1.png" />
+    <EmbeddedResource Include="Images\Maps\charlock_2.png" />
+    <EmbeddedResource Include="Images\Maps\charlock_3.png" />
+    <EmbeddedResource Include="Images\Maps\charlock_4.png" />
+    <EmbeddedResource Include="Images\Maps\charlock_5.png" />
+    <EmbeddedResource Include="Images\Maps\charlock_6.png" />
+    <EmbeddedResource Include="Images\Maps\charlock_7.png" />
+    <EmbeddedResource Include="Images\Maps\charlock_8.png" />
+    <EmbeddedResource Include="Images\Maps\erdricks_1.png" />
+    <EmbeddedResource Include="Images\Maps\erdricks_2.png" />
+    <EmbeddedResource Include="Images\Maps\garin_1.png" />
+    <EmbeddedResource Include="Images\Maps\garin_2.png" />
+    <EmbeddedResource Include="Images\Maps\garin_3.png" />
+    <EmbeddedResource Include="Images\Maps\garin_4.png" />
+    <EmbeddedResource Include="Images\Maps\mountain_1.png" />
+    <EmbeddedResource Include="Images\Maps\mountain_2.png" />
+    <EmbeddedResource Include="Images\Maps\swamp.png" />
     <EmbeddedResource Include="Controls\DWItemBox.resx">
       <DependentUpon>DWItemBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -185,9 +243,6 @@
     <EmbeddedResource Include="Images\Shields\small.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Images\Enemies\metal slime.png" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Images\Items\dragon_scale-grey.png" />
     <EmbeddedResource Include="Images\Items\dragon_scale.png" />
     <EmbeddedResource Include="Images\Items\fighters_ring-grey.png" />
@@ -244,8 +299,6 @@
     <EmbeddedResource Include="Images\Items\ball-grey.png" />
     <EmbeddedResource Include="Images\Items\ball.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Images\Maps\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
