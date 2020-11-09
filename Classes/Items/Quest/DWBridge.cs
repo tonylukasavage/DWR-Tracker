@@ -21,11 +21,11 @@ namespace DWR_Tracker.Classes.Items
             forceOwnRead = true;
             Count = 1;
 
-            ItemInfo = new (string ImagePath, string Name)[2]
+            ItemInfo = new (string ImagePath, string Name, int ExtraValue)[2]
             {
-                ("bridge-grey.png", "Charlock Bridge"),
-                ("bridge.png", "Charlock Bridge")
-            }.Select(s => (basePath + s.ImagePath, s.Name)).ToArray();
+                ("bridge-grey.png", "Charlock Bridge", 0),
+                ("bridge.png", "Charlock Bridge", 0)
+            }.Select(s => (basePath + s.ImagePath, s.Name, s.ExtraValue)).ToArray();
         }
 
         public override int ReadValue()

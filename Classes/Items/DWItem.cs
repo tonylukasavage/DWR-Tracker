@@ -23,7 +23,7 @@ namespace DWR_Tracker.Classes
         public bool forceOwnRead = false;
         public bool ShowCount = false;
         public int Count;
-        public (string ImagePath, string Name)[] ItemInfo;
+        public (string ImagePath, string Name, int ExtraValue)[] ItemInfo;
         public DWItemBox ItemBox;
         private delegate void SafeCallDelegate();
 
@@ -35,7 +35,7 @@ namespace DWR_Tracker.Classes
             UpdatePictureBox(ReadValue(), force);
         }
 
-        public void UpdatePictureBox(int value, bool force = false)
+        public virtual void UpdatePictureBox(int value, bool force = false)
         {
             if (Value != value || force)
             {

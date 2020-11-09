@@ -17,6 +17,8 @@ namespace DWR_Tracker.Classes
         public static string DWImagePath = "DWR_Tracker.Images.";
         public static DWProcessReader ProcessReader;
 
+        public static DWHero Hero = new DWHero();
+
         public static DWItem[] BattleItems = new DWItem[6]
         {
             new DWSword(),
@@ -112,5 +114,12 @@ namespace DWR_Tracker.Classes
             "Herb"
         };
 
+        public static DWEnemy[] Enemies = new DWEnemy[4]
+        {
+            new DWEnemy("Blue Slime", new int[2] { 2, 2 }, 5, 3, 1, 2, 0, 0, 1/64f, 1, 0),
+            new DWEnemy("Red Slime", new int[2] { 3, 3 }, 7, 3, 2, 4, 0, 0, 1/64f, 1, 0),
+            new DWEnemy("Drakee", new int[2] { 4, 5 }, 9, 6, 3, 6, 0, 0, 1/64f, 1, 0),
+            new DWEnemy("Ghost", new int[2] { 6, 7 }, 11, 8, 4, 8, 0, 0, 1/16f, 1, 1/16f),
+        };
     }
 }

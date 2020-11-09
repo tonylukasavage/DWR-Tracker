@@ -63,23 +63,6 @@ namespace DWR_Tracker
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            //string dragonString = "C:\\Users\\antho\\Documents\\enemies\\green_dragon.png";
-            //Bitmap src = new Bitmap(dragonString);
-            //Bitmap dst = new Bitmap(256, 256);
-            //Graphics g = Graphics.FromImage(dst);
-            //g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
-            //g.DrawImage(
-            //    src,
-            //    new Rectangle(0, 0, 256, 256)
-            //);
-
-            //PictureBox pb = new PictureBox();
-            //pb.Image = dst;
-            //pb.SizeMode = PictureBoxSizeMode.AutoSize;
-            //pb.Left = 410;
-            //pb.Top = 100;
-            //this.Controls.Add(pb);
-
             // update UI based on config
             streamerModeToolStripMenuItem.Checked = Config.StreamerMode;
             autoTrackingToolStripMenuItem.Checked = Config.AutoTrackingEnabled;
@@ -131,7 +114,7 @@ namespace DWR_Tracker
             // force initial quest box state
             for (int i = 0; i < 3; i++)
             {
-                UpdateQuestItemBox(DWGlobals.QuestItems[i].ItemBox, false);
+                UpdateQuestItemBox(DWGlobals.QuestItems[i].ItemBox, true);
             }
 
             // game state update timer

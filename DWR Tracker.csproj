@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Classes\DWConfiguration.cs" />
     <Compile Include="Classes\DWEnemy.cs" />
+    <Compile Include="Classes\DWHero.cs" />
     <Compile Include="Classes\Items\DWItem.cs" />
     <Compile Include="Classes\DWGlobals.cs" />
     <Compile Include="Classes\DWFont.cs" />

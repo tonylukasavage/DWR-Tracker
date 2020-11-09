@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace DWR_Tracker.Classes.Items
 {
-    class DWDeathNecklace : DWItem
+    public class DWDeathNecklace : DWItem
     {
+        public int AttackPower = 0;
+
         public DWDeathNecklace()
         {
             string basePath = DWGlobals.DWImagePath + "Items.";
@@ -20,16 +22,22 @@ namespace DWR_Tracker.Classes.Items
             allowsMultiple = false;
             Count = 1;
 
-            ItemInfo = new (string ImagePath, string Name)[2]
+            ItemInfo = new (string ImagePath, string Name, int ExtraValue)[2]
             {
-                ("reckless_necklace_th-grey.png", "Death Necklace"),
-                ("reckless_necklace_th.png", "Death Necklace")
-            }.Select(s => (basePath + s.ImagePath, s.Name)).ToArray();
+                ("reckless_necklace_th-grey.png", "Death Necklace", 0),
+                ("reckless_necklace_th.png", "Death Necklace", 10)
+            }.Select(s => (basePath + s.ImagePath, s.Name, s.ExtraValue)).ToArray();
         }
 
         public override int ReadValue()
         {
             return (DWGlobals.ProcessReader.ReadByte(0xCF) & 0x80) > 0 ? 1 : 0;
+        }
+
+        public override void UpdatePictureBox(int value, bool force = false)
+        {
+            AttackPower = ItemInfo[value].ExtraValue;
+            base.UpdatePictureBox(value, force);
         }
     }
 }

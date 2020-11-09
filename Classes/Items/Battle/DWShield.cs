@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace DWR_Tracker.Classes.Items
 {
-    class DWShield : DWItem
+    public class DWShield : DWItem
     {
+        public int DefensePower = 0;
+
         public DWShield()
         {
             string basePath = DWGlobals.DWImagePath + "Shields.";
@@ -20,18 +22,24 @@ namespace DWR_Tracker.Classes.Items
             allowsMultiple = false;
             Count = 1;
 
-            ItemInfo = new (string ImagePath, string Name)[4]
+            ItemInfo = new (string ImagePath, string Name, int ExtraValue)[4]
             {
-                ("shield-no.png", "Nothing"),
-                ("small.png", "Small Shield"),
-                ("large.png", "Large Shield"),
-                ("silver.png", "Silver Shield")
-            }.Select(s => (basePath + s.ImagePath, s.Name)).ToArray();
+                ("shield-no.png", "Nothing", 0),
+                ("small.png", "Small Shield", 4),
+                ("large.png", "Large Shield", 10),
+                ("silver.png", "Silver Shield", 20)
+            }.Select(s => (basePath + s.ImagePath, s.Name, s.ExtraValue)).ToArray();
         }
 
         public override int ReadValue()
         {
             return DWGlobals.ProcessReader.ReadByte(0xBE) & 0x3;
         }
+        public override void UpdatePictureBox(int value, bool force = false)
+        {
+            DefensePower = ItemInfo[value].ExtraValue;
+            base.UpdatePictureBox(value, force);
+        }
+
     }
 }

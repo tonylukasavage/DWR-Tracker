@@ -21,11 +21,11 @@ namespace DWR_Tracker.Classes.Items
             ShowCount = true;
             Count = 0;
 
-            ItemInfo = new (string ImagePath, string Name)[2]
+            ItemInfo = new (string ImagePath, string Name, int ExtraValue)[2]
             {
-                ("torch-grey.png", "Torch"),
-                ("torch.png", "Torch")
-            }.Select(s => (basePath + s.ImagePath, s.Name)).ToArray();
+                ("torch-grey.png", "Torch", 0),
+                ("torch.png", "Torch", 0)
+            }.Select(s => (basePath + s.ImagePath, s.Name, s.ExtraValue)).ToArray();
         }
 
         public override int ReadValue()
