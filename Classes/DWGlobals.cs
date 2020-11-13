@@ -1,14 +1,4 @@
-﻿using DWR_Tracker.Classes.Items;
-using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Drawing;
-using System.Drawing.Text;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DWR_Tracker.Classes
+﻿namespace DWR_Tracker.Classes
 {
     static class DWGlobals
     {

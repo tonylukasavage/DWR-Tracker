@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DWR_Tracker.Classes.Stats
+﻿namespace DWR_Tracker.Classes.Stats
 {
     public class DWStatNextLevel : DWStat
     {

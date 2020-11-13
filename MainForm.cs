@@ -1,29 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Configuration;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Text;
 using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Security;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
 using DWR_Tracker.Classes;
-using DWR_Tracker.Classes.Items;
 using DWR_Tracker.Controls;
-using Microsoft.Win32.SafeHandles;
 using Newtonsoft.Json;
 
 namespace DWR_Tracker
-{ 
+{
     public partial class MainForm : Form
     {
         private DWConfiguration Config = DWGlobals.DWConfiguration;
