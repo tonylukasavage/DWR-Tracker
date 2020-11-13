@@ -82,6 +82,7 @@ namespace DWR_Tracker.Classes
                 Level, Strength, Agility, MaxHP, MaxMP, AttackPower, 
                 DefensePower, Gold, XP, NextLevel
             };
+            NextLevel.LevelStat = Level;
 
             // arrange battle gear
             BattleGear = new DWItem[6]
