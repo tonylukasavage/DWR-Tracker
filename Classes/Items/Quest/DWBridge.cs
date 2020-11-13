@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DWR_Tracker.Classes.Items
 {
-    class DWBridge : DWItem
+    public class DWBridge : DWItem
     {
         public DWBridge()
         {

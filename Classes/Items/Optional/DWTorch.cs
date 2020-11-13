@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DWR_Tracker.Classes.Items
 {
-    class DWTorch : DWItem
+    public class DWTorch : DWItem
     {
         public DWTorch()
         {

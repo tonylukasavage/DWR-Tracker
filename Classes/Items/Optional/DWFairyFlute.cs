@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DWR_Tracker.Classes.Items
 {
-    class DWFairyFlute : DWItem
+    public class DWFairyFlute : DWItem
     {
         public DWFairyFlute()
         {

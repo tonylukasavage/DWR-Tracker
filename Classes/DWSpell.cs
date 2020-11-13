@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Drawing;
-using DWR_Tracker.Controls;
 
 namespace DWR_Tracker.Classes
 {
@@ -15,8 +8,8 @@ namespace DWR_Tracker.Classes
         public int Offset;
         public int Bit;
         public bool HasSpell;
-        public DWSpellLabel Label;
-        private delegate void SafeCallDelegate(Color color);
+
+        public event EventHandler ValueChanged;
 
         public DWSpell(string name, int offset, int bit, bool hasSpell = false)
         {
@@ -26,32 +19,30 @@ namespace DWR_Tracker.Classes
             HasSpell = hasSpell;
         }
 
-        public void UpdateLabel(bool force = false)
+        public int ReadValue()
         {
-            if (Label == default(DWSpellLabel)) { return; }
-            UpdateLabel((DWGlobals.ProcessReader.ReadByte(Offset) & Bit) > 0, force);
+            return DWGlobals.ProcessReader.ReadByte(Offset) & Bit;
         }
 
-        public void UpdateLabel(bool hasSpell, bool force = false)
+        public void Update(bool force = false)
         {
+            Update(ReadValue(), force);
+        }
+
+        public void Update(int value, bool force = false)
+        {
+            bool hasSpell = value > 0;
             if (HasSpell != hasSpell || force)
             {
-                UpdateLabelColor(hasSpell ? Color.FromArgb(255, 255, 255) : Color.FromArgb(60, 60, 60));
+                HasSpell = hasSpell;
+                OnValueChanged();
             }
-            HasSpell = hasSpell;
         }
 
-        private void UpdateLabelColor(Color color)
+        protected virtual void OnValueChanged()
         {
-            if (Label.InvokeRequired)
-            {
-                var d = new SafeCallDelegate(UpdateLabelColor);
-                Label.Invoke(d, new object[] { color });
-            }
-            else
-            {
-                Label.ForeColor = color;
-            }
+            EventHandler handler = ValueChanged;
+            handler?.Invoke(this, new EventArgs());
         }
     }
 }

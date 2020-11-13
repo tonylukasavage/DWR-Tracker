@@ -11,16 +11,17 @@ using System.Windows.Forms;
 
 namespace DWR_Tracker.Controls
 {
-    public partial class DWSpellLabel : Label
+    public partial class DWSpellLabel : DWLabel
     {
         private DWSpell Spell;
 
-        public DWSpellLabel(DWSpell spell)
+        public DWSpellLabel(DWSpell spell) : base()
         {
             InitializeComponent();
             Spell = spell;
-            Font = new Font(DWGlobals.DWFont.GetFamily(), 12);
             ForeColor = Color.FromArgb(60, 60, 60);
+            AutoSize = true;
+            Text = spell.Name.ToUpper();
         }
 
         protected override void OnPaint(PaintEventArgs pe)
@@ -35,14 +36,14 @@ namespace DWR_Tracker.Controls
 
         private void SpellLabel_MouseLeave(object sender, EventArgs e)
         {
-            Spell.UpdateLabel(Spell.HasSpell, true);
+            Spell.Update(Spell.HasSpell ? 1 : 0, true);
         }
 
         private void SpellLabel_Click(object sender, EventArgs e)
         {
             if (!DWGlobals.DWConfiguration.AutoTrackingEnabled)
             {
-                Spell.UpdateLabel(!Spell.HasSpell);
+                Spell.Update(!Spell.HasSpell ? 1 : 0);
             }
         }
     }

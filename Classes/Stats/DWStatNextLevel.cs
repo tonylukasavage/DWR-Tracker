@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DWR_Tracker.Classes.Stats
+{
+    public class DWStatNextLevel : DWStat
+    {
+        public DWStatNextLevel(string name, int offset) : base(name, offset)
+        {
+
+        }
+
+        protected override int ReadValue()
+        {
+            // At the end of the game your level gets set to 255
+            if (Value == 255) { return -1; }
+
+            // TODO: make this less brittle
+            return DWGlobals.LevelNexts[Value];
+        }
+    }
+}

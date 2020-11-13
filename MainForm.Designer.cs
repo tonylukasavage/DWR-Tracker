@@ -174,7 +174,7 @@
             this.BattlePanel.BackColor = System.Drawing.Color.Black;
             this.BattlePanel.Controls.Add(this.BattleItemFlowPanel);
             this.BattlePanel.Location = new System.Drawing.Point(0, 384);
-            this.BattlePanel.MinimumSize = new System.Drawing.Size(107, 58);
+            this.BattlePanel.MinimumSize = new System.Drawing.Size(144, 56);
             this.BattlePanel.Name = "BattlePanel";
             this.BattlePanel.Size = new System.Drawing.Size(387, 83);
             this.BattlePanel.TabIndex = 9;
@@ -194,7 +194,7 @@
             this.OptionalItemPanel.BackColor = System.Drawing.Color.Black;
             this.OptionalItemPanel.Controls.Add(this.OptionalItemFlowPanel);
             this.OptionalItemPanel.Location = new System.Drawing.Point(203, 298);
-            this.OptionalItemPanel.MinimumSize = new System.Drawing.Size(40, 58);
+            this.OptionalItemPanel.MinimumSize = new System.Drawing.Size(40, 56);
             this.OptionalItemPanel.Name = "OptionalItemPanel";
             this.OptionalItemPanel.Size = new System.Drawing.Size(184, 85);
             this.OptionalItemPanel.TabIndex = 8;
@@ -214,7 +214,7 @@
             this.QuestPanel.BackColor = System.Drawing.Color.Black;
             this.QuestPanel.Controls.Add(this.RequiredItemFlowPanel);
             this.QuestPanel.Location = new System.Drawing.Point(3, 299);
-            this.QuestPanel.MinimumSize = new System.Drawing.Size(102, 58);
+            this.QuestPanel.MinimumSize = new System.Drawing.Size(128, 56);
             this.QuestPanel.Name = "QuestPanel";
             this.QuestPanel.Size = new System.Drawing.Size(194, 83);
             this.QuestPanel.TabIndex = 10;
@@ -234,7 +234,7 @@
             this.StatPanel.BackColor = System.Drawing.Color.Black;
             this.StatPanel.Controls.Add(this.StatTableLayout);
             this.StatPanel.Location = new System.Drawing.Point(3, 3);
-            this.StatPanel.MinimumSize = new System.Drawing.Size(97, 58);
+            this.StatPanel.MinimumSize = new System.Drawing.Size(128, 56);
             this.StatPanel.Name = "StatPanel";
             this.StatPanel.Size = new System.Drawing.Size(194, 295);
             this.StatPanel.TabIndex = 7;
@@ -244,8 +244,8 @@
             // StatTableLayout
             // 
             this.StatTableLayout.ColumnCount = 2;
-            this.StatTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.StatTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.StatTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.80981F));
+            this.StatTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63.19019F));
             this.StatTableLayout.Location = new System.Drawing.Point(17, 25);
             this.StatTableLayout.Name = "StatTableLayout";
             this.StatTableLayout.RowCount = 7;
@@ -263,7 +263,7 @@
             // 
             this.SpellPanel.BackColor = System.Drawing.Color.Black;
             this.SpellPanel.Location = new System.Drawing.Point(203, 3);
-            this.SpellPanel.MinimumSize = new System.Drawing.Size(110, 58);
+            this.SpellPanel.MinimumSize = new System.Drawing.Size(144, 56);
             this.SpellPanel.Name = "SpellPanel";
             this.SpellPanel.Size = new System.Drawing.Size(184, 295);
             this.SpellPanel.TabIndex = 6;

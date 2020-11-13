@@ -1,6 +1,6 @@
 ﻿namespace DWR_Tracker.Controls
 {
-    partial class DWStatLabel
+    partial class DWLabel
     {
         /// <summary>
         /// Required designer variable.

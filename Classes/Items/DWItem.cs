@@ -1,14 +1,4 @@
-﻿using DWR_Tracker.Controls;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System;
 
 namespace DWR_Tracker.Classes
 {
@@ -16,65 +6,47 @@ namespace DWR_Tracker.Classes
     {
         public string Name;
         public int Value;
+        public int Count;
         public string ImagePath;
+        
         public bool IsBattleGear;
         public bool IsRequiredItem;
+        public bool IsFirstHalfQuestItem = false;
         public bool allowsMultiple;
         public bool forceOwnRead = false;
         public bool ShowCount = false;
-        public int Count;
+        
         public (string ImagePath, string Name, int ExtraValue)[] ItemInfo;
-        public DWItemBox ItemBox;
-        private delegate void SafeCallDelegate();
+
+        public event EventHandler ValueChanged;
 
         public abstract int ReadValue();
 
-        public void UpdatePictureBox(bool force = false)
-        {
-            if (ItemBox == default(DWItemBox)) { return; }
-            UpdatePictureBox(ReadValue(), force);
+        public void Update(bool force = false) {
+            Update(ReadValue(), 1, force);
         }
 
-        public virtual void UpdatePictureBox(int value, bool force = false)
+        public virtual void Update(int value, bool force = false)
         {
-            if (Value != value || force)
+            Update(value, 1, force);
+        }
+
+        public void Update(int value, int count, bool force = false)
+        {
+            if (value != Value || count != Count || force)
             {
+                Value = value;
+                Count = count;
                 Name = ItemInfo[value].Name;
                 ImagePath = ItemInfo[value].ImagePath;
-                UpdatePictureBoxProperties();
+                OnValueChanged();
             }
-            Value = value;
         }
 
-        public void UpdatePictureBox(int value, int count, bool force = false)
+        protected virtual void OnValueChanged()
         {
-            bool countChanged = Count != count;
-            Count = count;
-            UpdatePictureBox(value, force || countChanged);
-        }
-
-        private void UpdatePictureBoxProperties()
-        {
-            PictureBox pictureBox = ItemBox.PictureBox;
-            if (pictureBox.InvokeRequired)
-            {
-                var d = new SafeCallDelegate(UpdatePictureBoxProperties);
-                pictureBox.Invoke(d, new object[] { });
-            }
-            else
-            {
-                ItemBox.ToolTip.SetToolTip(pictureBox, Name);
-                Assembly myAssembly = Assembly.GetExecutingAssembly();
-                Stream myStream = myAssembly.GetManifestResourceStream(ImagePath);
-                pictureBox.Image = (Image)(new Bitmap(Image.FromStream(myStream), new Size(50, 50)));
-
-                if (ShowCount)
-                {
-                    ItemBox.CountLabel.Text = Count.ToString();
-                    ItemBox.CountLabel.Visible = Count > 0;
-                    ItemBox.CountLabel.BringToFront();
-                }
-            }
+            EventHandler handler = ValueChanged;
+            handler?.Invoke(this, new EventArgs());
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DWR_Tracker.Classes.Items
 {
-    class DWMagicKey : DWItem
+    public class DWMagicKey : DWItem
     {
         public DWMagicKey()
         {

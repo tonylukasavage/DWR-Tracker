@@ -64,7 +64,7 @@
     <Compile Include="Classes\DWGlobals.cs" />
     <Compile Include="Classes\DWFont.cs" />
     <Compile Include="Classes\DWSpell.cs" />
-    <Compile Include="Classes\DWStat.cs" />
+    <Compile Include="Classes\Stats\DWStat.cs" />
     <Compile Include="Classes\Items\Battle\DWArmor.cs" />
     <Compile Include="Classes\Items\Battle\DWDeathNecklace.cs" />
     <Compile Include="Classes\Items\Battle\DWDragonsScale.cs" />
@@ -84,10 +84,9 @@
     <Compile Include="Classes\Items\Quest\DWErdricksToken.cs" />
     <Compile Include="Classes\Items\Quest\DWHarpOrStaff.cs" />
     <Compile Include="Classes\Items\Quest\DWRainbowDrop.cs" />
-    <Compile Include="Classes\Items\Quest\DWSilverHarp.cs" />
-    <Compile Include="Classes\Items\Quest\DWStaffOfRain.cs" />
     <Compile Include="Classes\Items\Quest\DWStonesOfSunlight.cs" />
     <Compile Include="Classes\DWProcessReader.cs" />
+    <Compile Include="Classes\Stats\DWStatNextLevel.cs" />
     <Compile Include="Controls\DWItemBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -106,11 +105,11 @@
     <Compile Include="Controls\DWSpellLabel.Designer.cs">
       <DependentUpon>DWSpellLabel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\DWStatLabel.cs">
+    <Compile Include="Controls\DWLabel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\DWStatLabel.Designer.cs">
-      <DependentUpon>DWStatLabel.cs</DependentUpon>
+    <Compile Include="Controls\DWLabel.Designer.cs">
+      <DependentUpon>DWLabel.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

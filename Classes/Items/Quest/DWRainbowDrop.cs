@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DWR_Tracker.Classes.Items
 {
-    class DWRainbowDrop : DWItem
+    public class DWRainbowDrop : DWItem
     {
         public DWRainbowDrop()
         {

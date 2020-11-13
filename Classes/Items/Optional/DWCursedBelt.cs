@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DWR_Tracker.Classes.Items
 {
-    class DWCursedBelt : DWItem
+    public class DWCursedBelt : DWItem
     {
         public DWCursedBelt()
         {

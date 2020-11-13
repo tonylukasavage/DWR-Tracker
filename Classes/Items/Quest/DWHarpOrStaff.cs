@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DWR_Tracker.Classes.Items
 {
-    class DWHarpOrStaff : DWItem
+    public class DWHarpOrStaff : DWItem
     {
         public DWHarpOrStaff()
         {
@@ -17,6 +17,7 @@ namespace DWR_Tracker.Classes.Items
             ImagePath = "";
             IsBattleGear = false;
             IsRequiredItem = true;
+            IsFirstHalfQuestItem = true;
             allowsMultiple = false;
             Count = 1;
 

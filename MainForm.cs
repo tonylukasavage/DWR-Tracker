@@ -27,11 +27,7 @@ namespace DWR_Tracker
     public partial class MainForm : Form
     {
         private DWConfiguration Config = DWGlobals.DWConfiguration;
-        private DWItem[] QuestItemsStart = DWGlobals.QuestItems.Take(3).ToArray();
-        private DWItem[] QuestItemsEnd = DWGlobals.QuestItems.Skip(3).Take(3).ToArray();
-        private bool hasRainbowDrop = false;
-
-        private delegate void SafeCallDelegate(DWItemBox itemBox, bool showEndGame);
+        private DWHero Hero = DWGlobals.Hero;
 
         public MainForm()
         {
@@ -42,6 +38,81 @@ namespace DWR_Tracker
             {
                 EmulatorConnectionWorker.RunWorkerAsync();
             }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            // update UI based on config
+            streamerModeToolStripMenuItem.Checked = Config.StreamerMode;
+            autoTrackingToolStripMenuItem.Checked = Config.AutoTrackingEnabled;
+            MainFormLayoutUpdate();
+
+            //Set initial UI for hero stats
+            for (int i = 0; i < Hero.DisplayStats.Length; i++)
+            {
+                DWStat stat = Hero.DisplayStats[i];
+                DWLabel nameLabel = new DWLabel { Text = stat.Name.ToUpper() };
+                DWLabel valueLabel = new DWLabel { 
+                    Text = stat.Value.ToString(), 
+                    TextAlign = ContentAlignment.MiddleRight 
+                };
+                StatTableLayout.Controls.Add(nameLabel, 0, i);
+                StatTableLayout.Controls.Add(valueLabel, 1, i);
+                stat.ValueChanged += (sender, e) =>
+                {
+                    valueLabel.Text = stat.Value.ToString();
+                };
+            }
+
+            // create spell labels
+            for (int i = 0; i < Hero.Spells.Length; i++)
+            {
+                DWSpell spell = Hero.Spells[i];
+                DWSpellLabel label = new DWSpellLabel(spell);
+
+                // position spell in panel
+                SpellPanel.Controls.Add(label);
+                label.Top = i * 26 + 26;
+                label.Left = 15;
+                label.Width = SpellPanel.Width;
+
+                // update color on spell value change
+                spell.ValueChanged += (sender, e) =>
+                {
+                    label.ForeColor = spell.HasSpell ?
+                        Color.FromArgb(255, 255, 255) :
+                        Color.FromArgb(60, 60, 60);
+                };
+            }
+
+            // set initial UI for all items
+            foreach (DWItem item in Hero.QuestItems)
+            {
+                DWItemBox itemBox = new DWItemBox(item);
+                if (item.IsFirstHalfQuestItem)
+                {
+                    Hero.RainbowDrop.ValueChanged += (sender, e) =>
+                    {
+                        itemBox.Visible = Hero.RainbowDrop.Value == 0;
+                    };
+                }
+                RequiredItemFlowPanel.Controls.Add(itemBox);
+            }
+
+            foreach(DWItem item in Hero.BattleGear)
+            {
+                BattleItemFlowPanel.Controls.Add(new DWItemBox(item));
+            }
+
+            foreach (DWItem item in Hero.OtherItems)
+            {
+                OptionalItemFlowPanel.Controls.Add(new DWItemBox(item));
+            }
+
+            // game state update timer
+            System.Timers.Timer timer = new System.Timers.Timer(1000);
+            timer.Elapsed += CheckGameState;
+            timer.Start();
         }
 
         private void MainFormLayoutUpdate()
@@ -61,66 +132,9 @@ namespace DWR_Tracker
             }
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private void Stat_ValueChanged(object sender, EventArgs e)
         {
-            // update UI based on config
-            streamerModeToolStripMenuItem.Checked = Config.StreamerMode;
-            autoTrackingToolStripMenuItem.Checked = Config.AutoTrackingEnabled;
-            MainFormLayoutUpdate();
-
-            // create spell labels
-            for (int i = 0; i < DWGlobals.Spells.Length; i++)
-            {
-                DWSpell spell = DWGlobals.Spells[i];
-                DWSpellLabel label = new DWSpellLabel(spell);
-                spell.Label = label;
-                label.AutoSize = true;
-                SpellPanel.Controls.Add(label);
-                label.Top = i * 26 + 26;
-                label.Left = 15;
-                label.Text = spell.Name.ToUpper();
-                label.Width = SpellPanel.Width;
-            }
-
-            // populate stat table
-            for (int i = 0; i < DWGlobals.Stats.Length; i++)
-            {
-                DWStat stat = DWGlobals.Stats[i];
-                DWStatLabel label = new DWStatLabel { Text = stat.Value.ToString(), TextAlign = ContentAlignment.MiddleRight };
-                stat.Label = label;
-                StatTableLayout.Controls.Add(new DWStatLabel { Text = stat.Name.ToUpper() }, 0, i);
-                StatTableLayout.Controls.Add(label, 1, i);
-            }
-
-            // add item pictures 
-            (DWItem[] Items, FlowLayoutPanel Panel)[] groups = new (DWItem[], FlowLayoutPanel)[3]
-            {
-                (DWGlobals.BattleItems, BattleItemFlowPanel),
-                (DWGlobals.QuestItems, RequiredItemFlowPanel),
-                (DWGlobals.OptionalItems, OptionalItemFlowPanel)
-            };
-            foreach ((DWItem[] Items, FlowLayoutPanel Panel) group in groups)
-            {
-                foreach (DWItem item in group.Items)
-                {
-                    DWItemBox itemBox = new DWItemBox(item);
-                    item.ItemBox = itemBox;
-                    itemBox.PictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
-                    group.Panel.Controls.Add(itemBox);
-                    item.UpdatePictureBox(0, 0, true);
-                }
-            }
-
-            // force initial quest box state
-            for (int i = 0; i < 3; i++)
-            {
-                UpdateQuestItemBox(DWGlobals.QuestItems[i].ItemBox, true);
-            }
-
-            // game state update timer
-            System.Timers.Timer timer = new System.Timers.Timer(1000);
-            timer.Elapsed += CheckGameState;
-            timer.Start();
+            throw new NotImplementedException();
         }
 
         private void CheckGameState(object source, ElapsedEventArgs e)
@@ -128,113 +142,7 @@ namespace DWR_Tracker
             if (Config.AutoTrackingEnabled && 
                 DWGlobals.ProcessReader != default(DWProcessReader))
             {
-                foreach (DWSpell spell in DWGlobals.Spells)
-                {
-                    spell.UpdateLabel();
-                }
-
-                foreach (DWStat stat in DWGlobals.Stats)
-                {
-                    stat.UpdateLabel();
-                }
-
-                foreach (DWItem item in DWGlobals.BattleItems)
-                {
-                    item.UpdatePictureBox();
-                }
-
-                // Get an dictionary of all items (excluding sword, armor, shield, and keys)
-                // with the item name as the key, its count as the value
-                Dictionary<string, int> items = new Dictionary<string, int>();
-                int itemByte = DWGlobals.ProcessReader.ReadInt32(0xC1);
-                for (int i = 0; i < 8; i++)
-                {
-                    int itemValue = (itemByte >> (i * 4) & 0xF);
-                    string itemName = DWGlobals.InventoryItems[itemValue];
-                    if (itemName == "Nothing")
-                    {
-                        continue;
-                    }
-                    else if (items.ContainsKey(itemName))
-                    {
-                        items[itemName]++;
-                    }
-                    else
-                    {
-                        items.Add(itemName, 1);
-                    }                    
-                }
-
-                // update quest item UI based on rainbow drop
-                bool checkRainbowDrop = items.ContainsKey("Rainbow Drop");
-                if (hasRainbowDrop != checkRainbowDrop)
-                {
-                    for (int i = 0; i < 3; i++)
-                    {
-                        UpdateQuestItemBox(DWGlobals.QuestItems[i].ItemBox, !checkRainbowDrop);
-                    }
-                    hasRainbowDrop = checkRainbowDrop;
-                }
-
-                // All items necessary to complete the game (excluding keys)
-                foreach (DWItem item in DWGlobals.QuestItems)
-                {
-                    if (item is DWHarpOrStaff)
-                    {
-                        int value = 0;
-                        if (items.ContainsKey("Staff of Rain"))
-                        {
-                            value = 2;
-                        }
-                        else if (items.ContainsKey("Silver Harp"))
-                        {
-                            value = 1;
-                        }
-                        item.UpdatePictureBox(value, 1);
-                    }
-                    else if (item is DWBridge || item is DWBallOfLight)
-                    {
-                        item.UpdatePictureBox(item.ReadValue(), 1);
-                    }
-                    else if (items.ContainsKey(item.Name))
-                    {
-                        if (item.forceOwnRead)
-                        {
-                            item.UpdatePictureBox(item.ReadValue(), 1);
-                        }
-                        else
-                        {
-                            item.UpdatePictureBox(1, items[item.Name]);
-                        }
-                    }
-                    else
-                    {
-                        item.UpdatePictureBox(0, 0);
-                    }
-                }
-
-                // process all optional quest items (excluding key)
-                foreach (DWItem item in DWGlobals.OptionalItems)
-                {
-                    if (item is DWMagicKey) { continue; }
-
-                    if (items.ContainsKey(item.Name))
-                    {
-                        item.UpdatePictureBox(1, items[item.Name]);
-                    }
-                    else
-                    {
-                        item.UpdatePictureBox(0, 0);
-                    }
-                }
-
-                // Special handling for key count
-                DWMagicKey magicKey = (DWMagicKey)DWGlobals.OptionalItems[0];
-                int keys = magicKey.ReadValue();
-                if (keys != magicKey.Count)
-                {
-                    magicKey.UpdatePictureBox(keys > 0 ? 1 : 0, keys, false);
-                }
+                Hero.Update();
             }
         }
 
@@ -295,11 +203,11 @@ namespace DWR_Tracker
 
         private void EmulatorConnectionWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            // set emulator name in status bar
             DWProcessReader reader = DWGlobals.ProcessReader;
             if (reader != default(DWProcessReader))
             {
                 EmulatorStatusLabel.Text = reader.Process.MainWindowTitle;
+                Hero.Update(true);
             }
         }
 
@@ -314,19 +222,6 @@ namespace DWR_Tracker
         {
             ToolStripMenuItem mi = (ToolStripMenuItem)sender;
             Config.AutoTrackingEnabled = mi.Checked = !mi.Checked;
-        }
-
-        private void UpdateQuestItemBox(DWItemBox itemBox, bool visible)
-        {
-             if (itemBox.InvokeRequired)
-            {
-                var d = new SafeCallDelegate(UpdateQuestItemBox);
-                itemBox.Invoke(d, new object[] { itemBox, visible });
-            }
-            else
-            {
-                itemBox.Visible = visible;
-            }
         }
     }
 

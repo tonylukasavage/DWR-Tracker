@@ -34,10 +34,10 @@ namespace DWR_Tracker.Classes.Items
             return (DWGlobals.ProcessReader.ReadByte(0xCF) & 0x10) > 0 ? 1 : 0;
         }
 
-        public override void UpdatePictureBox(int value, bool force = false)
+        public override void Update(int value, bool force = false)
         {
             DefensePower = ItemInfo[value].ExtraValue;
-            base.UpdatePictureBox(value, force);
+            base.Update(value, force);
         }
     }
 }

@@ -75,7 +75,7 @@ namespace DWR_Tracker.Classes
             float runFactor = isBackAttackCheck ? 0.25f : runGroupFactor;
             int[] heroArray = Enumerable
                 .Range(0, 255)
-                .Select(x => x * hero.Agility)
+                .Select(x => x * hero.Agility.Value)
                 .ToArray();
             int[] enemyArray = Enumerable
                 .Range(0, 255)
@@ -98,7 +98,7 @@ namespace DWR_Tracker.Classes
 
         public bool Run25DueToHeroStrength(DWHero hero)
         {
-            return Strength * 2 <= hero.Strength;
+            return Strength * 2 <= hero.Strength.Value;
         }
 
         public float ChanceToBackAttack(DWHero hero)
@@ -142,8 +142,8 @@ namespace DWR_Tracker.Classes
             {
                 return new int[2]
                 {
-                    (Strength - (hero.DefensePower / 2)) / 4,
-                    (Strength - (hero.DefensePower / 2)) / 2
+                    (Strength - (hero.DefensePower.Value / 2)) / 4,
+                    (Strength - (hero.DefensePower.Value / 2)) / 2
                 };
             }
         }
@@ -152,14 +152,14 @@ namespace DWR_Tracker.Classes
         {
             return new int[2]
             {
-                (hero.AttackPower - (Agility / 2)) / 4,
-                (hero.AttackPower - (Agility / 2)) / 2
+                (hero.AttackPower.Value - (Agility / 2)) / 4,
+                (hero.AttackPower.Value - (Agility / 2)) / 2
             };
         }
 
         public bool IsDefenseBroken(DWHero hero)
         {
-            return hero.DefensePower >= Strength;
+            return hero.DefensePower.Value >= Strength;
         }
 
         public float MaxHPToXPRatio()

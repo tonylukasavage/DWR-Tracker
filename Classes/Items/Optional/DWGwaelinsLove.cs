@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DWR_Tracker.Classes.Items
 {
-    class DWGwaelinsLove : DWItem
+    public class DWGwaelinsLove : DWItem
     {
         public DWGwaelinsLove()
         {

@@ -43,10 +43,10 @@ namespace DWR_Tracker.Classes.Items
             return (DWGlobals.ProcessReader.ReadByte(0xBE) >> 2) & 0x7;
         }
 
-        public override void UpdatePictureBox(int value, bool force = false)
+        public override void Update(int value, bool force = false)
         {
             DefensePower = ItemInfo[value].ExtraValue;
-            base.UpdatePictureBox(value, force);
+            base.Update(value, force);
             HurtResist = value >= 6 ? 1 / 3 : 0;
             BreathResist = value == 7 ? 1 / 3 : 0;
             StopspellImmunity = value == 7;
