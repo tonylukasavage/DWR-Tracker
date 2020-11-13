@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -104,23 +105,23 @@ namespace DWR_Tracker.Classes
         public float HurtShot()
         {
             int dead = 0;
+            IEnumerable<int> hurtRange = Enumerable.Range(hurtDamage[0], hurtDamage[1]);
             for (int i = 0; i < HP.Length; i++)
             {
-                dead += Enumerable.Range(hurtDamage[0], hurtDamage[1])
-                    .Where(x => x >= HP[i]).ToArray().Length;
+                dead += hurtRange.Where(x => x >= HP[i]).ToArray().Length;
             }
-            return dead / (float)(hurtDamage.Length * HP.Length);
+            return dead / (float)(hurtRange.ToArray().Length * HP.Length);
         }
 
         public float HurtmoreShot()
         {
             int dead = 0;
+            IEnumerable<int> hurtmoreRange = Enumerable.Range(hurtmoreDamage[0], hurtmoreDamage[1]);
             for (int i = 0; i < HP.Length; i++)
             {
-                dead += Enumerable.Range(hurtmoreDamage[0], hurtmoreDamage[1])
-                    .Where(x => x >= HP[i]).ToArray().Length;
+                dead += hurtmoreRange.Where(x => x >= HP[i]).ToArray().Length;
             }
-            return dead / (float)(hurtmoreDamage.Length * HP.Length);
+            return dead / (float)(hurtmoreRange.ToArray().Length * HP.Length);
         }
 
         public int[] DamageDealtRange(DWHero hero)
