@@ -54,10 +54,7 @@
             new DWEnemy("Warlock", new int[2] { 21, 28 }, 28, 22, 28, 50, 0, 3/16f, 1/32f, 1, 1/4f),
             new DWEnemy("Metal Scorpion", new int[2] { 14, 18 }, 36, 42, 31, 48, 0, 0, 1/32f, 1, 1/4f),
             new DWEnemy("Wolf", new int[2] { 25, 33 }, 40, 30, 40, 60, 0, 1/16f, 1/32f, 1, 1/4f),
-            
-            // wraith strength marked as 34 in manual
-            new DWEnemy("Wraith", new int[2] { 30, 39 }, 44, 34, 42, 62, 0, 7/16f, 1/16f, 1, 5/16f),
-            
+            new DWEnemy("Wraith", new int[2] { 30, 39 }, 44, 34, 42, 62, 0, 7/16f, 1/16f, 1, 5/16f),        
             new DWEnemy("Metal Slime", new int[2] { 3, 3 }, 10, 255, 255, 6, 15/16f, 15/16f, 1/64f, 1, 5/16f),
             new DWEnemy("Specter", new int[2] { 25, 33 }, 40, 38, 47, 75, 0, 3/16f, 1/16f, 1, 5/16f),
             new DWEnemy("Wolflord", new int[2] { 28, 37 }, 50, 36, 52, 80, 0, 1/4f, 1/32f, 1, 3/8f),
