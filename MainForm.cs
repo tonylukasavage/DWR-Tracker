@@ -27,6 +27,20 @@ namespace DWR_Tracker
             }
         }
 
+        private delegate void UpdateStatUIDelegate(DWLabel label, string text);
+        private void UpdateStatUI(DWLabel label, string text)
+        {
+            if (label.InvokeRequired)
+            {
+                var d = new UpdateStatUIDelegate(UpdateStatUI);
+                label.Invoke(d, new object[] { label, text });
+            }
+            else
+            {
+                label.Text = text;
+            }
+        }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             // update UI based on config
@@ -47,7 +61,8 @@ namespace DWR_Tracker
                 StatTableLayout.Controls.Add(valueLabel, 1, i);
                 stat.ValueChanged += (sender, e) =>
                 {
-                    valueLabel.Text = stat.Value.ToString();
+                    UpdateStatUI(valueLabel, stat.Value.ToString());
+                    // valueLabel.Text = stat.Value.ToString();
                 };
             }
 

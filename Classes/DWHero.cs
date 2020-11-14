@@ -18,7 +18,7 @@ namespace DWR_Tracker.Classes
         public DWStat AttackPower = new DWStat("ap", 0xCC);
         public DWStat DefensePower = new DWStat("dp", 0xCD);
         public DWStat Gold = new DWStat("g", 0xBC, 16);
-        public DWStat XP = new DWStat("e", 0xBC, 16);
+        public DWStat XP = new DWStat("e", 0xBA, 16);
         // TODO: grab this from RAM once I figure out how to find the pointer 
         // path to it. I know the table starts at 0xB35B, but need the pointer.
         public DWStatNextLevel NextLevel = new DWStatNextLevel("e+", 0);
@@ -210,7 +210,7 @@ namespace DWR_Tracker.Classes
 
             // Special handling for key count
             int keys = MagicKey.ReadValue();
-            if (keys != MagicKey.Count)
+            if (keys != MagicKey.Count || force)
             {
                 MagicKey.Update(keys > 0 ? 1 : 0, keys, force);
             }
