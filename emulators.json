@@ -5,6 +5,7 @@
       {
         "version": "2.2.3",
         "offsets": [ "0x3B1388" ],
+        "sramOffsets": [ "0x36A830" ],
         "arch": 32
       }
     ]

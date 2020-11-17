@@ -15,6 +15,7 @@ namespace DWR_Tracker
     {
         private DWConfiguration Config = DWGlobals.DWConfiguration;
         private DWHero Hero = DWGlobals.Hero;
+        private bool inBattle = false;
 
         public MainForm()
         {
@@ -144,6 +145,20 @@ namespace DWR_Tracker
             if (Config.AutoTrackingEnabled && 
                 DWGlobals.ProcessReader != default(DWProcessReader))
             {
+                int statusByte = DWGlobals.ProcessReader.Read(0x3, 1, true)[0];
+                bool inBattleCheck = statusByte == 3;
+
+                if (!inBattle && inBattleCheck)
+                {
+                    inBattle = true;
+                    int enemyIndex = DWGlobals.ProcessReader.ReadByte(0xE0);
+                }
+                else if (inBattle && !inBattleCheck)
+                {
+                    inBattle = false;
+                    int enemyIndex = DWGlobals.ProcessReader.ReadByte(0xE0);
+                }
+
                 Hero.Update();
             }
         }
@@ -170,6 +185,13 @@ namespace DWR_Tracker
                     int arch = vItem.arch;
                     string[] offsets = vItem.offsets.ToObject<string[]>();
 
+                    if (vItem.sramOffsets == null)
+                    {
+                        Console.WriteLine("[WARNING] no sram offsets for {0} {1}", name, version);
+                        continue;
+                    }
+                    string[] sramOffsets = vItem.sramOffsets.ToObject<string[]>();
+
                     // find emulator process
                     Process[] processes = Process.GetProcessesByName(name);
                     if (processes.Length < 1) { continue; }
@@ -178,12 +200,22 @@ namespace DWR_Tracker
                     {
                         Console.Out.WriteLine(p.MainWindowTitle);
                         DWProcessReader reader = new DWProcessReader(p);
-                        IntPtr baseOffset = reader.SetBaseOffset(dll, offsets);
+
+                        IntPtr baseOffset = reader.FindOffset(dll, offsets);
                         if (baseOffset == (IntPtr)(-1))
                         {
-                            Console.WriteLine("ERROR: Couldn't find NES pointer for " + p.ProcessName);
+                            Console.WriteLine("[ERROR] Couldn't find NES pointer for {0}", p.ProcessName);
                             continue;
                         }
+                        reader.BaseOffset = baseOffset;
+
+                        IntPtr sramOffset = reader.FindOffset(dll, sramOffsets);
+                        if (sramOffset == (IntPtr)(-1))
+                        {
+                            Console.WriteLine("[ERROR] Couldn't find NES sram pointer for {0}", p.ProcessName);
+                            continue;
+                        }
+                        reader.SramOffset = sramOffset;
 
                         // TODO: Base offset doesn't take us to this part of memory
                         // find "DRAGON WARRIOR" at offset +0xFFE0

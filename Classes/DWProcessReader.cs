@@ -61,6 +61,7 @@ namespace DWR_Tracker.Classes
         public IntPtr ProcessHandle;
         public string Arch;
         public IntPtr BaseOffset = (IntPtr)0;
+        public IntPtr SramOffset = (IntPtr)0;
 
         public DWProcessReader(Process process)
         {
@@ -80,7 +81,7 @@ namespace DWR_Tracker.Classes
             }
         }
 
-        public IntPtr SetBaseOffset(string dll, string[] strOffsets)
+        public IntPtr FindOffset(string dll, string[] strOffsets)
         {
             int[] offsets = new int[strOffsets.Length];
             IntPtr baseOffset;
@@ -102,7 +103,7 @@ namespace DWR_Tracker.Classes
                 ProcessModule dllModule = targets.First();
                 if (dllModule == default(ProcessModule))
                 {
-                    Console.WriteLine("ERROR: couldn't find " + dll);
+                    Console.WriteLine("[ERROR] couldn't find " + dll);
                     return (IntPtr)(-1);
                 }
                 baseOffset = dllModule.BaseAddress;
@@ -125,15 +126,65 @@ namespace DWR_Tracker.Classes
                     BitConverter.ToInt64(bytes, 0));
             }
 
-            BaseOffset = baseOffset;
-            return BaseOffset;
+            return baseOffset;
         }
 
-        public byte[] Read(int offset, int size)
+        //public IntPtr SetBaseOffset(string dll, string[] strOffsets)
+        //{
+        //    int[] offsets = new int[strOffsets.Length];
+        //    IntPtr baseOffset;
+
+        //    // convert string pointers to IntPtr
+        //    for (int i = 0; i < offsets.Length; i++)
+        //    {
+        //        offsets[i] = Convert.ToInt32(strOffsets[i].Substring(2), 16);
+        //    }
+
+        //    // get initial offset from main process or dll
+        //    if (dll != default(string))
+        //    {
+        //        // Find the dll module
+        //        IEnumerable<ProcessModule> dlls = Process.Modules.Cast<ProcessModule>();
+        //        IEnumerable<ProcessModule> targets = dlls.Where(m => {
+        //            return m.FileName.Contains(dll);
+        //        });
+        //        ProcessModule dllModule = targets.First();
+        //        if (dllModule == default(ProcessModule))
+        //        {
+        //            Console.WriteLine("[ERROR] couldn't find " + dll);
+        //            return (IntPtr)(-1);
+        //        }
+        //        baseOffset = dllModule.BaseAddress;
+        //    }
+        //    else
+        //    {
+        //        baseOffset = Process.MainModule.BaseAddress;
+        //    }
+
+        //    // traverse the series of offsets to find the final base offset
+        //    int bytesRead = 0;
+        //    int length = Arch == "32" ? 4 : 8;
+        //    byte[] bytes = new byte[length];
+        //    foreach (int offset in offsets)
+        //    {
+        //        ReadProcessMemory(ProcessHandle, IntPtr.Add(baseOffset, offset),
+        //            bytes, bytes.Length, ref bytesRead);
+        //        baseOffset = (IntPtr)(Arch == "32" ?
+        //            BitConverter.ToInt32(bytes, 0) :
+        //            BitConverter.ToInt64(bytes, 0));
+        //    }
+
+        //    BaseOffset = baseOffset;
+        //    return BaseOffset;
+        //}
+
+        public byte[] Read(int offset, int size, bool isSram = false)
         {
             int bytesRead = 0;
             byte[] bytes = new byte[size];
-            if (!ReadProcessMemory(ProcessHandle, IntPtr.Add(BaseOffset, offset), bytes,
+            IntPtr baseOffset = isSram ? SramOffset : BaseOffset;
+
+            if (!ReadProcessMemory(ProcessHandle, IntPtr.Add(baseOffset, offset), bytes,
                 bytes.Length, ref bytesRead))
             {
                 Console.WriteLine(GetLastError());

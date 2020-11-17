@@ -51,6 +51,8 @@
             this.StatPanel = new DWR_Tracker.Controls.DWPanel();
             this.StatTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.SpellPanel = new DWR_Tracker.Controls.DWPanel();
+            this.CombatPanel = new DWR_Tracker.Controls.DWPanel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.DWMenuStrip.SuspendLayout();
             this.DWStatusStrip.SuspendLayout();
             this.DWContentPanel.SuspendLayout();
@@ -58,6 +60,8 @@
             this.OptionalItemPanel.SuspendLayout();
             this.QuestPanel.SuspendLayout();
             this.StatPanel.SuspendLayout();
+            this.CombatPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // DWMenuStrip
@@ -138,7 +142,7 @@
             // 
             this.DWStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.EmulatorStatusLabel});
-            this.DWStatusStrip.Location = new System.Drawing.Point(0, 497);
+            this.DWStatusStrip.Location = new System.Drawing.Point(0, 744);
             this.DWStatusStrip.Name = "DWStatusStrip";
             this.DWStatusStrip.Size = new System.Drawing.Size(393, 22);
             this.DWStatusStrip.SizingGrip = false;
@@ -270,12 +274,32 @@
             this.SpellPanel.Text = "dwPanel1";
             this.SpellPanel.Title = "SPELLS";
             // 
+            // CombatPanel
+            // 
+            this.CombatPanel.BackColor = System.Drawing.Color.Black;
+            this.CombatPanel.Controls.Add(this.pictureBox1);
+            this.CombatPanel.Location = new System.Drawing.Point(3, 497);
+            this.CombatPanel.MinimumSize = new System.Drawing.Size(144, 56);
+            this.CombatPanel.Name = "CombatPanel";
+            this.CombatPanel.Size = new System.Drawing.Size(383, 244);
+            this.CombatPanel.TabIndex = 14;
+            this.CombatPanel.Title = "COMBAT";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(17, 18);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(128, 128);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(393, 519);
+            this.ClientSize = new System.Drawing.Size(393, 766);
+            this.Controls.Add(this.CombatPanel);
             this.Controls.Add(this.DWContentPanel);
             this.Controls.Add(this.DWStatusStrip);
             this.Controls.Add(this.DWMenuStrip);
@@ -298,6 +322,9 @@
             this.QuestPanel.PerformLayout();
             this.StatPanel.ResumeLayout(false);
             this.StatPanel.PerformLayout();
+            this.CombatPanel.ResumeLayout(false);
+            this.CombatPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -326,6 +353,8 @@
         private System.Windows.Forms.Panel DWContentPanel;
         private System.Windows.Forms.ToolStripMenuItem streamerModeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem autoTrackingToolStripMenuItem;
+        private Controls.DWPanel CombatPanel;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
