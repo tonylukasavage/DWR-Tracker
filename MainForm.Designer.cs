@@ -279,11 +279,11 @@
             this.CombatPanel.BackColor = System.Drawing.Color.Black;
             this.CombatPanel.Controls.Add(this.pictureBox1);
             this.CombatPanel.Location = new System.Drawing.Point(3, 497);
-            this.CombatPanel.MinimumSize = new System.Drawing.Size(144, 56);
+            this.CombatPanel.MinimumSize = new System.Drawing.Size(112, 56);
             this.CombatPanel.Name = "CombatPanel";
             this.CombatPanel.Size = new System.Drawing.Size(383, 244);
             this.CombatPanel.TabIndex = 14;
-            this.CombatPanel.Title = "COMBAT";
+            this.CombatPanel.Title = "INFO";
             // 
             // pictureBox1
             // 

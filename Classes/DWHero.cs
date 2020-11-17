@@ -1,5 +1,6 @@
 ﻿using DWR_Tracker.Classes.Items;
 using DWR_Tracker.Classes.Stats;
+using System;
 using System.Collections.Generic;
 
 namespace DWR_Tracker.Classes
@@ -74,6 +75,8 @@ namespace DWR_Tracker.Classes
             new DWSpell("hurtmore", 0xCF, 0x2)
         };
 
+        public event EventHandler NameChanged;
+
         public DWHero()
         {
             // arrange stats
@@ -119,6 +122,22 @@ namespace DWR_Tracker.Classes
 
         public void Update(bool force = false)
         {
+            // update name
+            byte[] nameCharacters = DWGlobals.ProcessReader.Read(0x56, 8, true);
+            string name = "";
+            bool foundStart = false;
+            for (int i = 7; i >= 0; i--)
+            {
+                if (nameCharacters[i] == 0x60 && !foundStart) { continue; }
+                foundStart = true;
+                name += DWGlobals.Characters[nameCharacters[i]];
+            }
+            if (name != Name)
+            {
+                Name = name;
+                OnNameChanged();
+            }
+
             // update stats
             foreach (DWStat stat in DisplayStats)
             {
@@ -215,6 +234,12 @@ namespace DWR_Tracker.Classes
                 MagicKey.Update(keys > 0 ? 1 : 0, keys, force);
             }
 
+        }
+
+        protected virtual void OnNameChanged()
+        {
+            EventHandler handler = NameChanged;
+            handler?.Invoke(this, new EventArgs());
         }
     }
 }

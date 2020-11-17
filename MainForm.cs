@@ -16,6 +16,8 @@ namespace DWR_Tracker
         private DWConfiguration Config = DWGlobals.DWConfiguration;
         private DWHero Hero = DWGlobals.Hero;
         private bool inBattle = false;
+        private int heightChrome = 805;
+        private int heightChromeless = 759;
 
         public MainForm()
         {
@@ -42,12 +44,32 @@ namespace DWR_Tracker
             }
         }
 
+        private delegate void UpdateNameDelegate();
+        private void UpdateName()
+        {
+            if (StatPanel.InvokeRequired)
+            {
+                var d = new UpdateNameDelegate(UpdateName);
+                StatPanel.Invoke(d, new object[] { });
+            }
+            else
+            {
+                StatPanel.Title = Hero.Name;
+            }
+        }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             // update UI based on config
             streamerModeToolStripMenuItem.Checked = Config.StreamerMode;
             autoTrackingToolStripMenuItem.Checked = Config.AutoTrackingEnabled;
             MainFormLayoutUpdate();
+
+            // set the hero's name
+            Hero.NameChanged += (sender, e) =>
+            {
+                UpdateName();
+            };
 
             //Set initial UI for hero stats
             for (int i = 0; i < Hero.DisplayStats.Length; i++)
@@ -125,13 +147,13 @@ namespace DWR_Tracker
 
             if (Config.StreamerMode)
             {
-                this.Height = 512;
+                this.Height = heightChromeless;
                 this.FormBorderStyle = FormBorderStyle.None;
             }
             else
             {
                 this.FormBorderStyle = FormBorderStyle.FixedSingle;
-                this.Height = 558;
+                this.Height = heightChrome;
             }
         }
 
@@ -151,12 +173,10 @@ namespace DWR_Tracker
                 if (!inBattle && inBattleCheck)
                 {
                     inBattle = true;
-                    int enemyIndex = DWGlobals.ProcessReader.ReadByte(0xE0);
                 }
                 else if (inBattle && !inBattleCheck)
                 {
                     inBattle = false;
-                    int enemyIndex = DWGlobals.ProcessReader.ReadByte(0xE0);
                 }
 
                 Hero.Update();
