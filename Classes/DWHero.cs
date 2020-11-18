@@ -123,7 +123,7 @@ namespace DWR_Tracker.Classes
         public void Update(bool force = false)
         {
             // update name
-            byte[] nameCharacters = DWGlobals.ProcessReader.Read(0x56, 8, true);
+            byte[] nameCharacters = DWGlobals.ProcessReader.Read(0x56, 8, 1);
             string name = "";
             bool foundStart = false;
             for (int i = 7; i >= 0; i--)

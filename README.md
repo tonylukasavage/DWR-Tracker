@@ -32,4 +32,13 @@ $FB == 0x78 means battle (does fairy flute interrupt? DL music?)
 ## potential setup
 
 1. check for $99 = 3 (in battle)
-2. check for $99 is greater than 4 (exit battle                                                                                                  )
+2. check for $99 is greater than 4 (exit battle   
+
+
+
+$9E4B is the start of enemy data, each set is 0xF long
+
+
+0053FC00 - mov al, [eax+edx]
+
+03374FC8

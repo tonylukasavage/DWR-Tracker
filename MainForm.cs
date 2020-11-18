@@ -91,6 +91,10 @@ namespace DWR_Tracker
                 {
                     EnemyStatsTable.Controls[0].Dispose();
                 }
+                while (EnemyInfoTable.Controls.Count > 0)
+                {
+                    EnemyInfoTable.Controls[0].Dispose();
+                }
 
                 // add stats to table
                 Font tinyFont = new Font(DWGlobals.DWFont.GetFamily(), 6);
@@ -117,7 +121,7 @@ namespace DWR_Tracker
                         {
                             Text = name,
                             TextAlign = ContentAlignment.MiddleLeft,
-                            Font = name.Length > 5 ? (name.Length > 8 ? tinyFont : smallFont) : midFont
+                            Font = name.Length > 5 ? (name.Length > 7 ? tinyFont : smallFont) : midFont
                         };
                         if (name == "ATTACK" || name == "DEFENSE")
                         {
@@ -130,7 +134,7 @@ namespace DWR_Tracker
                         {
                             Text = value,
                             TextAlign = ContentAlignment.MiddleRight,
-                            Font = midFont
+                            Font = value.Length > 6 ? smallFont : midFont
                         };
                         table.Controls.Add(valueLabel, 1, row);
                     } 
@@ -263,7 +267,7 @@ namespace DWR_Tracker
             if (Config.AutoTrackingEnabled && 
                 DWGlobals.ProcessReader != default(DWProcessReader))
             {
-                int statusByte = DWGlobals.ProcessReader.Read(0x3, 1, true)[0];
+                int statusByte = DWGlobals.ProcessReader.Read(0x3, 1, 1)[0];
                 bool inBattleCheck = statusByte == 3;
 
                 if (!inBattle && inBattleCheck)
@@ -316,6 +320,13 @@ namespace DWR_Tracker
                     }
                     string[] sramOffsets = vItem.sramOffsets.ToObject<string[]>();
 
+                    if (vItem.romOffsets == null)
+                    {
+                        Console.WriteLine("[WARNING] no rom offsets for {0} {1}", name, version);
+                        continue;
+                    }
+                    string[] romOffsets = vItem.romOffsets.ToObject<string[]>();
+
                     // find emulator process
                     Process[] processes = Process.GetProcessesByName(name);
                     if (processes.Length < 1) { continue; }
@@ -341,6 +352,14 @@ namespace DWR_Tracker
                         }
                         reader.SramOffset = sramOffset;
 
+                        IntPtr romOffset = reader.FindOffset(dll, romOffsets);
+                        if (romOffset == (IntPtr)(-1))
+                        {
+                            Console.WriteLine("[ERROR] Couldn't find NES rom pointer for {0}", p.ProcessName);
+                            continue;
+                        }
+                        reader.RomOffset = romOffset;
+
                         // TODO: Base offset doesn't take us to this part of memory
                         // find "DRAGON WARRIOR" at offset +0xFFE0
                         //string identifier = reader.ReadString(0xFFE0, 14);
@@ -364,8 +383,22 @@ namespace DWR_Tracker
             DWProcessReader reader = DWGlobals.ProcessReader;
             if (reader != default(DWProcessReader))
             {
+                // update emulator name in status bar
                 EmulatorStatusLabel.Text = reader.Process.MainWindowTitle;
+
+                // execute first hero update
                 Hero.Update(true);
+
+                // update all enemy skills and attack patterns
+                for (int i = 0; i < DWGlobals.Enemies.Length; i++)
+                {
+                    DWEnemy enemy = DWGlobals.Enemies[i];
+                    int pattern = reader.Read((0x9E4B + (i * 0x10)) + 3, 1, 2)[0];
+                    enemy.Skill2Chance = (pattern & 0x3) / 4f;
+                    enemy.Skill2 = enemy.GetSkill2((pattern >> 2) & 0x3);
+                    enemy.Skill1Chance = ((pattern >> 4) & 0x3) / 4f;
+                    enemy.Skill1 = enemy.GetSkill1((pattern >> 6) & 0x3);
+                }
             }
         }
 

@@ -22,11 +22,17 @@ namespace DWR_Tracker.Classes
         public float Evasion;
         public int RunGroup;
         public float StopspellCap;
-        private float runGroupFactor;
+        public string Skill1;
+        public float Skill1Chance;
+        public string Skill2;
+        public float Skill2Chance;
 
+        private float runGroupFactor;
         private const string baseImagePath = "DWR_Tracker.Images.Enemies.";
         private int[] hurtDamage = new int[2] { 9, 16 };
         private int[] hurtmoreDamage = new int[2] { 58, 65 };
+        private string[] skill1 = new string[4] { "hurt", "hurtmore", "baby breath", "DL2 breath" };
+        private string[] skill2 = new string[4] { "sleep", "stopspell", "heal", "healmore" };
 
         public DWEnemy(string name, int[] hp, int strength, int agility, int xp, 
             int gold, float hurtResist, float sleepResist, float evasion, int runGroup,  
@@ -44,6 +50,16 @@ namespace DWR_Tracker.Classes
             RunGroup = runGroup;
             StopspellCap = stopspellCap;
             runGroupFactor = (new float[4] { 0.25f, 0.375f, 0.5f, 1.0f })[runGroup - 1];
+        }
+
+        public string GetSkill1(int index)
+        {
+            return skill1[index];
+        }
+
+        public string GetSkill2(int index)
+        {
+            return skill2[index];
         }
 
         public Image GetImage()
@@ -78,8 +94,8 @@ namespace DWR_Tracker.Classes
                 // attack & skills
                 { "ATTACK", "" },
                 { "dmg", damageDealt[0] + "-" + damageDealt[1] },
-                { "stopspell", "25%" },
-                { "DL2 breath", "50%" },
+                { Skill1, Math.Floor(Skill1Chance * 100).ToString() + "%" },
+                { Skill2, Math.Floor(Skill2Chance * 100).ToString() + "%" },
                 { "", "" },
 
                 // defense

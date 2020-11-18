@@ -317,7 +317,7 @@
             // 
             // EnemyNameLabel
             // 
-            this.EnemyNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.EnemyNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.EnemyNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.EnemyNameLabel.Location = new System.Drawing.Point(8, 10);
             this.EnemyNameLabel.Name = "EnemyNameLabel";
