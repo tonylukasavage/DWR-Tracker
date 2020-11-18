@@ -2,7 +2,7 @@
 
 Auto tracker for the [Dragon Warrior Randomizer](https://github.com/mcgrew/dwrandomizer)
 
-![DWR Tracker screenshot]()
+![DWR Tracker screenshot](https://github.com/tonylukasavage/DWR-Tracker/raw/master/dwr-tracker.PNG)
 
 ## Support
 
