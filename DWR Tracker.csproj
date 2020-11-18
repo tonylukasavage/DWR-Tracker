@@ -199,6 +199,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Fonts\Dragon Warrior %28NES%29.ttf" />
+    <Content Include="dwr-tracker.PNG" />
     <Content Include="emulators.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
