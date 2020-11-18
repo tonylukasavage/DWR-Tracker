@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -22,7 +23,6 @@ namespace DWR_Tracker.Classes
         public int RunGroup;
         public float StopspellCap;
         private float runGroupFactor;
-        public PictureBox PictureBox;
 
         private const string baseImagePath = "DWR_Tracker.Images.Enemies.";
         private int[] hurtDamage = new int[2] { 9, 16 };
@@ -44,24 +44,53 @@ namespace DWR_Tracker.Classes
             RunGroup = runGroup;
             StopspellCap = stopspellCap;
             runGroupFactor = (new float[4] { 0.25f, 0.375f, 0.5f, 1.0f })[runGroup - 1];
+        }
 
-            // load enemy image from embedded resource and scale up
+        public Image GetImage()
+        {
             string ImagePath = baseImagePath + Name.ToLower().Replace(" ", "_") + ".png";
             Assembly myAssembly = Assembly.GetExecutingAssembly();
             Stream myStream = myAssembly.GetManifestResourceStream(ImagePath);
             Bitmap src = new Bitmap(Image.FromStream(myStream), new Size(64, 64));
-            Bitmap dst = new Bitmap(256, 256);
+            Bitmap dst = new Bitmap(128, 128);
             Graphics g = Graphics.FromImage(dst);
-            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+            g.InterpolationMode = InterpolationMode.NearestNeighbor;
             g.DrawImage(
                 src,
-                new Rectangle(0, 0, 256, 256)
+                new Rectangle(0, 0, 128, 128)
             );
+            return dst;
+        }
 
-            // instantiate and configure the picture box
-            PictureBox = new PictureBox();
-            PictureBox.Image = dst;
-            PictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
+        public string[,] GetBattleInfo(DWHero hero)
+        {
+            int[] damageDealt = DamageDealtRange(hero);
+            int[] damageTaken = DamageTakenRange(hero);
+
+            return new string[15, 2]
+            {
+                // info
+                { Name, "" },
+                { "HP", HP[0] == HP[1] ? HP[0].ToString() : HP[0] + "-" + HP[1] },
+                { "E", XP.ToString() },
+                { "G", Gold.ToString() },
+
+                // attack & skills
+                { "ATTACK", "" },
+                { "dmg", damageDealt[0] + "-" + damageDealt[1] },
+                { "stopspell", "25%" },
+                { "DL2 breath", "50%" },
+                { "", "" },
+
+                // defense
+                { "DEFENSE", "" },
+                { "dmg", damageTaken[0] + "-" + damageTaken[1] },
+                { "hurt", Math.Floor((1f - HurtResist) * 100).ToString() + "%" },
+                { "sleep", Math.Floor((1f - SleepResist) * 100).ToString() + "%" },
+                { "dodge", Math.Floor(Evasion * 100).ToString() + "%" },
+                { "run", Math.Floor((1f - ChanceToBlockHeroRun(hero)) * 100).ToString() + "%" },
+
+            };
         }
 
         // TODO: I'm dumb when it comes to probability calculations, so I'm doing

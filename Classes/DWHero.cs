@@ -132,6 +132,8 @@ namespace DWR_Tracker.Classes
                 foundStart = true;
                 name += DWGlobals.Characters[nameCharacters[i]];
             }
+            name = name.Trim();
+
             if (name != Name)
             {
                 Name = name;

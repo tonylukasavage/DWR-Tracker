@@ -52,7 +52,11 @@
             this.StatTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.SpellPanel = new DWR_Tracker.Controls.DWPanel();
             this.CombatPanel = new DWR_Tracker.Controls.DWPanel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.EnemyPanel = new System.Windows.Forms.Panel();
+            this.EnemyInfoTable = new System.Windows.Forms.TableLayoutPanel();
+            this.EnemyNameLabel = new DWR_Tracker.Controls.DWLabel();
+            this.EnemyPanelPictureBox = new System.Windows.Forms.PictureBox();
+            this.EnemyStatsTable = new System.Windows.Forms.TableLayoutPanel();
             this.DWMenuStrip.SuspendLayout();
             this.DWStatusStrip.SuspendLayout();
             this.DWContentPanel.SuspendLayout();
@@ -61,7 +65,8 @@
             this.QuestPanel.SuspendLayout();
             this.StatPanel.SuspendLayout();
             this.CombatPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.EnemyPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.EnemyPanelPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // DWMenuStrip
@@ -142,7 +147,7 @@
             // 
             this.DWStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.EmulatorStatusLabel});
-            this.DWStatusStrip.Location = new System.Drawing.Point(0, 744);
+            this.DWStatusStrip.Location = new System.Drawing.Point(0, 776);
             this.DWStatusStrip.Name = "DWStatusStrip";
             this.DWStatusStrip.Size = new System.Drawing.Size(393, 22);
             this.DWStatusStrip.SizingGrip = false;
@@ -277,28 +282,86 @@
             // CombatPanel
             // 
             this.CombatPanel.BackColor = System.Drawing.Color.Black;
-            this.CombatPanel.Controls.Add(this.pictureBox1);
+            this.CombatPanel.Controls.Add(this.EnemyPanel);
             this.CombatPanel.Location = new System.Drawing.Point(3, 497);
             this.CombatPanel.MinimumSize = new System.Drawing.Size(112, 56);
             this.CombatPanel.Name = "CombatPanel";
-            this.CombatPanel.Size = new System.Drawing.Size(383, 244);
+            this.CombatPanel.Size = new System.Drawing.Size(383, 276);
             this.CombatPanel.TabIndex = 14;
             this.CombatPanel.Title = "INFO";
             // 
-            // pictureBox1
+            // EnemyPanel
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(17, 18);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(128, 128);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.EnemyPanel.Controls.Add(this.EnemyInfoTable);
+            this.EnemyPanel.Controls.Add(this.EnemyNameLabel);
+            this.EnemyPanel.Controls.Add(this.EnemyPanelPictureBox);
+            this.EnemyPanel.Controls.Add(this.EnemyStatsTable);
+            this.EnemyPanel.Location = new System.Drawing.Point(14, 15);
+            this.EnemyPanel.Name = "EnemyPanel";
+            this.EnemyPanel.Size = new System.Drawing.Size(352, 250);
+            this.EnemyPanel.TabIndex = 1;
+            // 
+            // EnemyInfoTable
+            // 
+            this.EnemyInfoTable.ColumnCount = 2;
+            this.EnemyInfoTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.EnemyInfoTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.EnemyInfoTable.Location = new System.Drawing.Point(3, 177);
+            this.EnemyInfoTable.Name = "EnemyInfoTable";
+            this.EnemyInfoTable.RowCount = 3;
+            this.EnemyInfoTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.EnemyInfoTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.EnemyInfoTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.EnemyInfoTable.Size = new System.Drawing.Size(148, 70);
+            this.EnemyInfoTable.TabIndex = 3;
+            // 
+            // EnemyNameLabel
+            // 
+            this.EnemyNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.EnemyNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.EnemyNameLabel.Location = new System.Drawing.Point(8, 10);
+            this.EnemyNameLabel.Name = "EnemyNameLabel";
+            this.EnemyNameLabel.Size = new System.Drawing.Size(143, 24);
+            this.EnemyNameLabel.TabIndex = 2;
+            this.EnemyNameLabel.Text = "name";
+            // 
+            // EnemyPanelPictureBox
+            // 
+            this.EnemyPanelPictureBox.BackColor = System.Drawing.Color.SlateGray;
+            this.EnemyPanelPictureBox.Location = new System.Drawing.Point(15, 37);
+            this.EnemyPanelPictureBox.Name = "EnemyPanelPictureBox";
+            this.EnemyPanelPictureBox.Size = new System.Drawing.Size(128, 128);
+            this.EnemyPanelPictureBox.TabIndex = 1;
+            this.EnemyPanelPictureBox.TabStop = false;
+            // 
+            // EnemyStatsTable
+            // 
+            this.EnemyStatsTable.ColumnCount = 2;
+            this.EnemyStatsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.EnemyStatsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.EnemyStatsTable.Location = new System.Drawing.Point(172, 10);
+            this.EnemyStatsTable.Name = "EnemyStatsTable";
+            this.EnemyStatsTable.RowCount = 11;
+            this.EnemyStatsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.EnemyStatsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.EnemyStatsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.EnemyStatsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.EnemyStatsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
+            this.EnemyStatsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.EnemyStatsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.EnemyStatsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.EnemyStatsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.EnemyStatsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.EnemyStatsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.EnemyStatsTable.Size = new System.Drawing.Size(180, 237);
+            this.EnemyStatsTable.TabIndex = 0;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(393, 766);
+            this.ClientSize = new System.Drawing.Size(393, 798);
             this.Controls.Add(this.CombatPanel);
             this.Controls.Add(this.DWContentPanel);
             this.Controls.Add(this.DWStatusStrip);
@@ -324,7 +387,8 @@
             this.StatPanel.PerformLayout();
             this.CombatPanel.ResumeLayout(false);
             this.CombatPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.EnemyPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.EnemyPanelPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -354,7 +418,11 @@
         private System.Windows.Forms.ToolStripMenuItem streamerModeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem autoTrackingToolStripMenuItem;
         private Controls.DWPanel CombatPanel;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel EnemyPanel;
+        private System.Windows.Forms.TableLayoutPanel EnemyStatsTable;
+        private System.Windows.Forms.PictureBox EnemyPanelPictureBox;
+        private Controls.DWLabel EnemyNameLabel;
+        private System.Windows.Forms.TableLayoutPanel EnemyInfoTable;
     }
 }
 

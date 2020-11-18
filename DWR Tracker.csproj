@@ -119,6 +119,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Images\enemy_bg.png" />
     <EmbeddedResource Include="Images\Enemies\armored_knight.png" />
     <EmbeddedResource Include="Images\Enemies\axe_knight.png" />
     <EmbeddedResource Include="Images\Enemies\blue_dragon.png" />

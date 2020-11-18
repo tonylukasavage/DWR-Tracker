@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Timers;
 using System.Windows.Forms;
@@ -16,8 +17,8 @@ namespace DWR_Tracker
         private DWConfiguration Config = DWGlobals.DWConfiguration;
         private DWHero Hero = DWGlobals.Hero;
         private bool inBattle = false;
-        private int heightChrome = 805;
-        private int heightChromeless = 759;
+        private int heightChrome = 837;
+        private int heightChromeless = 791;
 
         public MainForm()
         {
@@ -58,6 +59,85 @@ namespace DWR_Tracker
             }
         }
 
+        private delegate void UpdateInfoDelegate(Panel panel, bool visible);
+        private void UpdateInfoPanel(Panel panel, bool visible)
+        {
+            if (StatPanel.InvokeRequired)
+            {
+                var d = new UpdateInfoDelegate(UpdateInfoPanel);
+                StatPanel.Invoke(d, new object[] { panel, visible });
+            }
+            else
+            {
+                panel.Visible = visible;
+            }
+        }
+
+        private delegate void UpdateEnemyDelegate(DWEnemy enemy);
+        private void UpdateEnemy(DWEnemy enemy)
+        {
+            if (EnemyPanel.InvokeRequired)
+            {
+                var d = new UpdateEnemyDelegate(UpdateEnemy);
+                EnemyPanel.Invoke(d, new object[] { enemy });
+            }
+            else
+            {
+                // update enemy image 
+                EnemyPanelPictureBox.Image = enemy.GetImage();
+
+                // clear stats table
+                while (EnemyStatsTable.Controls.Count > 0)
+                {
+                    EnemyStatsTable.Controls[0].Dispose();
+                }
+
+                // add stats to table
+                Font tinyFont = new Font(DWGlobals.DWFont.GetFamily(), 6);
+                Font smallFont = new Font(DWGlobals.DWFont.GetFamily(), 8);
+                Font midFont = new Font(DWGlobals.DWFont.GetFamily(), 10);
+                string[,] stats = enemy.GetBattleInfo(Hero);
+                for (int i = 0; i < stats.GetLength(0); i++)
+                {
+                    string name = stats[i, 0];
+                    string value = stats[i, 1];
+
+                    if (i == 0)
+                    {
+                        EnemyNameLabel.Text = name;
+                        EnemyNameLabel.TextAlign = ContentAlignment.TopCenter;
+                        EnemyNameLabel.Font = name.Length > 10 ? (name.Length > 13 ? tinyFont : smallFont) : midFont;
+                    }
+                    else
+                    {
+                        TableLayoutPanel table = i < 4 ? EnemyInfoTable : EnemyStatsTable;
+                        int row = i < 4 ? i - 1 : i - 4;
+
+                        DWLabel nameLabel = new DWLabel
+                        {
+                            Text = name,
+                            TextAlign = ContentAlignment.MiddleLeft,
+                            Font = name.Length > 5 ? (name.Length > 8 ? tinyFont : smallFont) : midFont
+                        };
+                        if (name == "ATTACK" || name == "DEFENSE")
+                        {
+                            Font uFont = new Font(DWGlobals.DWFont.GetFamily(), 8, FontStyle.Bold);
+                            nameLabel.Font = uFont;
+                        }
+                        table.Controls.Add(nameLabel, 0, row);
+
+                        DWLabel valueLabel = new DWLabel
+                        {
+                            Text = value,
+                            TextAlign = ContentAlignment.MiddleRight,
+                            Font = midFont
+                        };
+                        table.Controls.Add(valueLabel, 1, row);
+                    } 
+                } 
+            }
+        }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             // update UI based on config
@@ -65,8 +145,22 @@ namespace DWR_Tracker
             autoTrackingToolStripMenuItem.Checked = Config.AutoTrackingEnabled;
             MainFormLayoutUpdate();
 
+            // hide enemy panel initially
+            EnemyPanel.Visible = false;
+
+            // draw rounded background box for enemy image
+            PictureBox pb = EnemyPanelPictureBox;
+            Rectangle r = new Rectangle(0, 0, pb.Width, pb.Height);
+            GraphicsPath gp = new GraphicsPath();
+            int d = 20;
+            gp.AddArc(r.X, r.Y, d, d, 180, 90);
+            gp.AddArc(r.X + r.Width - d, r.Y, d, d, 270, 90);
+            gp.AddArc(r.X + r.Width - d, r.Y + r.Height - d, d, d, 0, 90);
+            gp.AddArc(r.X, r.Y + r.Height - d, d, d, 90, 90);
+            pb.Region = new Region(gp);
+
             // set the hero's name
-            Hero.NameChanged += (sender, e) =>
+            Hero.NameChanged += (sender, e) => 
             {
                 UpdateName();
             };
@@ -85,7 +179,6 @@ namespace DWR_Tracker
                 stat.ValueChanged += (sender, e) =>
                 {
                     UpdateStatUI(valueLabel, stat.Value.ToString());
-                    // valueLabel.Text = stat.Value.ToString();
                 };
             }
 
@@ -134,6 +227,9 @@ namespace DWR_Tracker
                 OptionalItemFlowPanel.Controls.Add(new DWItemBox(item));
             }
 
+            // setup info panel
+
+
             // game state update timer
             System.Timers.Timer timer = new System.Timers.Timer(1000);
             timer.Elapsed += CheckGameState;
@@ -173,10 +269,18 @@ namespace DWR_Tracker
                 if (!inBattle && inBattleCheck)
                 {
                     inBattle = true;
+                    int enemyIndex = DWGlobals.ProcessReader.ReadByte(0xE0);
+                    int location = DWGlobals.ProcessReader.ReadByte(0x45);
+                    if (location != 0)
+                    {
+                        UpdateEnemy(DWGlobals.Enemies[enemyIndex]);
+                    }
+                    UpdateInfoPanel(EnemyPanel, true);
                 }
                 else if (inBattle && !inBattleCheck)
                 {
                     inBattle = false;
+                    UpdateInfoPanel(EnemyPanel, false);
                 }
 
                 Hero.Update();
