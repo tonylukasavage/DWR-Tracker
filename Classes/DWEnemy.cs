@@ -92,15 +92,15 @@ namespace DWR_Tracker.Classes
                 { "G", Gold.ToString() },
 
                 // attack & skills
-                { "ATTACK", "" },
-                { "dmg", damageDealt[0] + "-" + damageDealt[1] },
+                { "ATTACK:", "" },
+                { "enemy dmg", damageDealt[0] + "-" + damageDealt[1] },
+                { "hero dmg", damageTaken[0] + "-" + damageTaken[1] },
                 { Skill1, Math.Floor(Skill1Chance * 100).ToString() + "%" },
                 { Skill2, Math.Floor(Skill2Chance * 100).ToString() + "%" },
                 { "", "" },
 
                 // defense
-                { "DEFENSE", "" },
-                { "dmg", damageTaken[0] + "-" + damageTaken[1] },
+                { "CHANCE:", "" },
                 { "hurt", Math.Floor((1f - HurtResist) * 100).ToString() + "%" },
                 { "sleep", Math.Floor((1f - SleepResist) * 100).ToString() + "%" },
                 { "dodge", Math.Floor(Evasion * 100).ToString() + "%" },
