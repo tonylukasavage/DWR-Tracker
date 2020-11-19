@@ -81,6 +81,39 @@
             new DWEnemy("Dragonlord 2", new int[2] { 150, 165 }, 140, 200, 0, 0, 15/16f, 15/16f, 0, 4, 15/16f)
         };
 
+        public static DWMap[] Maps = new DWMap[29]
+        {
+            new DWMap("Overworld", ""),
+            new DWMap("Charlock 1", "charlock_1.png"),
+            new DWMap("Hauksness", "hauksness.png"),
+            new DWMap("Tantegel", "tantegel.png"),
+            new DWMap("Throne Room", "throne_room.png"),
+            new DWMap("Charlock 8", "charlock_8.png"),
+            new DWMap("Kol", "kol.png"),
+            new DWMap("Brecconary", "brecconary.png"),
+            new DWMap("Garinham", "garinham.png"),
+            new DWMap("Cantlin", "cantlin.png"),
+            new DWMap("Rimuldar", "rimuldar.png"),
+            new DWMap("Stones of Sunlight Shrine", "sun_shrine.png"),
+            new DWMap("Staff of Rain Shrine", "staff_shrine.png"),
+            new DWMap("Rainbow Drop Shrine", "rainbow_drop_shrine.png"),
+            new DWMap("Charlock 2", "charlock_2.png"),
+            new DWMap("Charlock 3", "charlock_3.png"),
+            new DWMap("Charlock 4", "charlock_4.png"),
+            new DWMap("Charlock 5", "charlock_5.png"),
+            new DWMap("Charlock 6", "charlock_6.png"),
+            new DWMap("Charlock 7", "charlock_7.png"),
+            new DWMap("Swamp Cave", "swamp.png"),
+            new DWMap("Mountain Cave 1", "mountain_1.png"),
+            new DWMap("Mountain Cave 2", "mountain_2.png"),
+            new DWMap("Garin's Grave 1", "garin_1.png"),
+            new DWMap("Garin's Grave 2", "garin_2.png"),
+            new DWMap("Garin's Grave 3", "garin_3.png"),
+            new DWMap("Garin's Grave 4", "garin_4.png"),
+            new DWMap("Erdrick's Cave 1", "erdricks_1.png"),
+            new DWMap("Erdrick's Cave 2", "erdricks_2.png")
+        };
+
         public static string[] Characters = new string[]
         {
             "0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f",

@@ -60,6 +60,7 @@
     <Compile Include="Classes\DWConfiguration.cs" />
     <Compile Include="Classes\DWEnemy.cs" />
     <Compile Include="Classes\DWHero.cs" />
+    <Compile Include="Classes\DWMap.cs" />
     <Compile Include="Classes\Items\DWItem.cs" />
     <Compile Include="Classes\DWGlobals.cs" />
     <Compile Include="Classes\DWFont.cs" />
@@ -119,6 +120,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Images\Maps\rainbow_drop_shrine.png" />
+    <EmbeddedResource Include="Images\Maps\staff_shrine.png" />
+    <EmbeddedResource Include="Images\Maps\brecconary.png" />
+    <EmbeddedResource Include="Images\Maps\cantlin.png" />
+    <EmbeddedResource Include="Images\Maps\garinham.png" />
+    <EmbeddedResource Include="Images\Maps\hauksness.png" />
+    <EmbeddedResource Include="Images\Maps\kol.png" />
+    <EmbeddedResource Include="Images\Maps\rimuldar.png" />
+    <EmbeddedResource Include="Images\Maps\sun_shrine.png" />
+    <EmbeddedResource Include="Images\Maps\tantegel.png" />
+    <EmbeddedResource Include="Images\Maps\throne_room.png" />
     <EmbeddedResource Include="Images\enemy_bg.png" />
     <EmbeddedResource Include="Images\Enemies\armored_knight.png" />
     <EmbeddedResource Include="Images\Enemies\axe_knight.png" />
