@@ -31,8 +31,8 @@ namespace DWR_Tracker.Classes
         private const string baseImagePath = "DWR_Tracker.Images.Enemies.";
         private int[] hurtDamage = new int[2] { 9, 16 };
         private int[] hurtmoreDamage = new int[2] { 58, 65 };
-        private string[] skill1 = new string[4] { "hurt", "hurtmore", "baby breath", "DL2 breath" };
-        private string[] skill2 = new string[4] { "sleep", "stopspell", "heal", "healmore" };
+        private string[] skill2 = new string[4] { "hurt", "hurtmore", "baby breath", "DL2 breath" };
+        private string[] skill1 = new string[4] { "sleep", "stopspell", "heal", "healmore" };
 
         public DWEnemy(string name, int[] hp, int strength, int agility, int xp, 
             int gold, float hurtResist, float sleepResist, float evasion, int runGroup,  

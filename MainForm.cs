@@ -45,34 +45,6 @@ namespace DWR_Tracker
             }
         }
 
-        private delegate void UpdateNameDelegate();
-        private void UpdateName()
-        {
-            if (StatPanel.InvokeRequired)
-            {
-                var d = new UpdateNameDelegate(UpdateName);
-                StatPanel.Invoke(d, new object[] { });
-            }
-            else
-            {
-                StatPanel.Title = Hero.Name;
-            }
-        }
-
-        private delegate void UpdateInfoDelegate(Panel panel, bool visible);
-        private void UpdateInfoPanel(Panel panel, bool visible)
-        {
-            if (StatPanel.InvokeRequired)
-            {
-                var d = new UpdateInfoDelegate(UpdateInfoPanel);
-                StatPanel.Invoke(d, new object[] { panel, visible });
-            }
-            else
-            {
-                panel.Visible = visible;
-            }
-        }
-
         private delegate void UpdateEnemyDelegate(DWEnemy enemy);
         private void UpdateEnemy(DWEnemy enemy)
         {
@@ -166,7 +138,7 @@ namespace DWR_Tracker
             // set the hero's name
             Hero.NameChanged += (sender, e) => 
             {
-                UpdateName();
+                this.Invoke(() => StatPanel.Title = Hero.Name);
             };
 
             //Set initial UI for hero stats
@@ -182,7 +154,7 @@ namespace DWR_Tracker
                 StatTableLayout.Controls.Add(valueLabel, 1, i);
                 stat.ValueChanged += (sender, e) =>
                 {
-                    UpdateStatUI(valueLabel, stat.Value.ToString());
+                    this.Invoke(() => valueLabel.Text = stat.Value.ToString());
                 };
             }
 
@@ -201,9 +173,9 @@ namespace DWR_Tracker
                 // update color on spell value change
                 spell.ValueChanged += (sender, e) =>
                 {
-                    label.ForeColor = spell.HasSpell ?
+                    this.Invoke(() => label.ForeColor = spell.HasSpell ?
                         Color.FromArgb(255, 255, 255) :
-                        Color.FromArgb(60, 60, 60);
+                        Color.FromArgb(60, 60, 60));
                 };
             }
 
@@ -215,7 +187,7 @@ namespace DWR_Tracker
                 {
                     Hero.RainbowDrop.ValueChanged += (sender, e) =>
                     {
-                        itemBox.Visible = Hero.RainbowDrop.Value == 0;
+                        this.Invoke(() => itemBox.Visible = Hero.RainbowDrop.Value == 0);
                     };
                 }
                 RequiredItemFlowPanel.Controls.Add(itemBox);
@@ -279,12 +251,14 @@ namespace DWR_Tracker
                     {
                         UpdateEnemy(DWGlobals.Enemies[enemyIndex]);
                     }
-                    UpdateInfoPanel(EnemyPanel, true);
+                    this.Invoke(() => EnemyPanel.Visible = true);
+                    // UpdateInfoPanel(EnemyPanel, true);
                 }
                 else if (inBattle && !inBattleCheck)
                 {
                     inBattle = false;
-                    UpdateInfoPanel(EnemyPanel, false);
+                    this.Invoke(() => EnemyPanel.Visible = false);
+                    //UpdateInfoPanel(EnemyPanel, false);
                 }
 
                 Hero.Update();
