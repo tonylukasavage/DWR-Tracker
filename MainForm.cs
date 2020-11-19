@@ -31,20 +31,6 @@ namespace DWR_Tracker
             }
         }
 
-        private delegate void UpdateStatUIDelegate(DWLabel label, string text);
-        private void UpdateStatUI(DWLabel label, string text)
-        {
-            if (label.InvokeRequired)
-            {
-                var d = new UpdateStatUIDelegate(UpdateStatUI);
-                label.Invoke(d, new object[] { label, text });
-            }
-            else
-            {
-                label.Text = text;
-            }
-        }
-
         private delegate void UpdateEnemyDelegate(DWEnemy enemy);
         private void UpdateEnemy(DWEnemy enemy)
         {
@@ -58,7 +44,7 @@ namespace DWR_Tracker
                 // update enemy image 
                 EnemyPanelPictureBox.Image = enemy.GetImage();
 
-                // clear stats table
+                // clear enemy stats table
                 while (EnemyStatsTable.Controls.Count > 0)
                 {
                     EnemyStatsTable.Controls[0].Dispose();
@@ -68,10 +54,7 @@ namespace DWR_Tracker
                     EnemyInfoTable.Controls[0].Dispose();
                 }
 
-                // add stats to table
-                Font tinyFont = new Font(DWGlobals.DWFont.GetFamily(), 6);
-                Font smallFont = new Font(DWGlobals.DWFont.GetFamily(), 8);
-                Font midFont = new Font(DWGlobals.DWFont.GetFamily(), 10);
+                // add enemy stats to table
                 string[,] stats = enemy.GetBattleInfo(Hero);
                 for (int i = 0; i < stats.GetLength(0); i++)
                 {
@@ -80,35 +63,22 @@ namespace DWR_Tracker
 
                     if (i == 0)
                     {
-                        EnemyNameLabel.Text = name;
                         EnemyNameLabel.TextAlign = ContentAlignment.TopCenter;
-                        EnemyNameLabel.Font = name.Length > 10 ? (name.Length > 13 ? tinyFont : smallFont) : midFont;
+                        EnemyNameLabel.FitText(name);
                     }
                     else
                     {
                         TableLayoutPanel table = i < 4 ? EnemyInfoTable : EnemyStatsTable;
+                        bool isHeader = name == "ATTACK" || name == "DEFENSE";
                         int row = i < 4 ? i - 1 : i - 4;
 
-                        DWLabel nameLabel = new DWLabel
-                        {
-                            Text = name,
-                            TextAlign = ContentAlignment.MiddleLeft,
-                            Font = name.Length > 5 ? (name.Length > 7 ? tinyFont : smallFont) : midFont
-                        };
-                        if (name == "ATTACK" || name == "DEFENSE")
-                        {
-                            Font uFont = new Font(DWGlobals.DWFont.GetFamily(), 8, FontStyle.Bold);
-                            nameLabel.Font = uFont;
-                        }
+                        DWLabel nameLabel = new DWLabel { TextAlign = ContentAlignment.MiddleLeft };
                         table.Controls.Add(nameLabel, 0, row);
+                        nameLabel.FitText(name, true, isHeader ? FontStyle.Bold : FontStyle.Regular);
 
-                        DWLabel valueLabel = new DWLabel
-                        {
-                            Text = value,
-                            TextAlign = ContentAlignment.MiddleRight,
-                            Font = value.Length > 6 ? smallFont : midFont
-                        };
+                        DWLabel valueLabel = new DWLabel { TextAlign = ContentAlignment.MiddleRight };
                         table.Controls.Add(valueLabel, 1, row);
+                        valueLabel.FitText(value, true);
                     } 
                 } 
             }

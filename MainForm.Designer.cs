@@ -337,9 +337,9 @@
             // EnemyStatsTable
             // 
             this.EnemyStatsTable.ColumnCount = 2;
-            this.EnemyStatsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.EnemyStatsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.EnemyStatsTable.Location = new System.Drawing.Point(172, 10);
+            this.EnemyStatsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.21053F));
+            this.EnemyStatsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.78947F));
+            this.EnemyStatsTable.Location = new System.Drawing.Point(162, 10);
             this.EnemyStatsTable.Name = "EnemyStatsTable";
             this.EnemyStatsTable.RowCount = 11;
             this.EnemyStatsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
@@ -353,7 +353,7 @@
             this.EnemyStatsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
             this.EnemyStatsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
             this.EnemyStatsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
-            this.EnemyStatsTable.Size = new System.Drawing.Size(180, 237);
+            this.EnemyStatsTable.Size = new System.Drawing.Size(190, 237);
             this.EnemyStatsTable.TabIndex = 0;
             // 
             // MainForm
