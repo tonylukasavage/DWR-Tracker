@@ -54,7 +54,7 @@
             new DWEnemy("Warlock", new int[2] { 21, 28 }, 28, 22, 28, 50, 0, 3/16f, 1/32f, 1, 1/4f),
             new DWEnemy("Metal Scorpion", new int[2] { 14, 18 }, 36, 42, 31, 48, 0, 0, 1/32f, 1, 1/4f),
             new DWEnemy("Wolf", new int[2] { 25, 33 }, 40, 30, 40, 60, 0, 1/16f, 1/32f, 1, 1/4f),
-            new DWEnemy("Wraith", new int[2] { 30, 39 }, 44, 34, 42, 62, 0, 7/16f, 1/16f, 1, 5/16f),        
+            new DWEnemy("Wraith", new int[2] { 30, 39 }, 44, 34, 42, 62, 0, 7/16f, 1/16f, 1, 5/16f),
             new DWEnemy("Metal Slime", new int[2] { 3, 3 }, 10, 255, 255, 6, 15/16f, 15/16f, 1/64f, 1, 5/16f),
             new DWEnemy("Specter", new int[2] { 25, 33 }, 40, 38, 47, 75, 0, 3/16f, 1/16f, 1, 5/16f),
             new DWEnemy("Wolflord", new int[2] { 28, 37 }, 50, 36, 52, 80, 0, 1/4f, 1/32f, 1, 3/8f),
@@ -75,7 +75,7 @@
             new DWEnemy("Axe Knight", new int[2] { 51, 67 }, 94, 82, 130, 165, 1/16f, 15/16f, 1/32f, 3, 11/16f),
             new DWEnemy("Blue Dragon", new int[2] { 74, 98 }, 98, 84, 180, 150, 7/16f, 15/16f, 1/32f, 3, 11/16f),
             new DWEnemy("Stoneman", new int[2] { 102, 135 }, 100, 40, 155, 148, 7/16f, 1/8f, 1/64f, 4, 11/16f),
-            new DWEnemy("Armored Knight", new int[2] { 75, 99 }, 105, 86, 172, 152, 1/16f, 15/16f, 1/32f, 4, 3/4f),  
+            new DWEnemy("Armored Knight", new int[2] { 75, 99 }, 105, 86, 172, 152, 1/16f, 15/16f, 1/32f, 4, 3/4f),
             new DWEnemy("Red Dragon", new int[2] { 80, 106 }, 120, 90, 255, 143, 15/16f, 15/16f, 1/32f, 4, 3/4f),
             new DWEnemy("Dragonlord 1", new int[2] { 75, 100 }, 90, 75, 0, 0, 15/16f, 15/16f, 0, 4, 15/16f),
             new DWEnemy("Dragonlord 2", new int[2] { 150, 165 }, 140, 200, 0, 0, 15/16f, 15/16f, 0, 4, 15/16f)
@@ -112,6 +112,76 @@
             new DWMap("Garin's Grave 4", "garin_4.png"),
             new DWMap("Erdrick's Cave 1", "erdricks_1.png"),
             new DWMap("Erdrick's Cave 2", "erdricks_2.png")
+        };
+
+        public enum TileName
+        {
+            Grass,
+            Desert,
+            Hill,
+            StairsUp,
+            Brick,
+            StairsDown,
+            Swamp,
+            Town,
+            Cave,
+            Castle,
+            Bridge,
+            Forest,
+            TreasureChest,
+            Barrier,
+            OrangeBlock,
+            Water,
+            Block,
+            Door,
+            Mountain,
+            ShopSign,
+            InnSign,
+            Root
+        }
+
+        public static DWTile EmptyTile = new DWTile("Empty", "empty.png");
+        public static DWTile[] Tiles = new DWTile[22]
+        {
+            new DWTile("Grass", "grass.png"),
+            new DWTile("Desert", "desert.png"),
+            new DWTile("Hill", "hill.png"),
+            new DWTile("Stairs Up", "empty.png"),
+            new DWTile("Brick", "empty.png"),
+            new DWTile("Stairs Down", "empty.png"),
+            new DWTile("Swamp", "swamp.png"),
+            new DWTile("Town", "town.png"),
+            new DWTile("Cave", "cave.png"),
+            new DWTile("Castle", "castle.png"),
+            new DWTile("Bridge", "bridge.png"),
+            new DWTile("Forest", "forest.png"),
+            new DWTile("Treasure Chest", "empty.png"),
+            new DWTile("Barrier", "empty.png"),
+            new DWTile("Orange Block", "empty.png"),
+            new DWTile("Water", "water.png"),
+            new DWTile("Block", "empty.png"),
+            new DWTile("Door", "empty.png"),
+            new DWTile("Mountain", "mountain.png"),
+            new DWTile("Shop Sign", "empty.png"),
+            new DWTile("Inn Sign", "empty.png"),
+            new DWTile("Root", "empty.png")
+        };
+
+        public static DWTile[] DWRTiles = new DWTile[13] 
+        {
+            Tiles[(int)TileName.Grass],
+            Tiles[(int)TileName.Desert],
+            Tiles[(int)TileName.Hill],
+            Tiles[(int)TileName.Mountain],
+            Tiles[(int)TileName.Water],
+            Tiles[(int)TileName.Block],
+            Tiles[(int)TileName.Forest],
+            Tiles[(int)TileName.Swamp],
+            Tiles[(int)TileName.Town],
+            Tiles[(int)TileName.Cave],
+            Tiles[(int)TileName.Castle],
+            Tiles[(int)TileName.Bridge],
+            Tiles[(int)TileName.StairsDown]
         };
 
         public static string[] Characters = new string[]

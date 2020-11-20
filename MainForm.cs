@@ -7,6 +7,7 @@ using System.IO;
 using System.Timers;
 using System.Windows.Forms;
 using DWR_Tracker.Classes;
+using DWR_Tracker.Classes.Maps;
 using DWR_Tracker.Controls;
 using Newtonsoft.Json;
 
@@ -16,9 +17,12 @@ namespace DWR_Tracker
     {
         private DWConfiguration Config = DWGlobals.DWConfiguration;
         private DWHero Hero = DWGlobals.Hero;
+        private DWOverworldMap Overworld = new DWOverworldMap();
+
         private bool inBattle = false;
-        private int heightChrome = 837;
-        private int heightChromeless = 791;
+        private int currentMapindex = 0;
+        private int heightChrome = 988;
+        private int heightChromeless = 942;
 
         public MainForm()
         {
@@ -29,6 +33,9 @@ namespace DWR_Tracker
             {
                 EmulatorConnectionWorker.RunWorkerAsync();
             }
+
+            // TODO: initialize map
+            
         }
 
         private delegate void UpdateEnemyDelegate(DWEnemy enemy);
@@ -173,9 +180,6 @@ namespace DWR_Tracker
                 OptionalItemFlowPanel.Controls.Add(new DWItemBox(item));
             }
 
-            // setup info panel
-
-
             // game state update timer
             System.Timers.Timer timer = new System.Timers.Timer(1000);
             timer.Elapsed += CheckGameState;
@@ -210,6 +214,7 @@ namespace DWR_Tracker
                 DWGlobals.ProcessReader != default(DWProcessReader))
             {
                 int statusByte = DWGlobals.ProcessReader.Read(0x3, 1, 1)[0];
+                int mapIndex = DWGlobals.ProcessReader.ReadByte(0x45) - 1;
                 bool inBattleCheck = statusByte == 3;
 
                 if (!inBattle && inBattleCheck)
@@ -221,14 +226,25 @@ namespace DWR_Tracker
                     {
                         UpdateEnemy(DWGlobals.Enemies[enemyIndex]);
                     }
-                    this.Invoke(() => EnemyPanel.Visible = true);
-                    // UpdateInfoPanel(EnemyPanel, true);
+                    this.Invoke(() =>
+                    {
+                        EnemyPanel.Visible = true;
+                        MapPanel.Visible = false;
+                    });
                 }
-                else if (inBattle && !inBattleCheck)
+                else if ((inBattle && !inBattleCheck) || currentMapindex != mapIndex)
                 {
                     inBattle = false;
-                    this.Invoke(() => EnemyPanel.Visible = false);
-                    //UpdateInfoPanel(EnemyPanel, false);
+                    currentMapindex = mapIndex;
+                    DWMap map = DWGlobals.Maps[mapIndex];
+
+                    this.Invoke(() =>
+                    {
+                        EnemyPanel.Visible = false;
+                        CombatPanel.Title = map.Name;
+                        MapPanel.Visible = true;
+                        MapPictureBox.Image = mapIndex == 0 ? Overworld.GetImage() : map.GetImage();
+                    });
                 }
 
                 Hero.Update();
@@ -271,6 +287,13 @@ namespace DWR_Tracker
                     }
                     string[] romOffsets = vItem.romOffsets.ToObject<string[]>();
 
+                    if (vItem.mapOffsets == null)
+                    {
+                        Console.WriteLine("[WARNING] no map offsets for {0} {1}", name, version);
+                        continue;
+                    }
+                    string[] mapOffsets = vItem.mapOffsets.ToObject<string[]>();
+
                     // find emulator process
                     Process[] processes = Process.GetProcessesByName(name);
                     if (processes.Length < 1) { continue; }
@@ -303,6 +326,14 @@ namespace DWR_Tracker
                             continue;
                         }
                         reader.RomOffset = romOffset;
+
+                        IntPtr mapOffset = reader.FindOffset(dll, mapOffsets);
+                        if (mapOffset == (IntPtr)(-1))
+                        {
+                            Console.WriteLine("[ERROR] Couldn't find NES map pointer for {0}", p.ProcessName);
+                            continue;
+                        }
+                        reader.MapOffset = mapOffset;
 
                         // TODO: Base offset doesn't take us to this part of memory
                         // find "DRAGON WARRIOR" at offset +0xFFE0
@@ -343,6 +374,9 @@ namespace DWR_Tracker
                     enemy.Skill1Chance = ((pattern >> 4) & 0x3) / 4f;
                     enemy.Skill1 = enemy.GetSkill1((pattern >> 6) & 0x3);
                 }
+
+                // decode DWR map
+                Overworld.DecodeMap();
             }
         }
 

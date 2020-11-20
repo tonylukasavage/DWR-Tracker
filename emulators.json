@@ -7,6 +7,7 @@
         "offsets": [ "0x3B1388" ],
         "sramOffsets": [ "0x36A830" ],
         "romOffsets": [ "0x36A8B0" ],
+        "mapOffsets": [ "0x36A7F0" ],
         "arch": 32
       }
     ]

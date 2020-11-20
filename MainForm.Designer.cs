@@ -42,6 +42,14 @@
             this.EmulatorStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.EmulatorConnectionWorker = new System.ComponentModel.BackgroundWorker();
             this.DWContentPanel = new System.Windows.Forms.Panel();
+            this.CombatPanel = new DWR_Tracker.Controls.DWPanel();
+            this.MapPanel = new System.Windows.Forms.Panel();
+            this.MapPictureBox = new System.Windows.Forms.PictureBox();
+            this.EnemyPanel = new System.Windows.Forms.Panel();
+            this.EnemyInfoTable = new System.Windows.Forms.TableLayoutPanel();
+            this.EnemyNameLabel = new DWR_Tracker.Controls.DWLabel();
+            this.EnemyPanelPictureBox = new System.Windows.Forms.PictureBox();
+            this.EnemyStatsTable = new System.Windows.Forms.TableLayoutPanel();
             this.BattlePanel = new DWR_Tracker.Controls.DWPanel();
             this.BattleItemFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.OptionalItemPanel = new DWR_Tracker.Controls.DWPanel();
@@ -51,22 +59,18 @@
             this.StatPanel = new DWR_Tracker.Controls.DWPanel();
             this.StatTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.SpellPanel = new DWR_Tracker.Controls.DWPanel();
-            this.CombatPanel = new DWR_Tracker.Controls.DWPanel();
-            this.EnemyPanel = new System.Windows.Forms.Panel();
-            this.EnemyInfoTable = new System.Windows.Forms.TableLayoutPanel();
-            this.EnemyNameLabel = new DWR_Tracker.Controls.DWLabel();
-            this.EnemyPanelPictureBox = new System.Windows.Forms.PictureBox();
-            this.EnemyStatsTable = new System.Windows.Forms.TableLayoutPanel();
             this.DWMenuStrip.SuspendLayout();
             this.DWStatusStrip.SuspendLayout();
             this.DWContentPanel.SuspendLayout();
+            this.CombatPanel.SuspendLayout();
+            this.MapPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MapPictureBox)).BeginInit();
+            this.EnemyPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.EnemyPanelPictureBox)).BeginInit();
             this.BattlePanel.SuspendLayout();
             this.OptionalItemPanel.SuspendLayout();
             this.QuestPanel.SuspendLayout();
             this.StatPanel.SuspendLayout();
-            this.CombatPanel.SuspendLayout();
-            this.EnemyPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.EnemyPanelPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // DWMenuStrip
@@ -77,7 +81,7 @@
             this.optionsToolStripMenuItem});
             this.DWMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.DWMenuStrip.Name = "DWMenuStrip";
-            this.DWMenuStrip.Size = new System.Drawing.Size(393, 24);
+            this.DWMenuStrip.Size = new System.Drawing.Size(504, 24);
             this.DWMenuStrip.TabIndex = 11;
             this.DWMenuStrip.Text = "menuStrip1";
             // 
@@ -147,9 +151,9 @@
             // 
             this.DWStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.EmulatorStatusLabel});
-            this.DWStatusStrip.Location = new System.Drawing.Point(0, 776);
+            this.DWStatusStrip.Location = new System.Drawing.Point(0, 927);
             this.DWStatusStrip.Name = "DWStatusStrip";
-            this.DWStatusStrip.Size = new System.Drawing.Size(393, 22);
+            this.DWStatusStrip.Size = new System.Drawing.Size(504, 22);
             this.DWStatusStrip.SizingGrip = false;
             this.DWStatusStrip.TabIndex = 12;
             this.DWStatusStrip.Text = "statusStrip1";
@@ -168,6 +172,7 @@
             // 
             // DWContentPanel
             // 
+            this.DWContentPanel.Controls.Add(this.CombatPanel);
             this.DWContentPanel.Controls.Add(this.BattlePanel);
             this.DWContentPanel.Controls.Add(this.OptionalItemPanel);
             this.DWContentPanel.Controls.Add(this.QuestPanel);
@@ -175,120 +180,38 @@
             this.DWContentPanel.Controls.Add(this.SpellPanel);
             this.DWContentPanel.Location = new System.Drawing.Point(0, 27);
             this.DWContentPanel.Name = "DWContentPanel";
-            this.DWContentPanel.Size = new System.Drawing.Size(386, 464);
+            this.DWContentPanel.Size = new System.Drawing.Size(504, 897);
             this.DWContentPanel.TabIndex = 13;
-            // 
-            // BattlePanel
-            // 
-            this.BattlePanel.BackColor = System.Drawing.Color.Black;
-            this.BattlePanel.Controls.Add(this.BattleItemFlowPanel);
-            this.BattlePanel.Location = new System.Drawing.Point(0, 384);
-            this.BattlePanel.MinimumSize = new System.Drawing.Size(144, 56);
-            this.BattlePanel.Name = "BattlePanel";
-            this.BattlePanel.Size = new System.Drawing.Size(387, 83);
-            this.BattlePanel.TabIndex = 9;
-            this.BattlePanel.Title = "BATTLE";
-            // 
-            // BattleItemFlowPanel
-            // 
-            this.BattleItemFlowPanel.BackColor = System.Drawing.Color.Transparent;
-            this.BattleItemFlowPanel.Location = new System.Drawing.Point(13, 15);
-            this.BattleItemFlowPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.BattleItemFlowPanel.Name = "BattleItemFlowPanel";
-            this.BattleItemFlowPanel.Size = new System.Drawing.Size(356, 60);
-            this.BattleItemFlowPanel.TabIndex = 3;
-            // 
-            // OptionalItemPanel
-            // 
-            this.OptionalItemPanel.BackColor = System.Drawing.Color.Black;
-            this.OptionalItemPanel.Controls.Add(this.OptionalItemFlowPanel);
-            this.OptionalItemPanel.Location = new System.Drawing.Point(203, 298);
-            this.OptionalItemPanel.MinimumSize = new System.Drawing.Size(40, 56);
-            this.OptionalItemPanel.Name = "OptionalItemPanel";
-            this.OptionalItemPanel.Size = new System.Drawing.Size(184, 85);
-            this.OptionalItemPanel.TabIndex = 8;
-            this.OptionalItemPanel.Title = "";
-            // 
-            // OptionalItemFlowPanel
-            // 
-            this.OptionalItemFlowPanel.BackColor = System.Drawing.Color.Transparent;
-            this.OptionalItemFlowPanel.Location = new System.Drawing.Point(7, 15);
-            this.OptionalItemFlowPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.OptionalItemFlowPanel.Name = "OptionalItemFlowPanel";
-            this.OptionalItemFlowPanel.Size = new System.Drawing.Size(186, 55);
-            this.OptionalItemFlowPanel.TabIndex = 5;
-            // 
-            // QuestPanel
-            // 
-            this.QuestPanel.BackColor = System.Drawing.Color.Black;
-            this.QuestPanel.Controls.Add(this.RequiredItemFlowPanel);
-            this.QuestPanel.Location = new System.Drawing.Point(3, 299);
-            this.QuestPanel.MinimumSize = new System.Drawing.Size(128, 56);
-            this.QuestPanel.Name = "QuestPanel";
-            this.QuestPanel.Size = new System.Drawing.Size(194, 83);
-            this.QuestPanel.TabIndex = 10;
-            this.QuestPanel.Title = "QUEST";
-            // 
-            // RequiredItemFlowPanel
-            // 
-            this.RequiredItemFlowPanel.BackColor = System.Drawing.Color.Transparent;
-            this.RequiredItemFlowPanel.Location = new System.Drawing.Point(16, 16);
-            this.RequiredItemFlowPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.RequiredItemFlowPanel.Name = "RequiredItemFlowPanel";
-            this.RequiredItemFlowPanel.Size = new System.Drawing.Size(359, 61);
-            this.RequiredItemFlowPanel.TabIndex = 4;
-            // 
-            // StatPanel
-            // 
-            this.StatPanel.BackColor = System.Drawing.Color.Black;
-            this.StatPanel.Controls.Add(this.StatTableLayout);
-            this.StatPanel.Location = new System.Drawing.Point(3, 3);
-            this.StatPanel.MinimumSize = new System.Drawing.Size(128, 56);
-            this.StatPanel.Name = "StatPanel";
-            this.StatPanel.Size = new System.Drawing.Size(194, 295);
-            this.StatPanel.TabIndex = 7;
-            this.StatPanel.Text = "dwPanel1";
-            this.StatPanel.Title = "STATS";
-            // 
-            // StatTableLayout
-            // 
-            this.StatTableLayout.ColumnCount = 2;
-            this.StatTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.80981F));
-            this.StatTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63.19019F));
-            this.StatTableLayout.Location = new System.Drawing.Point(17, 25);
-            this.StatTableLayout.Name = "StatTableLayout";
-            this.StatTableLayout.RowCount = 7;
-            this.StatTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.43299F));
-            this.StatTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.43299F));
-            this.StatTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.43299F));
-            this.StatTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.43299F));
-            this.StatTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.43299F));
-            this.StatTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.43299F));
-            this.StatTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.40206F));
-            this.StatTableLayout.Size = new System.Drawing.Size(163, 260);
-            this.StatTableLayout.TabIndex = 2;
-            // 
-            // SpellPanel
-            // 
-            this.SpellPanel.BackColor = System.Drawing.Color.Black;
-            this.SpellPanel.Location = new System.Drawing.Point(203, 3);
-            this.SpellPanel.MinimumSize = new System.Drawing.Size(144, 56);
-            this.SpellPanel.Name = "SpellPanel";
-            this.SpellPanel.Size = new System.Drawing.Size(184, 295);
-            this.SpellPanel.TabIndex = 6;
-            this.SpellPanel.Text = "dwPanel1";
-            this.SpellPanel.Title = "SPELLS";
             // 
             // CombatPanel
             // 
             this.CombatPanel.BackColor = System.Drawing.Color.Black;
+            this.CombatPanel.Controls.Add(this.MapPanel);
             this.CombatPanel.Controls.Add(this.EnemyPanel);
-            this.CombatPanel.Location = new System.Drawing.Point(3, 497);
+            this.CombatPanel.Location = new System.Drawing.Point(3, 386);
             this.CombatPanel.MinimumSize = new System.Drawing.Size(112, 56);
             this.CombatPanel.Name = "CombatPanel";
-            this.CombatPanel.Size = new System.Drawing.Size(383, 276);
+            this.CombatPanel.Size = new System.Drawing.Size(498, 510);
             this.CombatPanel.TabIndex = 14;
             this.CombatPanel.Title = "INFO";
+            // 
+            // MapPanel
+            // 
+            this.MapPanel.AutoScroll = true;
+            this.MapPanel.Controls.Add(this.MapPictureBox);
+            this.MapPanel.Location = new System.Drawing.Point(9, 18);
+            this.MapPanel.Name = "MapPanel";
+            this.MapPanel.Size = new System.Drawing.Size(480, 480);
+            this.MapPanel.TabIndex = 2;
+            // 
+            // MapPictureBox
+            // 
+            this.MapPictureBox.Location = new System.Drawing.Point(-1, 0);
+            this.MapPictureBox.Name = "MapPictureBox";
+            this.MapPictureBox.Size = new System.Drawing.Size(1920, 1920);
+            this.MapPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.MapPictureBox.TabIndex = 0;
+            this.MapPictureBox.TabStop = false;
             // 
             // EnemyPanel
             // 
@@ -356,13 +279,113 @@
             this.EnemyStatsTable.Size = new System.Drawing.Size(190, 237);
             this.EnemyStatsTable.TabIndex = 0;
             // 
+            // BattlePanel
+            // 
+            this.BattlePanel.BackColor = System.Drawing.Color.Black;
+            this.BattlePanel.Controls.Add(this.BattleItemFlowPanel);
+            this.BattlePanel.Location = new System.Drawing.Point(399, 3);
+            this.BattlePanel.MinimumSize = new System.Drawing.Size(40, 56);
+            this.BattlePanel.Name = "BattlePanel";
+            this.BattlePanel.Size = new System.Drawing.Size(102, 379);
+            this.BattlePanel.TabIndex = 9;
+            this.BattlePanel.Title = "";
+            // 
+            // BattleItemFlowPanel
+            // 
+            this.BattleItemFlowPanel.BackColor = System.Drawing.Color.Transparent;
+            this.BattleItemFlowPanel.Location = new System.Drawing.Point(24, 15);
+            this.BattleItemFlowPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.BattleItemFlowPanel.Name = "BattleItemFlowPanel";
+            this.BattleItemFlowPanel.Size = new System.Drawing.Size(69, 350);
+            this.BattleItemFlowPanel.TabIndex = 3;
+            // 
+            // OptionalItemPanel
+            // 
+            this.OptionalItemPanel.BackColor = System.Drawing.Color.Black;
+            this.OptionalItemPanel.Controls.Add(this.OptionalItemFlowPanel);
+            this.OptionalItemPanel.Location = new System.Drawing.Point(203, 298);
+            this.OptionalItemPanel.MinimumSize = new System.Drawing.Size(40, 56);
+            this.OptionalItemPanel.Name = "OptionalItemPanel";
+            this.OptionalItemPanel.Size = new System.Drawing.Size(190, 85);
+            this.OptionalItemPanel.TabIndex = 8;
+            this.OptionalItemPanel.Title = "";
+            // 
+            // OptionalItemFlowPanel
+            // 
+            this.OptionalItemFlowPanel.BackColor = System.Drawing.Color.Transparent;
+            this.OptionalItemFlowPanel.Location = new System.Drawing.Point(7, 15);
+            this.OptionalItemFlowPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.OptionalItemFlowPanel.Name = "OptionalItemFlowPanel";
+            this.OptionalItemFlowPanel.Size = new System.Drawing.Size(186, 55);
+            this.OptionalItemFlowPanel.TabIndex = 5;
+            // 
+            // QuestPanel
+            // 
+            this.QuestPanel.BackColor = System.Drawing.Color.Black;
+            this.QuestPanel.Controls.Add(this.RequiredItemFlowPanel);
+            this.QuestPanel.Location = new System.Drawing.Point(3, 299);
+            this.QuestPanel.MinimumSize = new System.Drawing.Size(40, 56);
+            this.QuestPanel.Name = "QuestPanel";
+            this.QuestPanel.Size = new System.Drawing.Size(194, 83);
+            this.QuestPanel.TabIndex = 10;
+            this.QuestPanel.Title = "";
+            // 
+            // RequiredItemFlowPanel
+            // 
+            this.RequiredItemFlowPanel.BackColor = System.Drawing.Color.Transparent;
+            this.RequiredItemFlowPanel.Location = new System.Drawing.Point(16, 16);
+            this.RequiredItemFlowPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.RequiredItemFlowPanel.Name = "RequiredItemFlowPanel";
+            this.RequiredItemFlowPanel.Size = new System.Drawing.Size(359, 61);
+            this.RequiredItemFlowPanel.TabIndex = 4;
+            // 
+            // StatPanel
+            // 
+            this.StatPanel.BackColor = System.Drawing.Color.Black;
+            this.StatPanel.Controls.Add(this.StatTableLayout);
+            this.StatPanel.Location = new System.Drawing.Point(3, 3);
+            this.StatPanel.MinimumSize = new System.Drawing.Size(128, 56);
+            this.StatPanel.Name = "StatPanel";
+            this.StatPanel.Size = new System.Drawing.Size(194, 295);
+            this.StatPanel.TabIndex = 7;
+            this.StatPanel.Text = "dwPanel1";
+            this.StatPanel.Title = "STATS";
+            // 
+            // StatTableLayout
+            // 
+            this.StatTableLayout.ColumnCount = 2;
+            this.StatTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.80981F));
+            this.StatTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63.19019F));
+            this.StatTableLayout.Location = new System.Drawing.Point(17, 25);
+            this.StatTableLayout.Name = "StatTableLayout";
+            this.StatTableLayout.RowCount = 7;
+            this.StatTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.43299F));
+            this.StatTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.43299F));
+            this.StatTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.43299F));
+            this.StatTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.43299F));
+            this.StatTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.43299F));
+            this.StatTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.43299F));
+            this.StatTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.40206F));
+            this.StatTableLayout.Size = new System.Drawing.Size(163, 260);
+            this.StatTableLayout.TabIndex = 2;
+            // 
+            // SpellPanel
+            // 
+            this.SpellPanel.BackColor = System.Drawing.Color.Black;
+            this.SpellPanel.Location = new System.Drawing.Point(203, 3);
+            this.SpellPanel.MinimumSize = new System.Drawing.Size(144, 56);
+            this.SpellPanel.Name = "SpellPanel";
+            this.SpellPanel.Size = new System.Drawing.Size(190, 295);
+            this.SpellPanel.TabIndex = 6;
+            this.SpellPanel.Text = "dwPanel1";
+            this.SpellPanel.Title = "SPELLS";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(393, 798);
-            this.Controls.Add(this.CombatPanel);
+            this.ClientSize = new System.Drawing.Size(504, 949);
             this.Controls.Add(this.DWContentPanel);
             this.Controls.Add(this.DWStatusStrip);
             this.Controls.Add(this.DWMenuStrip);
@@ -377,6 +400,12 @@
             this.DWStatusStrip.ResumeLayout(false);
             this.DWStatusStrip.PerformLayout();
             this.DWContentPanel.ResumeLayout(false);
+            this.CombatPanel.ResumeLayout(false);
+            this.CombatPanel.PerformLayout();
+            this.MapPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.MapPictureBox)).EndInit();
+            this.EnemyPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.EnemyPanelPictureBox)).EndInit();
             this.BattlePanel.ResumeLayout(false);
             this.BattlePanel.PerformLayout();
             this.OptionalItemPanel.ResumeLayout(false);
@@ -385,10 +414,6 @@
             this.QuestPanel.PerformLayout();
             this.StatPanel.ResumeLayout(false);
             this.StatPanel.PerformLayout();
-            this.CombatPanel.ResumeLayout(false);
-            this.CombatPanel.PerformLayout();
-            this.EnemyPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.EnemyPanelPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -423,6 +448,8 @@
         private System.Windows.Forms.PictureBox EnemyPanelPictureBox;
         private Controls.DWLabel EnemyNameLabel;
         private System.Windows.Forms.TableLayoutPanel EnemyInfoTable;
+        private System.Windows.Forms.Panel MapPanel;
+        private System.Windows.Forms.PictureBox MapPictureBox;
     }
 }
 

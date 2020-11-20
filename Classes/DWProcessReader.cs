@@ -63,6 +63,7 @@ namespace DWR_Tracker.Classes
         public IntPtr BaseOffset = (IntPtr)0;
         public IntPtr SramOffset = (IntPtr)0;
         public IntPtr RomOffset = (IntPtr)0;
+        public IntPtr MapOffset = (IntPtr)0;
 
         public DWProcessReader(Process process)
         {
@@ -135,7 +136,7 @@ namespace DWR_Tracker.Classes
             int bytesRead = 0;
             byte[] bytes = new byte[size];
             IntPtr baseOffset = readType == 0 ? BaseOffset : 
-                (readType == 1 ? SramOffset : RomOffset);
+                (readType == 1 ? SramOffset : (readType == 2 ? RomOffset : MapOffset));
 
             if (!ReadProcessMemory(ProcessHandle, IntPtr.Add(baseOffset, offset), bytes,
                 bytes.Length, ref bytesRead))
