@@ -258,7 +258,11 @@ namespace DWR_Tracker
                     int x = DWGlobals.ProcessReader.ReadByte(0x3A);
                     int y = DWGlobals.ProcessReader.ReadByte(0x3B);
                     Overworld.Discover(x, y);
+                    Image img = MapPictureBox.Image;
                     MapPictureBox.Image = Overworld.GetImage();
+                    if (img != null) { img.Dispose(); }
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
                 }
             }
         }
