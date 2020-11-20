@@ -236,15 +236,18 @@ namespace DWR_Tracker
                 {
                     inBattle = false;
                     currentMapindex = mapIndex;
-                    DWMap map = DWGlobals.Maps[mapIndex];
 
-                    this.Invoke(() =>
+                    if (mapIndex >= 0)
                     {
-                        EnemyPanel.Visible = false;
-                        CombatPanel.Title = map.Name;
-                        MapPanel.Visible = true;
-                        MapPictureBox.Image = mapIndex == 0 ? Overworld.GetImage() : map.GetImage();
-                    });
+                        DWMap map = DWGlobals.Maps[mapIndex];
+                        this.Invoke(() =>
+                        {
+                            EnemyPanel.Visible = false;
+                            CombatPanel.Title = map.Name;
+                            MapPanel.Visible = true;
+                            MapPictureBox.Image = mapIndex == 0 ? Overworld.GetImage() : map.GetImage();
+                        });
+                    }
                 }
 
                 Hero.Update();
