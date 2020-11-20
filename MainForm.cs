@@ -181,7 +181,7 @@ namespace DWR_Tracker
             }
 
             // game state update timer
-            System.Timers.Timer timer = new System.Timers.Timer(1000);
+            System.Timers.Timer timer = new System.Timers.Timer(200);
             timer.Elapsed += CheckGameState;
             timer.Start();
         }
@@ -248,6 +248,15 @@ namespace DWR_Tracker
                 }
 
                 Hero.Update();
+
+                // are we discovering on the overworld?
+                if (mapIndex == 0)
+                {
+                    int x = DWGlobals.ProcessReader.ReadByte(0x3A);
+                    int y = DWGlobals.ProcessReader.ReadByte(0x3B);
+                    Overworld.Discover(x, y);
+                    MapPictureBox.Image = Overworld.GetImage();
+                }
             }
         }
 

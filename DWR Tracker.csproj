@@ -122,6 +122,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Images\Tiles\unknown.png" />
     <EmbeddedResource Include="Images\Tiles\block.png" />
     <EmbeddedResource Include="Images\Tiles\empty.png" />
     <EmbeddedResource Include="Images\Tiles\bridge.png" />
