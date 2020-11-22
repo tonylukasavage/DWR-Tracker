@@ -19,6 +19,7 @@ namespace DWR_Tracker.Classes
         public int Gold;
         public float HurtResist;
         public float SleepResist;
+        public float StopspellResist;
         public float Evasion;
         public int RunGroup;
         public float StopspellCap;
@@ -31,8 +32,8 @@ namespace DWR_Tracker.Classes
         private const string baseImagePath = "DWR_Tracker.Images.Enemies.";
         private int[] hurtDamage = new int[2] { 9, 16 };
         private int[] hurtmoreDamage = new int[2] { 58, 65 };
-        private string[] skill2 = new string[4] { "hurt", "hurtmore", "baby breath", "DL2 breath" };
-        private string[] skill1 = new string[4] { "sleep", "stopspell", "heal", "healmore" };
+        private string[] skill2 = new string[4] { "HURT", "HURTMORE", "Baby Breath", "DL2 Breath" };
+        private string[] skill1 = new string[4] { "SLEEP", "STOPSPELL", "HEAL", "HEALMORE" };
 
         public DWEnemy(string name, int[] hp, int strength, int agility, int xp, 
             int gold, float hurtResist, float sleepResist, float evasion, int runGroup,  
@@ -64,16 +65,17 @@ namespace DWR_Tracker.Classes
 
         public Image GetImage()
         {
+            int picSize = 192;
             string ImagePath = baseImagePath + Name.ToLower().Replace(" ", "_") + ".png";
             Assembly myAssembly = Assembly.GetExecutingAssembly();
             Stream myStream = myAssembly.GetManifestResourceStream(ImagePath);
             Bitmap src = new Bitmap(Image.FromStream(myStream), new Size(64, 64));
-            Bitmap dst = new Bitmap(128, 128);
+            Bitmap dst = new Bitmap(picSize, picSize);
             Graphics g = Graphics.FromImage(dst);
             g.InterpolationMode = InterpolationMode.NearestNeighbor;
             g.DrawImage(
                 src,
-                new Rectangle(0, 0, 128, 128)
+                new Rectangle(0, 0, picSize, picSize)
             );
             return dst;
         }
@@ -83,26 +85,33 @@ namespace DWR_Tracker.Classes
             int[] damageDealt = DamageDealtRange(hero);
             int[] damageTaken = DamageTakenRange(hero);
 
-            return new string[15, 2]
+            return new string[20, 2]
             {
                 // info
                 { Name, "" },
                 { "HP", HP[0] == HP[1] ? HP[0].ToString() : HP[0] + "-" + HP[1] },
+                { "ST", Strength.ToString() },
+                { "AG", Agility.ToString() },
                 { "E", XP.ToString() },
                 { "G", Gold.ToString() },
 
-                // attack & skills
-                { "ATTACK:", "" },
+                // attack
+                { "MELEE:", "" },
                 { "enemy dmg", damageDealt[0] + "-" + damageDealt[1] },
                 { "hero dmg", damageTaken[0] + "-" + damageTaken[1] },
+                { "", "" },
+
+                // skills
+                { "SKILLS:", "" },
                 { Skill1, Math.Floor(Skill1Chance * 100).ToString() + "%" },
                 { Skill2, Math.Floor(Skill2Chance * 100).ToString() + "%" },
                 { "", "" },
 
                 // defense
                 { "CHANCE:", "" },
-                { "hurt", Math.Floor((1f - HurtResist) * 100).ToString() + "%" },
-                { "sleep", Math.Floor((1f - SleepResist) * 100).ToString() + "%" },
+                { "HURT", Math.Floor((1f - HurtResist) * 100).ToString() + "%" },
+                { "SLEEP", Math.Floor((1f - SleepResist) * 100).ToString() + "%" },
+                { "STOPSPELL", Math.Floor((1f - StopspellResist) * 100).ToString() + "%" },
                 { "dodge", Math.Floor(Evasion * 100).ToString() + "%" },
                 { "run", Math.Floor((1f - ChanceToBlockHeroRun(hero)) * 100).ToString() + "%" },
 

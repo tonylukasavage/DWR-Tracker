@@ -70,14 +70,13 @@ namespace DWR_Tracker
 
                     if (i == 0)
                     {
-                        EnemyNameLabel.TextAlign = ContentAlignment.TopCenter;
-                        EnemyNameLabel.FitText(name);
+                        CombatPanel.Title = name;
                     }
                     else
                     {
-                        TableLayoutPanel table = i < 4 ? EnemyInfoTable : EnemyStatsTable;
-                        bool isHeader = name == "ATTACK" || name == "DEFENSE";
-                        int row = i < 4 ? i - 1 : i - 4;
+                        TableLayoutPanel table = i < 6 ? EnemyInfoTable : EnemyStatsTable;
+                        bool isHeader = value == "";
+                        int row = i < 6 ? i - 1 : i - 6;
 
                         DWLabel nameLabel = new DWLabel { TextAlign = ContentAlignment.MiddleLeft };
                         table.Controls.Add(nameLabel, 0, row);
@@ -389,6 +388,12 @@ namespace DWR_Tracker
                     enemy.Skill2 = enemy.GetSkill2((pattern >> 2) & 0x3);
                     enemy.Skill1Chance = ((pattern >> 4) & 0x3) / 4f;
                     enemy.Skill1 = enemy.GetSkill1((pattern >> 6) & 0x3);
+
+                    int resist = reader.Read(0x9E4B + (i * 0x10) + 4, 1, 2)[0];
+                    enemy.StopspellResist = (resist % 0xF) / 16f;
+                    // Console.WriteLine(enemy.Name + ": Sleep -> " + Math.Floor(enemy.SleepResist * 100));
+                    Console.WriteLine("0x{0:X}", 0x9E4B + (i * 0x10) + 4);
+                    Console.WriteLine(enemy.Name + ": " + Math.Floor(enemy.StopspellResist * 100));
                 }
 
                 // decode DWR map

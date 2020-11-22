@@ -26,7 +26,7 @@ namespace DWR_Tracker.Controls
 
             this.SuspendLayout();
 
-            Font tryFont = new Font(DWGlobals.DWFont.GetFamily(), 10, style);
+            Font tryFont = new Font(DWGlobals.DWFont.GetFamily(), 12, style);
             Size trySize = TextRenderer.MeasureText(text, tryFont);
             float widthRatio = width / trySize.Width;
             tryFont = new Font(DWGlobals.DWFont.GetFamily(), 
