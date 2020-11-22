@@ -25,7 +25,7 @@ namespace DWR_Tracker.Classes
                 Assembly myAssembly = Assembly.GetExecutingAssembly();
                 Stream myStream = myAssembly.GetManifestResourceStream(ImagePath);
 
-                string[] names = new string[] { "Town", "Cave", "Castle" };
+                string[] names = new string[] { "Town", "Cave", "Castle", "Hero" };
                 if (names.Contains(name))
                 {
                     Image = new Bitmap(Image.FromStream(myStream), new Size(48, 48));

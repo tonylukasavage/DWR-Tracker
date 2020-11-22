@@ -50,6 +50,7 @@ namespace DWR_Tracker.Classes.Maps
             Func<int, int> read = offset => reader.Read(tilesOffset + offset, 1, 3)[0];
             int count, tileIndex;
 
+            // pointers to each role of tiles are after tile tile table
             int[] rowPointers = new int[gridSize];
             for (int i = 0; i < gridSize; i++)
             {
@@ -57,6 +58,8 @@ namespace DWR_Tracker.Classes.Maps
                 rowPointers[i] = BitConverter.ToUInt16(bytes, 0) - 0x8000 - tilesOffset;
             }
             
+
+            // process each tile by row
             for (int y = 0; y < gridSize; y++)
             {
                 int mapByte = read(rowPointers[y]);
@@ -66,7 +69,7 @@ namespace DWR_Tracker.Classes.Maps
 
                 for (int x = 0, byteCtr = 0; x < gridSize; x++)
                 {
-                    grid[x, y] = new GridTile(x, y, tileIndex, true);
+                    grid[x, y] = new GridTile(x, y, tileIndex, false);
                     if (count == 0)
                     {
                         mapByte = read(rowPointers[y] + ++byteCtr);
@@ -92,6 +95,7 @@ namespace DWR_Tracker.Classes.Maps
             Bitmap image = new Bitmap(gridSize * tileSize, gridSize * tileSize);
             Graphics g = Graphics.FromImage(image);
 
+            // draw each individual tile
             for (int y = 0; y < gridSize; y++)
             {
                 for (int x = 0; x < gridSize; x++)
@@ -118,6 +122,12 @@ namespace DWR_Tracker.Classes.Maps
                     new Point((tile.X - 1) * tileSize, (tile.Y - 1) * tileSize));
             }
 
+            // draw the hero
+            int xh = DWGlobals.ProcessReader.ReadByte(0x3A);
+            int yh = DWGlobals.ProcessReader.ReadByte(0x3B);
+            g.DrawImage(DWRTiles[(int)TileName.Hero].Image,
+                    new Point((xh - 1) * tileSize, (yh - 1) * tileSize));
+
             return image;
         }
 
@@ -135,7 +145,7 @@ namespace DWR_Tracker.Classes.Maps
             }
         }
 
-        public static DWTile[] DWRTiles = new DWTile[14]
+        public static DWTile[] DWRTiles = new DWTile[15]
         {
             new DWTile("Grass", "grass.png"),
             new DWTile("Desert", "desert.png"),
@@ -150,7 +160,8 @@ namespace DWR_Tracker.Classes.Maps
             new DWTile("Castle", "castle.png"),
             new DWTile("Bridge", "bridge.png"),
             new DWTile("Stairs Down", "empty.png"),
-            new DWTile("Unknown", "unknown.png")
+            new DWTile("Unknown", "unknown.png"),
+            new DWTile("Hero", "hero.png")
         };
     }
 
@@ -169,7 +180,8 @@ namespace DWR_Tracker.Classes.Maps
         Castle,
         Bridge,
         StairsDown,
-        Unknown
+        Unknown,
+        Hero
     }
 
     
