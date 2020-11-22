@@ -208,7 +208,7 @@
             // 
             this.MapPictureBox.Location = new System.Drawing.Point(-1, 0);
             this.MapPictureBox.Name = "MapPictureBox";
-            this.MapPictureBox.Size = new System.Drawing.Size(1920, 1920);
+            this.MapPictureBox.Size = new System.Drawing.Size(480, 480);
             this.MapPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.MapPictureBox.TabIndex = 0;
             this.MapPictureBox.TabStop = false;

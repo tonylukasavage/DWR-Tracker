@@ -21,10 +21,12 @@ namespace DWR_Tracker.Classes.Maps
 
     public class DWOverworldMap
     {
-        private const int baseOffset = 0x1D5D;
+        private const int tilesOffset = 0x1D5D;
+        private const int rowPointersOffset = 0x2653;
         private const int gridSize = 120;
         private GridTile[,] grid = new GridTile[gridSize, gridSize];
         private int tileSize = 16;
+        private bool IsDecoded = false;
 
         public DWOverworldMap()
         {
@@ -40,22 +42,29 @@ namespace DWR_Tracker.Classes.Maps
         public void DecodeMap()
         {
             DWProcessReader reader = DWGlobals.ProcessReader;
-            Func<int, int> read = offset => reader.Read(baseOffset + offset, 1, 3)[0];
+            Func<int, int> read = offset => reader.Read(tilesOffset + offset, 1, 3)[0];
             int count, tileIndex;
 
-            for (int y = 0, byteCtr = 0; y < gridSize; y++)
+            int[] rowPointers = new int[gridSize];
+            for (int i = 0; i < gridSize; i++)
             {
-                int mapByte = read(byteCtr);
+                byte[] bytes = reader.Read(rowPointersOffset + (i * 2), 2, 3);
+                rowPointers[i] = BitConverter.ToUInt16(bytes, 0) - 0x8000 - tilesOffset;
+            }
+            
+            for (int y = 0; y < gridSize; y++)
+            {
+                int mapByte = read(rowPointers[y]);
                 if (mapByte == 0xFF) { break; }
                 tileIndex = mapByte >> 4;
                 count = mapByte & 0xF;
 
-                for (int x = 0; x < gridSize; x++)
+                for (int x = 0, byteCtr = 0; x < gridSize; x++)
                 {
-                    grid[x, y] = new GridTile(tileIndex, false);
+                    grid[x, y] = new GridTile(tileIndex, true);
                     if (count == 0)
                     {
-                        mapByte = read(++byteCtr);
+                        mapByte = read(rowPointers[y] + ++byteCtr);
                         if (mapByte == 0xFF) { break; }
                         tileIndex = mapByte >> 4;
                         count = mapByte & 0xF;
@@ -66,10 +75,14 @@ namespace DWR_Tracker.Classes.Maps
                     }
                 }
             }
+
+            IsDecoded = true;
         }
 
         public Image GetImage()
         {
+            if (!IsDecoded) { return null; }
+
             Bitmap image = new Bitmap(gridSize * tileSize, gridSize * tileSize);
             Graphics g = Graphics.FromImage(image);
 
