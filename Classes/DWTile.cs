@@ -24,7 +24,16 @@ namespace DWR_Tracker.Classes
                 ImagePath = "DWR_Tracker.Images.Tiles." + imageName;
                 Assembly myAssembly = Assembly.GetExecutingAssembly();
                 Stream myStream = myAssembly.GetManifestResourceStream(ImagePath);
-                Image = new Bitmap(Image.FromStream(myStream), new Size(16, 16));
+
+                string[] names = new string[] { "Town", "Cave", "Castle" };
+                if (names.Contains(name))
+                {
+                    Image = new Bitmap(Image.FromStream(myStream), new Size(48, 48));
+                }
+                else
+                {
+                    Image = new Bitmap(Image.FromStream(myStream), new Size(16, 16));
+                }
             }
         }
     }

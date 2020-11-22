@@ -9,12 +9,16 @@ namespace DWR_Tracker.Classes.Maps
 {
     public struct GridTile
     {
-        public GridTile(int tileIndex, bool isKnown)
+        public GridTile(int x, int y, int tileIndex, bool isKnown)
         {
+            X = x;
+            Y = y;
             TileIndex = tileIndex;
             IsKnown = isKnown;
         }
 
+        public int X;
+        public int Y;
         public int TileIndex;
         public bool IsKnown;
     }
@@ -27,6 +31,7 @@ namespace DWR_Tracker.Classes.Maps
         private GridTile[,] grid = new GridTile[gridSize, gridSize];
         private int tileSize = 16;
         private bool IsDecoded = false;
+        int[] keyTiles = { (int)TileName.Town, (int)TileName.Cave, (int)TileName.Castle };
 
         public DWOverworldMap()
         {
@@ -34,7 +39,7 @@ namespace DWR_Tracker.Classes.Maps
             {
                 for (int x = 0; x < gridSize; x++)
                 {
-                    grid[x, y] = new GridTile((int)TileName.Water, false); // (int)TileName.Water;
+                    grid[x, y] = new GridTile(x, y, (int)TileName.Water, false);
                 }
             }
         }
@@ -61,7 +66,7 @@ namespace DWR_Tracker.Classes.Maps
 
                 for (int x = 0, byteCtr = 0; x < gridSize; x++)
                 {
-                    grid[x, y] = new GridTile(tileIndex, true);
+                    grid[x, y] = new GridTile(x, y, tileIndex, true);
                     if (count == 0)
                     {
                         mapByte = read(rowPointers[y] + ++byteCtr);
@@ -83,6 +88,7 @@ namespace DWR_Tracker.Classes.Maps
         {
             if (!IsDecoded) { return null; }
 
+            List<GridTile> layer2Tiles = new List<GridTile>();
             Bitmap image = new Bitmap(gridSize * tileSize, gridSize * tileSize);
             Graphics g = Graphics.FromImage(image);
 
@@ -93,9 +99,25 @@ namespace DWR_Tracker.Classes.Maps
                     GridTile tile = grid[x, y];
                     int tileIndex = tile.IsKnown ? tile.TileIndex : (int)TileName.Unknown;
                     Image tileImage = DWRTiles[tileIndex].Image;
-                    g.DrawImage(tileImage, new Point(x * tileSize, y * tileSize));
+
+                    if (keyTiles.Contains(tileIndex))
+                    {
+                        layer2Tiles.Add(tile);
+                    }
+                    else
+                    {
+                        g.DrawImage(tileImage, new Point(x * tileSize, y * tileSize));
+                    }
                 }
             }
+
+            // draw towns, caves, and castles larger
+            foreach(GridTile tile in layer2Tiles)
+            {
+                g.DrawImage(DWRTiles[tile.TileIndex].Image, 
+                    new Point((tile.X - 1) * tileSize, (tile.Y - 1) * tileSize));
+            }
+
             return image;
         }
 
@@ -105,8 +127,10 @@ namespace DWR_Tracker.Classes.Maps
             {
                 for (int ix = -8; ix < 8; ix++)
                 {
-                    if (x < 0 || x > 119 || y < 0 || y > 119) { continue; }
-                    grid[x + ix, y + iy].IsKnown = true;
+                    int x2 = x + ix;
+                    int y2 = y + iy;
+                    if (x2 < 0 || x2 > 119 || y2 < 0 || y2 > 119) { continue; }
+                    grid[x2, y2].IsKnown = true;
                 }
             }
         }
