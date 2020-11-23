@@ -226,7 +226,7 @@
             // 
             // EnemyPanelPictureBox
             // 
-            this.EnemyPanelPictureBox.BackColor = System.Drawing.Color.SlateGray;
+            this.EnemyPanelPictureBox.BackColor = System.Drawing.Color.LightSteelBlue;
             this.EnemyPanelPictureBox.Location = new System.Drawing.Point(26, 11);
             this.EnemyPanelPictureBox.Name = "EnemyPanelPictureBox";
             this.EnemyPanelPictureBox.Size = new System.Drawing.Size(192, 192);
