@@ -80,7 +80,7 @@
             this.optionsToolStripMenuItem});
             this.DWMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.DWMenuStrip.Name = "DWMenuStrip";
-            this.DWMenuStrip.Size = new System.Drawing.Size(504, 24);
+            this.DWMenuStrip.Size = new System.Drawing.Size(505, 24);
             this.DWMenuStrip.TabIndex = 11;
             this.DWMenuStrip.Text = "menuStrip1";
             // 
@@ -152,7 +152,7 @@
             this.EmulatorStatusLabel});
             this.DWStatusStrip.Location = new System.Drawing.Point(0, 927);
             this.DWStatusStrip.Name = "DWStatusStrip";
-            this.DWStatusStrip.Size = new System.Drawing.Size(504, 22);
+            this.DWStatusStrip.Size = new System.Drawing.Size(505, 22);
             this.DWStatusStrip.SizingGrip = false;
             this.DWStatusStrip.TabIndex = 12;
             this.DWStatusStrip.Text = "statusStrip1";
@@ -382,7 +382,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(504, 949);
+            this.ClientSize = new System.Drawing.Size(505, 949);
             this.Controls.Add(this.DWContentPanel);
             this.Controls.Add(this.DWStatusStrip);
             this.Controls.Add(this.DWMenuStrip);

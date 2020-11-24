@@ -114,6 +114,12 @@
     <Compile Include="Controls\DWLabel.Designer.cs">
       <DependentUpon>DWLabel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\DWTimer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DWTimer.Designer.cs">
+      <DependentUpon>DWTimer.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +128,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\DWTimer.resx">
+      <DependentUpon>DWTimer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\oldman.png" />
     <EmbeddedResource Include="Images\Tiles\hero.png" />
     <EmbeddedResource Include="Images\Tiles\unknown.png" />
     <EmbeddedResource Include="Images\Tiles\block.png" />

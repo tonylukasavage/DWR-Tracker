@@ -380,19 +380,21 @@ namespace DWR_Tracker
                 Hero.Update(true);
 
                 // update all enemy skills and attack patterns
+                int enemyOffset = 0x9E4B;
                 for (int i = 0; i < DWGlobals.Enemies.Length; i++)
                 {
                     DWEnemy enemy = DWGlobals.Enemies[i];
-                    int pattern = reader.Read((0x9E4B + (i * 0x10)) + 3, 1, 2)[0];
+
+                    int pattern = reader.Read((enemyOffset + (i * 0x10)) + 3, 1, 2)[0];
                     enemy.Skill2Chance = (pattern & 0x3) / 4f;
                     enemy.Skill2 = enemy.GetSkill2((pattern >> 2) & 0x3);
                     enemy.Skill1Chance = ((pattern >> 4) & 0x3) / 4f;
                     enemy.Skill1 = enemy.GetSkill1((pattern >> 6) & 0x3);
 
-                    int resist = reader.Read(0x9E4B + (i * 0x10) + 4, 1, 2)[0];
+                    int resist = reader.Read(enemyOffset + (i * 0x10) + 4, 1, 2)[0];
                     enemy.StopspellResist = (resist % 0xF) / 16f;
-                    // Console.WriteLine(enemy.Name + ": Sleep -> " + Math.Floor(enemy.SleepResist * 100));
-                    Console.WriteLine("0x{0:X}", 0x9E4B + (i * 0x10) + 4);
+
+                    Console.WriteLine("0x{0:X}", enemyOffset + (i * 0x10) + 4);
                     Console.WriteLine(enemy.Name + ": " + Math.Floor(enemy.StopspellResist * 100));
                 }
 
