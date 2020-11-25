@@ -43,6 +43,11 @@
             this.EmulatorConnectionWorker = new System.ComponentModel.BackgroundWorker();
             this.DWContentPanel = new System.Windows.Forms.Panel();
             this.CombatPanel = new DWR_Tracker.Controls.DWPanel();
+            this.CoordsPanel = new DWR_Tracker.Controls.DWPanel();
+            this.CoordsEWCharTextBox = new System.Windows.Forms.TextBox();
+            this.CoordsNSCharTextBox = new System.Windows.Forms.TextBox();
+            this.CoordsEWTextBox = new System.Windows.Forms.TextBox();
+            this.CoordsNSTextBox = new System.Windows.Forms.TextBox();
             this.EnemyPanel = new System.Windows.Forms.Panel();
             this.EnemyInfoTable = new System.Windows.Forms.TableLayoutPanel();
             this.EnemyPanelPictureBox = new System.Windows.Forms.PictureBox();
@@ -58,15 +63,11 @@
             this.StatPanel = new DWR_Tracker.Controls.DWPanel();
             this.StatTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.SpellPanel = new DWR_Tracker.Controls.DWPanel();
-            this.CoordsPanel = new DWR_Tracker.Controls.DWPanel();
-            this.CoordsNSTextBox = new System.Windows.Forms.TextBox();
-            this.CoordsEWTextBox = new System.Windows.Forms.TextBox();
-            this.CoordsNSCharTextBox = new System.Windows.Forms.TextBox();
-            this.CoordsEWCharTextBox = new System.Windows.Forms.TextBox();
             this.DWMenuStrip.SuspendLayout();
             this.DWStatusStrip.SuspendLayout();
             this.DWContentPanel.SuspendLayout();
             this.CombatPanel.SuspendLayout();
+            this.CoordsPanel.SuspendLayout();
             this.EnemyPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EnemyPanelPictureBox)).BeginInit();
             this.MapPanel.SuspendLayout();
@@ -75,7 +76,6 @@
             this.OptionalItemPanel.SuspendLayout();
             this.QuestPanel.SuspendLayout();
             this.StatPanel.SuspendLayout();
-            this.CoordsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // DWMenuStrip
@@ -200,6 +200,68 @@
             this.CombatPanel.Size = new System.Drawing.Size(498, 510);
             this.CombatPanel.TabIndex = 14;
             this.CombatPanel.Title = "INFO";
+            // 
+            // CoordsPanel
+            // 
+            this.CoordsPanel.BackColor = System.Drawing.Color.Transparent;
+            this.CoordsPanel.Controls.Add(this.CoordsEWCharTextBox);
+            this.CoordsPanel.Controls.Add(this.CoordsNSCharTextBox);
+            this.CoordsPanel.Controls.Add(this.CoordsEWTextBox);
+            this.CoordsPanel.Controls.Add(this.CoordsNSTextBox);
+            this.CoordsPanel.Location = new System.Drawing.Point(349, 434);
+            this.CoordsPanel.MinimumSize = new System.Drawing.Size(40, 56);
+            this.CoordsPanel.Name = "CoordsPanel";
+            this.CoordsPanel.Size = new System.Drawing.Size(149, 76);
+            this.CoordsPanel.TabIndex = 4;
+            this.CoordsPanel.Title = "";
+            // 
+            // CoordsEWCharTextBox
+            // 
+            this.CoordsEWCharTextBox.BackColor = System.Drawing.Color.Black;
+            this.CoordsEWCharTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.CoordsEWCharTextBox.Font = new System.Drawing.Font("Dragon Warrior (NES)", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CoordsEWCharTextBox.ForeColor = System.Drawing.Color.White;
+            this.CoordsEWCharTextBox.Location = new System.Drawing.Point(22, 40);
+            this.CoordsEWCharTextBox.Name = "CoordsEWCharTextBox";
+            this.CoordsEWCharTextBox.Size = new System.Drawing.Size(53, 19);
+            this.CoordsEWCharTextBox.TabIndex = 5;
+            this.CoordsEWCharTextBox.Text = "E/W";
+            // 
+            // CoordsNSCharTextBox
+            // 
+            this.CoordsNSCharTextBox.BackColor = System.Drawing.Color.Black;
+            this.CoordsNSCharTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.CoordsNSCharTextBox.Font = new System.Drawing.Font("Dragon Warrior (NES)", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CoordsNSCharTextBox.ForeColor = System.Drawing.Color.White;
+            this.CoordsNSCharTextBox.Location = new System.Drawing.Point(22, 17);
+            this.CoordsNSCharTextBox.Name = "CoordsNSCharTextBox";
+            this.CoordsNSCharTextBox.Size = new System.Drawing.Size(53, 19);
+            this.CoordsNSCharTextBox.TabIndex = 4;
+            this.CoordsNSCharTextBox.Text = "N/S";
+            // 
+            // CoordsEWTextBox
+            // 
+            this.CoordsEWTextBox.BackColor = System.Drawing.Color.Black;
+            this.CoordsEWTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.CoordsEWTextBox.Font = new System.Drawing.Font("Dragon Warrior (NES)", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CoordsEWTextBox.ForeColor = System.Drawing.Color.White;
+            this.CoordsEWTextBox.Location = new System.Drawing.Point(81, 40);
+            this.CoordsEWTextBox.Name = "CoordsEWTextBox";
+            this.CoordsEWTextBox.Size = new System.Drawing.Size(53, 19);
+            this.CoordsEWTextBox.TabIndex = 3;
+            this.CoordsEWTextBox.Text = "??";
+            // 
+            // CoordsNSTextBox
+            // 
+            this.CoordsNSTextBox.BackColor = System.Drawing.Color.Black;
+            this.CoordsNSTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.CoordsNSTextBox.Font = new System.Drawing.Font("Dragon Warrior (NES)", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CoordsNSTextBox.ForeColor = System.Drawing.Color.White;
+            this.CoordsNSTextBox.Location = new System.Drawing.Point(81, 17);
+            this.CoordsNSTextBox.Name = "CoordsNSTextBox";
+            this.CoordsNSTextBox.Size = new System.Drawing.Size(53, 19);
+            this.CoordsNSTextBox.TabIndex = 2;
+            this.CoordsNSTextBox.Text = "??";
             // 
             // EnemyPanel
             // 
@@ -384,68 +446,6 @@
             this.SpellPanel.Text = "dwPanel1";
             this.SpellPanel.Title = "SPELLS";
             // 
-            // CoordsPanel
-            // 
-            this.CoordsPanel.BackColor = System.Drawing.Color.Transparent;
-            this.CoordsPanel.Controls.Add(this.CoordsEWCharTextBox);
-            this.CoordsPanel.Controls.Add(this.CoordsNSCharTextBox);
-            this.CoordsPanel.Controls.Add(this.CoordsEWTextBox);
-            this.CoordsPanel.Controls.Add(this.CoordsNSTextBox);
-            this.CoordsPanel.Location = new System.Drawing.Point(349, 434);
-            this.CoordsPanel.MinimumSize = new System.Drawing.Size(40, 56);
-            this.CoordsPanel.Name = "CoordsPanel";
-            this.CoordsPanel.Size = new System.Drawing.Size(149, 76);
-            this.CoordsPanel.TabIndex = 4;
-            this.CoordsPanel.Title = "";
-            // 
-            // CoordsNSTextBox
-            // 
-            this.CoordsNSTextBox.BackColor = System.Drawing.Color.Black;
-            this.CoordsNSTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.CoordsNSTextBox.Font = new System.Drawing.Font("Dragon Warrior (NES)", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CoordsNSTextBox.ForeColor = System.Drawing.Color.White;
-            this.CoordsNSTextBox.Location = new System.Drawing.Point(81, 17);
-            this.CoordsNSTextBox.Name = "CoordsNSTextBox";
-            this.CoordsNSTextBox.Size = new System.Drawing.Size(53, 19);
-            this.CoordsNSTextBox.TabIndex = 2;
-            this.CoordsNSTextBox.Text = "??";
-            // 
-            // CoordsEWTextBox
-            // 
-            this.CoordsEWTextBox.BackColor = System.Drawing.Color.Black;
-            this.CoordsEWTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.CoordsEWTextBox.Font = new System.Drawing.Font("Dragon Warrior (NES)", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CoordsEWTextBox.ForeColor = System.Drawing.Color.White;
-            this.CoordsEWTextBox.Location = new System.Drawing.Point(81, 40);
-            this.CoordsEWTextBox.Name = "CoordsEWTextBox";
-            this.CoordsEWTextBox.Size = new System.Drawing.Size(53, 19);
-            this.CoordsEWTextBox.TabIndex = 3;
-            this.CoordsEWTextBox.Text = "??";
-            // 
-            // CoordsNSCharTextBox
-            // 
-            this.CoordsNSCharTextBox.BackColor = System.Drawing.Color.Black;
-            this.CoordsNSCharTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.CoordsNSCharTextBox.Font = new System.Drawing.Font("Dragon Warrior (NES)", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CoordsNSCharTextBox.ForeColor = System.Drawing.Color.White;
-            this.CoordsNSCharTextBox.Location = new System.Drawing.Point(22, 17);
-            this.CoordsNSCharTextBox.Name = "CoordsNSCharTextBox";
-            this.CoordsNSCharTextBox.Size = new System.Drawing.Size(53, 19);
-            this.CoordsNSCharTextBox.TabIndex = 4;
-            this.CoordsNSCharTextBox.Text = "N/S";
-            // 
-            // CoordsEWCharTextBox
-            // 
-            this.CoordsEWCharTextBox.BackColor = System.Drawing.Color.Black;
-            this.CoordsEWCharTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.CoordsEWCharTextBox.Font = new System.Drawing.Font("Dragon Warrior (NES)", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CoordsEWCharTextBox.ForeColor = System.Drawing.Color.White;
-            this.CoordsEWCharTextBox.Location = new System.Drawing.Point(22, 40);
-            this.CoordsEWCharTextBox.Name = "CoordsEWCharTextBox";
-            this.CoordsEWCharTextBox.Size = new System.Drawing.Size(53, 19);
-            this.CoordsEWCharTextBox.TabIndex = 5;
-            this.CoordsEWCharTextBox.Text = "E/W";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -468,6 +468,8 @@
             this.DWContentPanel.ResumeLayout(false);
             this.CombatPanel.ResumeLayout(false);
             this.CombatPanel.PerformLayout();
+            this.CoordsPanel.ResumeLayout(false);
+            this.CoordsPanel.PerformLayout();
             this.EnemyPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.EnemyPanelPictureBox)).EndInit();
             this.MapPanel.ResumeLayout(false);
@@ -480,8 +482,6 @@
             this.QuestPanel.PerformLayout();
             this.StatPanel.ResumeLayout(false);
             this.StatPanel.PerformLayout();
-            this.CoordsPanel.ResumeLayout(false);
-            this.CoordsPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

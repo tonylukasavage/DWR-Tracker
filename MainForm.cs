@@ -415,11 +415,6 @@ namespace DWR_Tracker
             ToolStripMenuItem mi = (ToolStripMenuItem)sender;
             Config.AutoTrackingEnabled = mi.Checked = !mi.Checked;
         }
-
-        private void CoordsLabel_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 
     public class ItemPictureBox
