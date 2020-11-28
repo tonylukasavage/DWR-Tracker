@@ -7,8 +7,8 @@ Auto tracker for the [Dragon Warrior Randomizer](https://github.com/mcgrew/dwran
 ## Requirements
 
 * Windows
-* [fceux 2.2.3](http://fceux.com/web/home.html)
-	* May work on earlier versions, but it's untested
+* [fceux 2.2.3](http://sourceforge.net/projects/fceultra/files/Binaries/2.2.3/fceux-2.2.3-win32.zip/download)
+	* You **MUST** use the win32 binary download, other versions will not connect to the tracker
 
 ## Usage
 
